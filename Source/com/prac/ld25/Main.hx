@@ -37,8 +37,10 @@ class Main extends Sprite {
 		this.graphics.drawRect(0, 0, Lib.current.stage.stageWidth, Lib.current.stage.stageHeight);
 		this.graphics.endFill();
 		
-		//disable trace
-		haxe.Log.trace = this.trace;
+		if(!Settings.TRACE){
+			//disable trace
+			haxe.Log.trace = this.trace;
+		}
 		
 		m_game = new Game();
 		addChild( m_game);

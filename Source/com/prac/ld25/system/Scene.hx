@@ -102,14 +102,14 @@ class Scene extends Sprite
 				var _next_x:Float;
 				var _next_y:Float;
 				if (m_dest.x > _reel_x) {
-					_next_x = Math.min(m_dest.x, _reel_x + m_character.speed);
+					_next_x = Math.min(m_dest.x, _reel_x + m_character.speed_x);
 				}else {
-					_next_x = Math.max(m_dest.x, _reel_x - m_character.speed);
+					_next_x = Math.max(m_dest.x, _reel_x - m_character.speed_x);
 				}
 				if (m_dest.y > m_character.y) {
-					_next_y = Math.min(m_dest.y, m_character.y + m_character.speed);
+					_next_y = Math.min(m_dest.y, m_character.y + m_character.speed_y);
 				}else {
-					_next_y = Math.max(m_dest.y, m_character.y - m_character.speed);
+					_next_y = Math.max(m_dest.y, m_character.y - m_character.speed_y);
 				}
 				
 				/*** COLLISION ***/
@@ -146,8 +146,8 @@ class Scene extends Sprite
 				
 				/*** ITEM COLLISION ***/
 				for (_sceneObject in m_exits) {
-					if (m_character.x + m_character.box_width >= _sceneObject.x && m_character.x < _sceneObject.x + _sceneObject.width
-						&& m_character.y + m_character.box_height >= _sceneObject.y && m_character.y < _sceneObject.y + _sceneObject.height) {
+					if (_next_x + m_character.box_width >= _sceneObject.x && _next_x < _sceneObject.x + _sceneObject.box_width
+						&& m_character.y < _sceneObject.y  + _sceneObject.box_height && m_character.y + m_character.box_height > _sceneObject.y ) {
 							dispatchExit(_sceneObject.data.exit);
 						}
 				}

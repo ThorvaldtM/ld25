@@ -13,7 +13,8 @@ class Settings
 	static public var GAME_SIZE_W:Int = 800;
 	
 	static public var VOLUME:Float = 1;
-	static public var COLLISION:Bool =  false;
+	static public var COLLISION:Bool =  true;
+	static public var TRACE:Bool =  false;
 	
 	static public function applySound(sound:SoundChannel):Void {
 		

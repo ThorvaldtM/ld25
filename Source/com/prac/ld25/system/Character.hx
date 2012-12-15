@@ -13,10 +13,9 @@ import nme.display.Tilesheet;
 
 class Character extends SceneObject
 {
-	public var box_width:Float = 100;
-	public var box_height:Float = 100;
 	
-	public var speed:Int = 5;
+	public var speed_y:Int = 5;
+	public var speed_x:Int = 8;
 	private var m_current:Int = 0;
 	private var m_tileSheet:Tilesheet;
 	
@@ -24,13 +23,23 @@ class Character extends SceneObject
 
 	public function new()
 	{
+		box_width = 100;
+		box_height = 100;
 		moving = false;
 		m_tileSheet = new Tilesheet(Assets.getBitmapData('assets/LIB/heroe.png'));
 		for (i in 0...9) {
 			m_tileSheet.addTileRect(new Rectangle(i * 1530 / 9, 0, 1530 / 9, 247));
 		}
 		m_tileSheet.drawTiles(this.graphics, [-25, box_height - 247, 0]);
+		if(Settings.COLLISION){
+			/*** hitbox **/
+			this.graphics.beginFill(0x00FF00,0.5);
+			this.graphics.drawRect(0, 0, box_width, box_height);
+			this.graphics.endFill();
+		}
 		super(null);
+		box_width = 100;
+		box_height = 100;
 	}
 	
 	override public function update():Void
@@ -45,7 +54,7 @@ class Character extends SceneObject
 			}
 			if(Settings.COLLISION){
 				/*** hitbox **/
-				this.graphics.beginFill(0x00FF00,0.5);
+				this.graphics.beginFill(0x00FF00, 0.5);
 				this.graphics.drawRect(0, 0, box_width, box_height);
 				this.graphics.endFill();
 			}

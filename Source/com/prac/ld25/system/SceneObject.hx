@@ -21,6 +21,10 @@ class SceneObject extends Sprite
 	private var m_text:TextField;
 	private var m_fade:Int;
 	public var data:ItemData;
+	
+	
+	public var box_width:Float;
+	public var box_height:Float;
 
 	public function new(data:ItemData)
 	{
@@ -33,6 +37,8 @@ class SceneObject extends Sprite
 			this.x = data.x;
 			this.y = data.y;
 			this.data = data;
+			box_width = _bg.width;
+			box_height = _bg.height;
 		}
 			
 		var font:Font = Assets.getFont ("assets/vgafix.ttf");
