@@ -92,6 +92,21 @@ class ApplicationMain {
 	public static function getAsset (inName:String):Dynamic {
 		
 		
+		if (inName=="assets/col_room.png")
+			 
+            return Assets.getBitmapData ("assets/col_room.png");
+         
+		
+		if (inName=="assets/vgafix.ttf")
+			 
+			 return Assets.getFont ("assets/vgafix.ttf");
+		 
+		
+		if (inName=="assets/WIP/posings01.jpg")
+			 
+            return Assets.getBitmapData ("assets/WIP/posings01.jpg");
+         
+		
 		
 		return null;
 		
@@ -112,4 +127,7 @@ class ApplicationMain {
 }
 
 
+class NME_assets_col_room_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
+class NME_assets_vgafix_ttf extends nme.text.Font { }
+class NME_assets_wip_posings01_jpg extends nme.display.BitmapData { public function new () { super (0, 0); } }
 

@@ -6,7 +6,7 @@
 -D web
 -swf-version 10.1
 -swf9 Export/flash/bin/ld25thotorcarduus.swf
--swf-header 640:480:30:ffffff
+-swf-header 800:600:30:ffffff
 -cp Export/flash/haxe
 --no-inline
 -debug

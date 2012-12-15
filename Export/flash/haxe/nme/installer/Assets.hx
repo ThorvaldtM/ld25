@@ -28,6 +28,12 @@ class Assets {
 		
 		if (!initialized) {
 			
+			resourceClasses.set ("assets/col_room.png", NME_assets_col_room_png);
+			resourceTypes.set ("assets/col_room.png", "image");
+			resourceClasses.set ("assets/vgafix.ttf", NME_assets_vgafix_ttf);
+			resourceTypes.set ("assets/vgafix.ttf", "font");
+			resourceClasses.set ("assets/WIP/posings01.jpg", NME_assets_wip_posings01_jpg);
+			resourceTypes.set ("assets/WIP/posings01.jpg", "image");
 			
 			initialized = true;
 			

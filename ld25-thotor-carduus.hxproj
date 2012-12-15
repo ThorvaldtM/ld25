@@ -21,7 +21,7 @@
   <build>
     <option directives="" />
     <option flashStrict="False" />
-    <option mainClass="com.prac.ld25.ld25thotorcarduus" />
+    <option mainClass="com.prac.ld25.Main" />
     <option enabledebug="False" />
     <option additional="" />
   </build>

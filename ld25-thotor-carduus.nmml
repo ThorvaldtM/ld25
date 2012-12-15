@@ -4,7 +4,7 @@
 	<meta title="ld25-thotor-carduus" package="com.prac.ld25" version="1.0.0" company="Thorvald ter Meer" />
 	<app path="Export" file="ld25thotorcarduus" main="com.prac.ld25.Main" />
 	
-	<window width="800" height="600" if="desktop" />
+	<window width="800" height="600" />
 	<window fps="30" />
 	
 	<source path="Source" />
