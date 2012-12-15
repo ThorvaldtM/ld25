@@ -40,6 +40,7 @@ class Character extends SceneObject
 		super(null);
 		box_width = 100;
 		box_height = 100;
+		m_text.y += box_height - 247;
 	}
 	
 	override public function update():Void
@@ -59,6 +60,8 @@ class Character extends SceneObject
 				this.graphics.endFill();
 			}
 		}
+		this.m_text.scaleX = this.scaleX;
+		this.m_text.x = (1530 / 9 - m_text.width) / 2 + ( m_text.width) * (1 - this.scaleX ) / 4; //correct scaling position
 	}
 	
 }

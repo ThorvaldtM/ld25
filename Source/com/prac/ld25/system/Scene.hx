@@ -2,6 +2,7 @@ package com.prac.ld25.system;
 import com.prac.ld25.data.DialogData;
 import com.prac.ld25.data.ItemData;
 import com.prac.ld25.data.SceneData;
+import com.prac.ld25.data.SceneList;
 import com.prac.ld25.interfaces.InterfaceManager;
 import com.prac.ld25.Settings;
 import com.prac.ld25.tools.AssetLoader;
@@ -20,7 +21,7 @@ import nme.installer.Assets;
 
 class Scene extends Sprite
 {
-	private var data:SceneData;
+	public var data:SceneData;
 	private var m_character:Character;
 	private var m_dest:Point;
 	private var m_exits:Array<SceneObject>;
@@ -164,11 +165,14 @@ class Scene extends Sprite
 	
 	private function executeAction()
 	{
-		if(m_dest_target != null){
+		if(m_dest_target != null && m_dest_target.data != null){
 			switch(m_dest_action) {
 				case InterfaceManager.MODE_LOOK :
 					if (m_dest_target.data.look != null) {
 						m_character.speak(m_dest_target.data.look.desc);
+						if (m_dest_target.data.look.special != null) {
+							executeSpecial(m_dest_target.data.look.special, m_dest_target);
+						}
 					}
 				case InterfaceManager.MODE_PICK :
 					if (m_dest_target.data.pick != null) {
@@ -178,6 +182,10 @@ class Scene extends Sprite
 						if (m_dest_target.data.pick.success) {
 							m_interface.addItem(m_dest_target.data);
 							removeChild(m_dest_target);
+							data.items.remove(m_dest_target.data);
+						}
+						if (m_dest_target.data.pick.special != null) {
+							executeSpecial(m_dest_target.data.pick.special, m_dest_target);
 						}
 					}
 				case InterfaceManager.MODE_TALK :
@@ -193,17 +201,49 @@ class Scene extends Sprite
 								m_dest_target.speak(m_dest_target.data.talk.dialog.question);
 							}
 						}
+						if (m_dest_target.data.talk.special != null) {
+							executeSpecial(m_dest_target.data.talk.special, m_dest_target);
+						}
 					}
 				case InterfaceManager.MODE_USE :
 					if (m_dest_target.data.use != null) {
 						if(m_dest_target.data.use.desc != null){
 							m_character.speak(m_dest_target.data.use.desc);
 						}
+						if (m_dest_target.data.use.special != null) {
+							executeSpecial(m_dest_target.data.use.special, m_dest_target);
+						}
 					}
 			}
 		}
 		m_dest_target = null;
 		m_dest_action = 0;
+	}
+	
+	private function executeSpecial(special:String, object:SceneObject)
+	{
+		var _cmd:Array<String> = special.split(';');
+		var _item:ItemData;
+		var _object:SceneObject;
+		while (_cmd.length > 0) {
+			switch(_cmd.shift()) {
+				case 'replace' :
+					removeChild(m_dest_target);
+					data.items.remove(m_dest_target.data);
+					SceneList.poolItem(m_dest_target.data);
+					_item = SceneList.getItem(_cmd.shift());
+					_object = new SceneObject(_item);
+					addChild(_object);
+					m_items.push(_object);
+					if (_item.exit != null) {
+						m_exits.push(_object);
+					}
+				case 'gain' :
+					m_interface.addItem(SceneList.getItem(_cmd.shift()));
+				case 'score':
+					m_interface.addScore(Std.parseInt(_cmd.shift()));
+			}
+		}
 	}
 	
 	private function dialogResponse(e:DataEvent):Void

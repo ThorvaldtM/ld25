@@ -53,6 +53,7 @@ class Game extends Sprite
 	
 	private function changeScene(e:DataEvent):Void
 	{
+		SceneList.saveScene(m_scene.data);
 		m_scene.removeEventListener("scene_change", changeScene);
 		removeChild(m_scene);
 		var _data:Array<String> = e.data.split(';');

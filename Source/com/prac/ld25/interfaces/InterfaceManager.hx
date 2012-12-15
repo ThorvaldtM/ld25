@@ -96,6 +96,10 @@ class InterfaceManager extends Sprite
 		updateCursor();
 	}
 	
+	public function addScore(score:Int): Void {
+		m_score.score += score;
+	}
+	
 	public function addItem(data:ItemData):Void {
 		m_inv.addItem(data);
 	}
