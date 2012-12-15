@@ -1,9 +1,13 @@
 package com.prac.ld25.system;
 import com.prac.ld25.data.SceneList;
 import com.prac.ld25.interfaces.InterfaceManager;
+import com.prac.ld25.Settings;
 import flash.events.Event;
+import nme.Assets;
 import nme.display.Sprite;
 import nme.events.TimerEvent;
+import nme.media.Sound;
+import nme.media.SoundChannel;
 import nme.utils.Timer;
 
 /**
@@ -17,6 +21,7 @@ class Game extends Sprite
 	
 	private var m_scene:Scene;
 	private var m_loop:Timer;
+	private var m_channel:SoundChannel;
 
 	public function new()
 	{
@@ -35,6 +40,10 @@ class Game extends Sprite
 		m_loop = new Timer(40);
 		m_loop.addEventListener(TimerEvent.TIMER, update);
 		m_loop.start();
+		
+		var sound:Sound = Assets.getSound ("assets/LIB/Title_LD25.mp3");
+		m_channel = sound.play(0, 99999);
+		Settings.applySound(m_channel);
 	}
 	
 	private function update(e:TimerEvent):Void

@@ -97,6 +97,16 @@ class ApplicationMain {
             return Assets.getBitmapData ("assets/col_room.png");
          
 		
+		if (inName=="assets/LIB/heroe.png")
+			 
+            return Assets.getBitmapData ("assets/LIB/heroe.png");
+         
+		
+		if (inName=="assets/LIB/Title_LD25.mp3")
+			 
+            return Assets.getSound ("assets/LIB/Title_LD25.mp3");
+		 
+		
 		if (inName=="assets/vgafix.ttf")
 			 
 			 return Assets.getFont ("assets/vgafix.ttf");
@@ -128,6 +138,8 @@ class ApplicationMain {
 
 
 class NME_assets_col_room_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
+class NME_assets_lib_heroe_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
+class NME_assets_lib_title_ld25_mp3 extends nme.media.Sound { }
 class NME_assets_vgafix_ttf extends nme.text.Font { }
 class NME_assets_wip_posings01_jpg extends nme.display.BitmapData { public function new () { super (0, 0); } }
 

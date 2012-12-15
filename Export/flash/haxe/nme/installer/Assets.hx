@@ -30,6 +30,10 @@ class Assets {
 			
 			resourceClasses.set ("assets/col_room.png", NME_assets_col_room_png);
 			resourceTypes.set ("assets/col_room.png", "image");
+			resourceClasses.set ("assets/LIB/heroe.png", NME_assets_lib_heroe_png);
+			resourceTypes.set ("assets/LIB/heroe.png", "image");
+			resourceClasses.set ("assets/LIB/Title_LD25.mp3", NME_assets_lib_title_ld25_mp3);
+			resourceTypes.set ("assets/LIB/Title_LD25.mp3", "music");
 			resourceClasses.set ("assets/vgafix.ttf", NME_assets_vgafix_ttf);
 			resourceTypes.set ("assets/vgafix.ttf", "font");
 			resourceClasses.set ("assets/WIP/posings01.jpg", NME_assets_wip_posings01_jpg);

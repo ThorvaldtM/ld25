@@ -3,6 +3,7 @@ import com.prac.ld25.data.DialogData;
 import com.prac.ld25.data.ItemData;
 import com.prac.ld25.data.SceneData;
 import com.prac.ld25.interfaces.InterfaceManager;
+import com.prac.ld25.Settings;
 import com.prac.ld25.tools.AssetLoader;
 import flash.events.Event;
 import nme.Assets;
@@ -28,6 +29,7 @@ class Scene extends Sprite
 	private var m_dest_action:UInt;
 	private var m_dest_target:SceneObject;
 	private var m_items:Array<SceneObject>;
+	private var m_dir:Bool;
 
 	public function new(data:SceneData, spawn_x:Int, spawn_y:Int, _interface:InterfaceManager)
 	{
@@ -37,9 +39,15 @@ class Scene extends Sprite
 		m_items = new Array<SceneObject>();
 		m_interface = _interface;
 		m_interface.addEventListener('dialog_choice', dialogResponse);
+		m_dir = false;
 		
 		var _bg:Sprite = AssetLoader.loadAsset(data.bg, 800, 600);
 		addChild(_bg);
+		if(Settings.COLLISION){
+			var _bgCol:Sprite = AssetLoader.loadAsset(data.collision, 800, 600);
+			_bgCol.alpha = 0.5;
+			addChild(_bgCol);
+		}
 		
 		for (_item in data.items) {
 			var _itemObject:SceneObject = new SceneObject(_item);
@@ -70,7 +78,8 @@ class Scene extends Sprite
 			m_dest_target = cast(e.target, SceneObject);
 		}
 		if (m_interface.state != InterfaceManager.MODE_LOOK) {
-			m_dest = new Point(e.stageX - m_character.width /2 , e.stageY - m_character.height /2 );
+			m_dest = new Point(e.stageX - m_character.box_width / 2 , e.stageY - m_character.box_height / 2 );
+			m_dir = false;
 		}else {
 			executeAction();
 		}
@@ -83,16 +92,19 @@ class Scene extends Sprite
 	
 	public function update():Void {
 		if (m_dest != null) {
-			if (m_dest.x == m_character.x && m_dest.y == m_character.y) {
+			m_character.moving = true;
+			var _reel_x:Float = m_character.x - m_character.box_width * (1 - m_character.scaleX ) / 2;
+			
+			if (m_dest.x == _reel_x && m_dest.y == m_character.y) {
 				m_dest = null;
 				executeAction();
 			}else {
 				var _next_x:Float;
 				var _next_y:Float;
-				if (m_dest.x > m_character.x) {
-					_next_x = Math.min(m_dest.x, m_character.x + m_character.speed);
+				if (m_dest.x > _reel_x) {
+					_next_x = Math.min(m_dest.x, _reel_x + m_character.speed);
 				}else {
-					_next_x = Math.max(m_dest.x, m_character.x - m_character.speed);
+					_next_x = Math.max(m_dest.x, _reel_x - m_character.speed);
 				}
 				if (m_dest.y > m_character.y) {
 					_next_y = Math.min(m_dest.y, m_character.y + m_character.speed);
@@ -102,10 +114,10 @@ class Scene extends Sprite
 				
 				/*** COLLISION ***/
 				var _isSafe:Bool = true;
-				var _min_x:Int =  Std.int(Math.min(m_character.x, _next_x));
-				var _max_x:Int =  Std.int(Math.max(m_character.x, _next_x) + m_character.width);
+				var _min_x:Int =  Std.int(Math.min(_reel_x, _next_x));
+				var _max_x:Int =  Std.int(Math.max(_reel_x, _next_x) + m_character.box_width);
 				var _min_y:Int =  Std.int(Math.min(m_character.y, _next_y));
-				var _max_y:Int =  Std.int(Math.max(m_character.y, _next_y) + m_character.height);
+				var _max_y:Int =  Std.int(Math.max(m_character.y, _next_y) + m_character.box_height);
 				for (x in _min_x..._max_x) {
 					for (y in _min_y..._max_y) {
 						if (m_collision_map.getPixel(x, y) == 0x000000) {
@@ -116,18 +128,32 @@ class Scene extends Sprite
 					}
 				}
 				if (_isSafe) {
-					m_character.x = _next_x;
+					if(!m_dir){
+						if (_next_x > _reel_x) {
+							if(m_character.scaleX != -1){
+								m_character.scaleX = -1;
+							}
+						}else if(_next_x != _reel_x) {
+							if(m_character.scaleX != 1){
+								m_character.scaleX = 1;
+							}
+						}
+						m_dir = true;
+					}
+					m_character.x = _next_x + m_character.box_width * (1 - m_character.scaleX ) / 2;
 					m_character.y = _next_y;
 				}
 				
 				/*** ITEM COLLISION ***/
 				for (_sceneObject in m_exits) {
-					if (m_character.x + m_character.width >= _sceneObject.x && m_character.x < _sceneObject.x + _sceneObject.width
-						&& m_character.y + m_character.height >= _sceneObject.y && m_character.y < _sceneObject.y + _sceneObject.height) {
+					if (m_character.x + m_character.box_width >= _sceneObject.x && m_character.x < _sceneObject.x + _sceneObject.width
+						&& m_character.y + m_character.box_height >= _sceneObject.y && m_character.y < _sceneObject.y + _sceneObject.height) {
 							dispatchExit(_sceneObject.data.exit);
 						}
 				}
 			}
+		}else{
+			m_character.moving = false;
 		}
 		
 		m_character.update();
