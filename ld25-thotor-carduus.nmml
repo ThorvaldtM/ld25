@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+	
+	<meta title="ld25-thotor-carduus" package="com.prac.ld25" version="1.0.0" company="Thorvald ter Meer" />
+	<app path="Export" file="ld25thotorcarduus" main="com.prac.ld25.Main" />
+	
+	<window width="800" height="600" if="desktop" />
+	<window fps="30" />
+	
+	<source path="Source" />
+	
+	<haxelib name="nme" />
+	<haxelib name="actuate" />
+	
+	<assets path="Assets" rename="assets" include="*" exclude="nme.svg" />
+	
+	<icon name="Assets/nme.svg" />
+	
+	<ndll name="std" />
+	<ndll name="regexp" />
+	<ndll name="zlib" />
+	<ndll name="nme" haxelib="nme" />
+	
+</project>
