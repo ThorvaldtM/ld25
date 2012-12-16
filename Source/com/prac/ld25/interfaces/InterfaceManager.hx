@@ -40,6 +40,7 @@ class InterfaceManager extends Sprite
 	private var m_dialog:DialogBox;
 	private var m_current_item:InventoryItem;
 	private var m_desc:ActionDesc;
+	private var m_ui_bg:Sprite;
 
 	public function new()
 	{
@@ -47,9 +48,9 @@ class InterfaceManager extends Sprite
 		
 		this.mouseEnabled = false;
 		
-		var _ui_bg:Sprite = AssetLoader.loadAsset('UI/bg_ui.png', 800, 120);
-		_ui_bg.y = Settings.GAME_SIZE_H - _ui_bg.height;
-		addChild(_ui_bg);
+		m_ui_bg = AssetLoader.loadAsset('UI/bg_ui.png', 800, 120);
+		m_ui_bg.y = Settings.GAME_SIZE_H - m_ui_bg.height;
+		addChild(m_ui_bg);
 		
 		m_walk = AssetLoader.loadAsset('UI/btn_walk.png', 75, 75);
 		m_walk.mouseEnabled = true;
@@ -115,7 +116,7 @@ class InterfaceManager extends Sprite
 		removeDialog();
 		m_dialog = new DialogBox(options);
 		m_dialog.x = Settings.GAME_SIZE_W - m_dialog.width - 5;
-		m_dialog.y = m_inv.y - 10 - m_dialog.height;
+		m_dialog.y = m_ui_bg.y - m_dialog.height;
 		m_dialog.addEventListener('dialog_choice', dispatchDialog);
 		addChild(m_dialog);
 		Settings.STATE = MODE_DIALOG;

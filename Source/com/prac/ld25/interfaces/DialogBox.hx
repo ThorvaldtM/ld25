@@ -28,7 +28,7 @@ class DialogBox extends Sprite
 		super();
 		this.m_options = option;
 		
-		var _bg:Sprite = AssetLoader.loadAsset('dialog.png', 400, 200);
+		var _bg:Sprite = AssetLoader.loadAsset('UI/dialog.png', 390, 140);
 		addChild(_bg);
 		
 		var font:Font = Assets.getFont ("assets/vgafix.ttf");
@@ -41,8 +41,8 @@ class DialogBox extends Sprite
 		m_text_1 = new TextField();
 		m_text_1.antiAliasType = AntiAliasType.ADVANCED;
 		m_text_1.defaultTextFormat = _textFormat;
-		m_text_1.width = 175;
-		m_text_1.height = 30;
+		m_text_1.width = 380;
+		m_text_1.height = 40;
 		m_text_1.selectable = false;
 		m_text_1.embedFonts = true;
 		m_text_1.wordWrap = true;
@@ -61,8 +61,8 @@ class DialogBox extends Sprite
 		m_text_2 = new TextField();
 		m_text_2.antiAliasType = AntiAliasType.ADVANCED;
 		m_text_2.defaultTextFormat = _textFormat;
-		m_text_2.width = 175;
-		m_text_2.height = 30;
+		m_text_2.width = 380;
+		m_text_2.height = 40;
 		m_text_2.selectable = false;
 		m_text_2.embedFonts = true;
 		m_text_2.wordWrap = true;
@@ -81,8 +81,8 @@ class DialogBox extends Sprite
 		m_text_3 = new TextField();
 		m_text_3.antiAliasType = AntiAliasType.ADVANCED;
 		m_text_3.defaultTextFormat = _textFormat;
-		m_text_3.width = 175;
-		m_text_3.height = 30;
+		m_text_3.width = 380;
+		m_text_3.height = 40;
 		m_text_3.selectable = false;
 		m_text_3.embedFonts = true;
 		m_text_3.wordWrap = true;

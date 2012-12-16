@@ -167,6 +167,11 @@ class ApplicationMain {
             return Assets.getBitmapData ("assets/UI/btn_walk.png");
          
 		
+		if (inName=="assets/UI/dialog.png")
+			 
+            return Assets.getBitmapData ("assets/UI/dialog.png");
+         
+		
 		if (inName=="assets/vgafix.ttf")
 			 
 			 return Assets.getFont ("assets/vgafix.ttf");
@@ -207,5 +212,6 @@ class NME_assets_ui_btn_prev_png extends nme.display.BitmapData { public functio
 class NME_assets_ui_btn_talk_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_ui_btn_use_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_ui_btn_walk_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
+class NME_assets_ui_dialog_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_vgafix_ttf extends nme.text.Font { }
 

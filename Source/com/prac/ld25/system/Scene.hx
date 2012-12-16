@@ -66,10 +66,19 @@ class Scene extends Sprite
 		addChild(m_character);
 		Settings.CHARACTER = m_character;
 		
+		for (_item in m_items) {
+			_item.text.x += _item.x;
+			_item.text.y += _item.y;
+			addChild(_item.text);
+		}
+		
 		m_collision_map = Assets.getBitmapData('assets/' + data.collision);
 		
 		this.addEventListener(MouseEvent.CLICK, moveCharacter);
 		this.addEventListener(MouseEvent.MOUSE_OVER, overScene);
+		
+		
+		
 	}
 	
 	private function overScene(e:MouseEvent):Void
@@ -98,7 +107,11 @@ class Scene extends Sprite
 			m_dest_target = null;
 		}
 		if (m_interface.state == InterfaceManager.MODE_WALK  || (m_interface.state != InterfaceManager.MODE_LOOK && m_dest_target != null)) {
-			m_dest = new Point(e.stageX - m_character.box_width / 2 , e.stageY - m_character.box_height / 2 );
+			if(m_dest_target != null){
+				m_dest = new Point(m_dest_target.x + m_dest_target.box_width /2 - m_character.box_width / 2 , m_dest_target.y + m_dest_target.box_height /2 + m_character.box_height * 2 );
+			}else {
+				m_dest = new Point(e.stageX - m_character.box_width / 2 , e.stageY - m_character.box_height / 2 );
+			}
 			m_dir = false;
 		}else {
 			executeAction();
@@ -113,7 +126,7 @@ class Scene extends Sprite
 	public function update():Void {
 		if (m_dest != null) {
 			m_character.moving = true;
-			var _reel_x:Float = m_character.x - m_character.box_width * (1 - m_character.scaleX ) / 2;
+			var _reel_x:Float = m_character.x - (m_character.box_width)  * (1 - m_character.scaleX ) / 2;
 			
 			if (m_dest.x == _reel_x && m_dest.y == m_character.y) {
 				m_dest = null;
@@ -197,8 +210,17 @@ class Scene extends Sprite
 					m_dest_action = 0;
 				case InterfaceManager.MODE_PICK :
 					if (m_dest_target.data.pick != null) {
-						if(m_dest_target.data.pick.desc != null){
-							m_character.speak(m_dest_target.data.pick.desc);
+						if (m_dest_target.data.pick.desc != null) {
+							if(m_dest_target.data.pick.target == null){
+								m_character.speak(m_dest_target.data.pick.desc);
+							}else {
+								for (_dest in m_items) {
+									if (_dest.data.id == m_dest_target.data.pick.target) {
+										_dest.speak(m_dest_target.data.pick.desc);
+										break;
+									}
+								}
+							}
 						}
 						if (m_dest_target.data.pick.success) {
 							m_interface.addItem(m_dest_target.data);
@@ -237,19 +259,27 @@ class Scene extends Sprite
 						m_dest_action = 0;
 					}
 				case InterfaceManager.MODE_USE :
+					if (m_dest_target.data.exit != null) {
+						dispatchExit(m_dest_target.data.exit);
+					}
 					if (m_dest_target.data.use != null) {
 						if(m_dest_target.data.use.desc != null){
 							m_character.speak(m_dest_target.data.use.desc);
 						}
 						if (m_dest_target.data.use.special != null) {
 							executeSpecial(m_dest_target.data.use.special, m_dest_target);
+							if (m_dest_target.data.use.special.indexOf('dialog') == -1) {
+								m_dest_target = null;
+								m_dest_action = 0;
+							}
+						}else {
+							m_dest_target = null;
+							m_dest_action = 0;
 						}
+					}else {
+						m_dest_target = null;
+						m_dest_action = 0;
 					}
-					if (m_dest_target.data.exit != null) {
-						dispatchExit(m_dest_target.data.exit);
-					}
-					m_dest_target = null;
-					m_dest_action = 0;
 				case InterfaceManager.MODE_USE_ITEM :
 					var _combo:CombineData = SceneList.combine(m_interface.current_item.data.id, m_dest_target.data.id);
 					if (_combo != null) {
@@ -284,12 +314,13 @@ class Scene extends Sprite
 		while (_cmd.length > 0) {
 			switch(_cmd.shift()) {
 				case 'replace' :
+					var _index :Int = getChildIndex(m_dest_target);
 					removeChild(m_dest_target);
 					data.items.remove(m_dest_target.data);
 					SceneList.poolItem(m_dest_target.data);
 					_item = SceneList.getItem(_cmd.shift());
 					_object = new SceneObject(_item);
-					addChild(_object);
+					addChildAt(_object, _index);
 					m_items.push(_object);
 					if (_item.exit != null) {
 						m_exits.push(_object);
@@ -298,6 +329,9 @@ class Scene extends Sprite
 					m_interface.addItem(SceneList.getItem(_cmd.shift()));
 				case 'score':
 					m_interface.addScore(Std.parseInt(_cmd.shift()));
+				case 'dialog':
+					m_dest_action = InterfaceManager.MODE_TALK;
+					executeAction();
 			}
 		}
 	}

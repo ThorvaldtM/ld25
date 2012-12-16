@@ -41,6 +41,8 @@ class Character extends SceneObject
 		box_width = 100;
 		box_height = 50;
 		m_text.y += box_height - 247;
+		this.mouseChildren = false;
+		this.mouseEnabled = false;
 	}
 	
 	override public function update():Void

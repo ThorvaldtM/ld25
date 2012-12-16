@@ -58,6 +58,8 @@ class Assets {
 			resourceTypes.set ("assets/UI/btn_use.png", "image");
 			resourceClasses.set ("assets/UI/btn_walk.png", NME_assets_ui_btn_walk_png);
 			resourceTypes.set ("assets/UI/btn_walk.png", "image");
+			resourceClasses.set ("assets/UI/dialog.png", NME_assets_ui_dialog_png);
+			resourceTypes.set ("assets/UI/dialog.png", "image");
 			resourceClasses.set ("assets/vgafix.ttf", NME_assets_vgafix_ttf);
 			resourceTypes.set ("assets/vgafix.ttf", "font");
 			

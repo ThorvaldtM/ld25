@@ -151,6 +151,40 @@ class SceneList
 		_item.pick = new BehaviorData("Hummm");
 		_scene.items.push(_item);
 		
+		_item = new ItemData();
+		_item.id = "phone";
+		_item.name = "Phone";
+		_item.x = 356;
+		_item.y = 90;
+		_item.width = 66;
+		_item.height = 95;
+		_item.look = new BehaviorData("The ideal tool for prank calls !");
+		_item.use = new BehaviorData();
+		_item.use.success = true;
+		_item.use.special = "dialog";
+		_item.talk = new BehaviorData();
+		_item.talk.dialog = new DialogData();
+		_dialogOption = new DataOption('Call Me.');
+		_dialogOption.followup = new DialogData("This is crazy.");
+		_item.talk.dialog.options.push(_dialogOption);
+		_item.talk.success = true;
+		_item.pick = new BehaviorData("It's fixed to the wall.");
+		_scene.items.push(_item);
+		
+		_item = new ItemData();
+		_item.id = "key665";
+		_item.name = "Key";
+		_item.x = 48;
+		_item.y = 66;
+		_item.width = 14;
+		_item.height = 37;
+		_item.look = new BehaviorData("Room 665 is marked on it.");
+		_item.use = new BehaviorData("I need to pick it up first.");
+		_item.talk = new BehaviorData("Nah.");
+		_item.pick = new BehaviorData("Don't touch that !");
+		_item.pick.target = "receptionist";
+		_scene.items.push(_item);
+		
 		m_scenes.push(_scene);
 		
 		

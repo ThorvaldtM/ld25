@@ -71,6 +71,9 @@ class SceneObject extends Sprite
 	}
 	
 	public function speak(text:String, fade:Int = 5000):Void {
+		if (text == null) {
+			return;
+		}
 		m_text.text = text;
 		if (fade != -1) {
 			m_fade = Lib.getTimer() + fade;
@@ -85,5 +88,12 @@ class SceneObject extends Sprite
 			m_fade = -1;
 		}
 	}
+	
+	private function get_text():TextField
+	{
+		return m_text;
+	}
+	
+	public var text(get_text, null):TextField;
 	
 }
