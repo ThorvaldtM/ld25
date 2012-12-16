@@ -59,8 +59,13 @@ class SceneObject extends Sprite
 		m_text.multiline = true;
 		m_text.mouseEnabled = false;
 		m_text.text = " ";
-		m_text.y = - 60;
+		m_text.y = - 30;
 		m_text.x = (this.width - m_text.width) / 2;
+		
+		if (this.x + m_text.x < 0) {
+			m_text.x = - this.x;
+		}
+		
 		addChild(m_text);
 		
 	}

@@ -28,10 +28,16 @@ class Assets {
 		
 		if (!initialized) {
 			
+			resourceClasses.set ("assets/col_corridor.png", NME_assets_col_corridor_png);
+			resourceTypes.set ("assets/col_corridor.png", "image");
+			resourceClasses.set ("assets/col_reception.png", NME_assets_col_reception_png);
+			resourceTypes.set ("assets/col_reception.png", "image");
 			resourceClasses.set ("assets/col_room.png", NME_assets_col_room_png);
 			resourceTypes.set ("assets/col_room.png", "image");
 			resourceClasses.set ("assets/LIB/heroe.png", NME_assets_lib_heroe_png);
 			resourceTypes.set ("assets/LIB/heroe.png", "image");
+			resourceClasses.set ("assets/LIB/reception.png", NME_assets_lib_reception_png);
+			resourceTypes.set ("assets/LIB/reception.png", "image");
 			resourceClasses.set ("assets/LIB/room.png", NME_assets_lib_room_png);
 			resourceTypes.set ("assets/LIB/room.png", "image");
 			resourceClasses.set ("assets/LIB/Title_LD25.mp3", NME_assets_lib_title_ld25_mp3);

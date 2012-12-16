@@ -92,6 +92,16 @@ class ApplicationMain {
 	public static function getAsset (inName:String):Dynamic {
 		
 		
+		if (inName=="assets/col_corridor.png")
+			 
+            return Assets.getBitmapData ("assets/col_corridor.png");
+         
+		
+		if (inName=="assets/col_reception.png")
+			 
+            return Assets.getBitmapData ("assets/col_reception.png");
+         
+		
 		if (inName=="assets/col_room.png")
 			 
             return Assets.getBitmapData ("assets/col_room.png");
@@ -100,6 +110,11 @@ class ApplicationMain {
 		if (inName=="assets/LIB/heroe.png")
 			 
             return Assets.getBitmapData ("assets/LIB/heroe.png");
+         
+		
+		if (inName=="assets/LIB/reception.png")
+			 
+            return Assets.getBitmapData ("assets/LIB/reception.png");
          
 		
 		if (inName=="assets/LIB/room.png")
@@ -177,8 +192,11 @@ class ApplicationMain {
 }
 
 
+class NME_assets_col_corridor_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
+class NME_assets_col_reception_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_col_room_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_heroe_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
+class NME_assets_lib_reception_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_room_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_title_ld25_mp3 extends nme.media.Sound { }
 class NME_assets_ui_bg_ui_png extends nme.display.BitmapData { public function new () { super (0, 0); } }

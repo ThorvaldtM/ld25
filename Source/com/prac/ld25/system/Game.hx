@@ -33,7 +33,7 @@ class Game extends Sprite
 	}
 	
 	public function start():Void {
-		m_scene = new Scene(SceneList.getScene('room666'),300,300, m_interface);
+		m_scene = new Scene(SceneList.getScene('reception'),300,300, m_interface);
 		m_scene.addEventListener("scene_change", changeScene);
 		addChild(m_scene);
 		

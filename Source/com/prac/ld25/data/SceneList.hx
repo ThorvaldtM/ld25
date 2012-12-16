@@ -39,36 +39,58 @@ class SceneList
 		_item.height = 69;
 		_scene.items.push(_item);
 		
-		//_item = new ItemData();
-		//_item.id = "desk";
-		//_item.name = "desk";
-		//_item.graph = "desk.png";
-		//_item.x = 100;
-		//_item.y = 400;
-		//_item.look = new BehaviorData("Just a normal desk");
-		//_item.use = new BehaviorData();
-		//_item.use.special = "replace;desk_open";
-		//_item.talk = new BehaviorData("Does desk talks ?");
-		//_item.pick = new BehaviorData("And what you gonna do with a desk ?");
-		//_item.pick.success = true;
-		//_scene.items.push(_item);
-		//
-		//_item = new ItemData();
-		//_item.id = "receptionist";
-		//_item.name = "Receptionist";
-		//_item.graph = "receptionist.png";
-		//_item.x = 300;
-		//_item.y = 100;
-		//_item.look = new BehaviorData("Wow she is hot !");
-		//_item.use = new BehaviorData("I sure would like to use her");
-		//_item.talk = new BehaviorData();
-		//_item.talk.success = true;
-		//_item.talk.dialog = new DialogData("Hi. I am marlene.");
-		//_dialogOption = new DataOption('Hi hot stuff, let\'s dot it !');
-		//_dialogOption.followup = new DialogData("No way, you stinky goat.");
-		//_item.talk.dialog.options.push(_dialogOption);
-		//_item.pick = new BehaviorData("Hummm");
-		//_scene.items.push(_item);
+		_item = new ItemData();
+		_item.id = "bed";
+		_item.name = "Bed";
+		_item.x = 540;
+		_item.y = 100;
+		_item.width = 211;
+		_item.height = 275;
+		_item.look = new BehaviorData("Looks like a bed to me.");
+		_item.use = new BehaviorData("No time to sleep. I need to prank that businessman.");
+		_item.talk = new BehaviorData("Only when I am asleep.");
+		_item.pick = new BehaviorData("Doesn't look like a portable bed.");
+		_scene.items.push(_item);
+		
+		_item = new ItemData();
+		_item.id = "window";
+		_item.name = "Window";
+		_item.x = 143;
+		_item.y = 5;
+		_item.width = 105;
+		_item.height = 160;
+		_item.look = new BehaviorData("It's quite dark outside.");
+		_item.use = new BehaviorData("Don't want to catch a cold.");
+		_item.talk = new BehaviorData("Really ?");
+		_item.pick = new BehaviorData("Nope.");
+		_scene.items.push(_item);
+		
+		_item = new ItemData();
+		_item.id = "desk";
+		_item.name = "desk";
+		_item.x = 375;
+		_item.y = 134;
+		_item.width = 163;
+		_item.height = 116;
+		_item.look = new BehaviorData("A Desk.");
+		_item.use = new BehaviorData();
+		_item.use.special = "replace;desk_open";
+		_item.talk = new BehaviorData("Does desk talks ?");
+		_item.pick = new BehaviorData("And what you gonna do with a desk ?");
+		_scene.items.push(_item);
+		
+		_item = new ItemData();
+		_item.id = "lamp";
+		_item.name = "Lamp";
+		_item.x = 454;
+		_item.y = 72;
+		_item.width = 66;
+		_item.height = 95;
+		_item.look = new BehaviorData("A Lamp.");
+		_item.use = new BehaviorData("I could turn it off but it would to be dark afterward.");
+		_item.talk = new BehaviorData("Nah.");
+		_item.pick = new BehaviorData("I rather not.");
+		_scene.items.push(_item);
 		
 		m_scenes.push(_scene);
 		
@@ -76,14 +98,57 @@ class SceneList
 		_scene = new SceneData();
 		_scene.id = "corridor";
 		_scene.bg = "bg_corridor.png";
-		_scene.collision = "col_room.png";
+		_scene.collision = "col_corridor.png";
 		
 		_item = new ItemData();
-		_item.exit = "room666;500;260";
+		_item.exit = "room666;238;392";
 		_item.name = "Room 666";
 		_item.graph = "door.png";
 		_item.x = 500;
-		_item.y = 200;
+		_item.y = 100;
+		_scene.items.push(_item);
+		
+		_item = new ItemData();
+		_item.exit = "reception;495;225";
+		_item.name = "Stair";
+		_item.graph = "stair.png";
+		_item.x = 0;
+		_item.y = 100;
+		_scene.items.push(_item);
+		
+		m_scenes.push(_scene);
+		
+		/****** RECEPTION ******/
+		_scene = new SceneData();
+		_scene.id = "reception";
+		_scene.bg = "LIB/reception.png";
+		_scene.collision = "col_reception.png";
+		
+		_item = new ItemData();
+		_item.exit = "corridor;200;150";
+		_item.name = "Stair";
+		_item.x = 469;
+		_item.y = 11;
+		_item.width = 162;
+		_item.height = 213;
+		_scene.items.push(_item);
+		
+		_item = new ItemData();
+		_item.id = "receptionist";
+		_item.name = "Receptionist";
+		_item.x = 0;
+		_item.y = 180;
+		_item.width = 78;
+		_item.height = 121;
+		_item.look = new BehaviorData("Wow she is hot !");
+		_item.use = new BehaviorData("I sure would like to use her");
+		_item.talk = new BehaviorData();
+		_item.talk.success = true;
+		_item.talk.dialog = new DialogData("Hi. I am marlene.");
+		_dialogOption = new DataOption('Hi hot stuff, let\'s dot it !');
+		_dialogOption.followup = new DialogData("No way, you stinky goat.");
+		_item.talk.dialog.options.push(_dialogOption);
+		_item.pick = new BehaviorData("Hummm");
 		_scene.items.push(_item);
 		
 		m_scenes.push(_scene);
@@ -95,9 +160,10 @@ class SceneList
 		_item = new ItemData();
 		_item.id = "desk_open";
 		_item.name = "desk";
-		_item.graph = "desk_open.png";
-		_item.x = 100;
-		_item.y = 400;
+		_item.x = 375;
+		_item.y = 134;
+		_item.width = 163;
+		_item.height = 116;
 		_item.look = new BehaviorData("There is a lighter inside.");
 		_item.use = new BehaviorData();
 		_item.use.special = "replace;desk";
@@ -109,9 +175,10 @@ class SceneList
 		_item = new ItemData();
 		_item.id = "desk_open_empty";
 		_item.name = "desk";
-		_item.graph = "desk_open.png";
-		_item.x = 100;
-		_item.y = 400;
+		_item.x = 375;
+		_item.y = 134;
+		_item.width = 163;
+		_item.height = 116;
 		_item.look = new BehaviorData("Nothing left.");
 		_item.use = new BehaviorData();
 		_item.use.special = "replace;desk_empty";
@@ -122,9 +189,10 @@ class SceneList
 		_item = new ItemData();
 		_item.id = "desk_empty";
 		_item.name = "desk";
-		_item.graph = "desk.png";
-		_item.x = 100;
-		_item.y = 400;
+		_item.x = 375;
+		_item.y = 134;
+		_item.width = 163;
+		_item.height = 116;
 		_item.look = new BehaviorData("Just a normal desk");
 		_item.use = new BehaviorData();
 		_item.use.special = "replace;desk_open_empty";

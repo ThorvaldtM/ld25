@@ -15,7 +15,7 @@ class Character extends SceneObject
 {
 	
 	public var speed_y:Int = 5;
-	public var speed_x:Int = 8;
+	public var speed_x:Int = 12;
 	private var m_current:Int = 0;
 	private var m_tileSheet:Tilesheet;
 	
@@ -61,7 +61,7 @@ class Character extends SceneObject
 			}
 		}
 		this.m_text.scaleX = this.scaleX;
-		this.m_text.x = (1530 / 9 - m_text.width) / 2 + ( m_text.width) * (1 - this.scaleX ) / 4; //correct scaling position
+		this.m_text.x = (1530 / 9 - m_text.width  - 50) / 2 + ( m_text.width + 100) * (1 - this.scaleX ) / 4; //correct scaling position
 	}
 	
 }
