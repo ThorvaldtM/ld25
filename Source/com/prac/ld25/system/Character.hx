@@ -64,6 +64,10 @@ class Character extends SceneObject
 		}
 		this.m_text.scaleX = this.scaleX;
 		this.m_text.x = (1530 / 9 - m_text.width  - 50) / 2 + ( m_text.width + 100) * (1 - this.scaleX ) / 4; //correct scaling position
+		m_text.y = -20 + box_height - 247;
+		if (m_text.y + this.y < 0) {
+			m_text.y = Settings.GAME_SIZE_H;
+		}
 	}
 	
 }

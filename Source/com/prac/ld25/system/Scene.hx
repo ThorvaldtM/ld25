@@ -332,6 +332,15 @@ class Scene extends Sprite
 				case 'dialog':
 					m_dest_action = InterfaceManager.MODE_TALK;
 					executeAction();
+				case 'event_thermo':
+					for (_dest in m_items) {
+						if (_dest.data.id == "receptionist") {
+							_dest.speak("I am so thirsty ...");
+							_dest.data.talk.dialog.question = "I am so thirsty ...";
+							break;
+						}
+					}
+					
 			}
 		}
 	}
@@ -339,7 +348,7 @@ class Scene extends Sprite
 	private function dialogResponse(e:DataEvent):Void
 	{
 		var _followUp:DialogData = cast(e.data, DialogData);
-		if (_followUp != null) {
+		if (_followUp != null && m_dest_target != null) {
 			if (_followUp.options.length > 0) {
 				m_dest_target.speak(_followUp.question,-1);
 				m_interface.popDialog(_followUp.options);

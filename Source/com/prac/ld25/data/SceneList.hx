@@ -172,6 +172,20 @@ class SceneList
 		_scene.items.push(_item);
 		
 		_item = new ItemData();
+		_item.id = "thermostat";
+		_item.name = "Thermostat";
+		_item.x = 244;
+		_item.y = 96;
+		_item.width = 61;
+		_item.height = 40;
+		_item.look = new BehaviorData("20 degrees.");
+		_item.use = new BehaviorData('Oops I broke it.');
+		_item.use.special = "replace;thermostat_high;event_thermo";
+		_item.talk = new BehaviorData("Nope.");
+		_item.pick = new BehaviorData("Nope.");
+		_scene.items.push(_item);
+		
+		_item = new ItemData();
 		_item.id = "key665";
 		_item.name = "Key";
 		_item.x = 48;
@@ -241,6 +255,19 @@ class SceneList
 		_item.look = new BehaviorData("I love fire");
 		_item.talk = new BehaviorData("No genie inside.");
 		_item.defaultUse = "I rather not";
+		m_items_pool.push(_item);
+		
+		_item = new ItemData();
+		_item.id = "thermostat_high";
+		_item.name = "Thermostat";
+		_item.x = 244;
+		_item.y = 96;
+		_item.width = 61;
+		_item.height = 40;
+		_item.look = new BehaviorData("29 degrees.");
+		_item.use = new BehaviorData('It\'s broken now.');
+		_item.talk = new BehaviorData("Nope.");
+		_item.pick = new BehaviorData("Nope.");
 		m_items_pool.push(_item);
 		
 		
