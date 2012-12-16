@@ -1,5 +1,6 @@
 package com.prac.ld25.interfaces;
 import com.prac.ld25.data.ItemData;
+import com.prac.ld25.Settings;
 import com.prac.ld25.tools.AssetLoader;
 import flash.events.Event;
 import nme.display.Sprite;
@@ -63,6 +64,9 @@ class Inventory extends Sprite
 	
 	private function update()
 	{
+		if (m_items.length < 5) {
+			m_index = 0;
+		}
 		for (i in 0...m_items.length) {
 			if (i >= m_index && i < m_index + 5) {
 				m_items[i].visible = true;
@@ -81,9 +85,43 @@ class Inventory extends Sprite
 		var _item:InventoryItem = new InventoryItem(data);
 		_item.visible = false;
 		_item.y = 5;
+		_item.addEventListener(MouseEvent.CLICK, clickHandler);
 		addChild(_item);
 		m_items.push(_item);
 		update();
+	}
+	
+	private function clickHandler(e:MouseEvent):Void
+	{
+		var _item:InventoryItem = cast(e.currentTarget, InventoryItem);
+		switch(Settings.STATE) {
+				case InterfaceManager.MODE_LOOK :
+					if (_item.data.look != null) {
+						Settings.CHARACTER.speak(_item.data.look.desc);
+					}
+				case InterfaceManager.MODE_PICK :
+					use(_item);
+				case InterfaceManager.MODE_TALK :
+					if (_item.data.talk != null) {
+						if(_item.data.talk.desc != null){
+							Settings.CHARACTER.speak(_item.data.talk.desc);
+						}
+					}
+				case InterfaceManager.MODE_USE :
+					use(_item);
+		}
+	}
+	
+	private function use(object:InventoryItem)
+	{
+		if (Settings.STATE == InterfaceManager.MODE_DIALOG) {
+			return;
+		}
+		this.m_items.remove(object);
+		removeChild(object);
+		update();
+		var _ui:InterfaceManager = cast(parent, InterfaceManager);
+		_ui.useItem(object);
 	}
 	
 }

@@ -1,4 +1,5 @@
 package com.prac.ld25;
+import com.prac.ld25.system.Character;
 import nme.media.SoundChannel;
 import nme.media.SoundTransform;
 
@@ -15,6 +16,9 @@ class Settings
 	static public var VOLUME:Float = 1;
 	static public var COLLISION:Bool =  true;
 	static public var TRACE:Bool =  false;
+	
+	static public var STATE:UInt = 0;
+	static public var CHARACTER:Character;
 	
 	static public function applySound(sound:SoundChannel):Void {
 		

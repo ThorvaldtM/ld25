@@ -10,7 +10,7 @@ import nme.display.Sprite;
 
 class InventoryItem extends Sprite
 {
-	private var data:ItemData;
+	public var data:ItemData;
 
 	public function new(data:ItemData)
 	{

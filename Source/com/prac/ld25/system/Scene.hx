@@ -1,4 +1,5 @@
 package com.prac.ld25.system;
+import com.prac.ld25.data.CombineData;
 import com.prac.ld25.data.DialogData;
 import com.prac.ld25.data.ItemData;
 import com.prac.ld25.data.SceneData;
@@ -63,6 +64,7 @@ class Scene extends Sprite
 		m_character.x = spawn_x;
 		m_character.y = spawn_y;
 		addChild(m_character);
+		Settings.CHARACTER = m_character;
 		
 		m_collision_map = Assets.getBitmapData('assets/' + data.collision);
 		
@@ -77,8 +79,10 @@ class Scene extends Sprite
 		m_dest_action = m_interface.state;
 		if (Std.is(e.target,SceneObject)) {
 			m_dest_target = cast(e.target, SceneObject);
+		}else {
+			m_dest_target = null;
 		}
-		if (m_interface.state != InterfaceManager.MODE_LOOK) {
+		if (m_interface.state == InterfaceManager.MODE_WALK  || (m_interface.state != InterfaceManager.MODE_LOOK && m_dest_target != null)) {
 			m_dest = new Point(e.stageX - m_character.box_width / 2 , e.stageY - m_character.box_height / 2 );
 			m_dir = false;
 		}else {
@@ -212,6 +216,20 @@ class Scene extends Sprite
 						}
 						if (m_dest_target.data.use.special != null) {
 							executeSpecial(m_dest_target.data.use.special, m_dest_target);
+						}
+					}
+				case InterfaceManager.MODE_USE_ITEM :
+					var _combo:CombineData = SceneList.combine(m_interface.current_item.data.id, m_dest_target.data.id);
+					if (_combo != null) {
+						if (_combo.desc != null) {
+							m_character.speak(_combo.desc);
+						}
+						if(_combo.special != null){
+							executeSpecial(_combo.special, m_dest_target);
+						}
+					}else {
+						if (m_interface.current_item.data.defaultUse != null) {
+							m_character.speak(m_interface.current_item.data.defaultUse);
 						}
 					}
 			}

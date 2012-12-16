@@ -2,6 +2,7 @@ package com.prac.ld25.interfaces;
 import com.prac.ld25.data.DataOption;
 import com.prac.ld25.data.ItemData;
 import com.prac.ld25.interfaces.DialogBox;
+import com.prac.ld25.interfaces.InventoryItem;
 import com.prac.ld25.Settings;
 import com.prac.ld25.system.DataEvent;
 import com.prac.ld25.tools.AssetLoader;
@@ -24,8 +25,7 @@ class InterfaceManager extends Sprite
 	static public  inline var MODE_PICK = 3;
 	static  public inline var MODE_USE = 4;
 	static  public inline var MODE_DIALOG = 5;
-	
-	private var m_state:UInt = 0;
+	static  public inline var MODE_USE_ITEM = 6;
 	
 	private var m_cursor:Sprite;
 	
@@ -37,6 +37,7 @@ class InterfaceManager extends Sprite
 	private var m_look:Sprite;
 	private var m_inv:Inventory;
 	private var m_dialog:DialogBox;
+	private var m_current_item:InventoryItem;
 
 	public function new()
 	{
@@ -111,13 +112,13 @@ class InterfaceManager extends Sprite
 		m_dialog.y = m_inv.y - 10 - m_dialog.height;
 		m_dialog.addEventListener('dialog_choice', dispatchDialog);
 		addChild(m_dialog);
-		m_state = MODE_DIALOG;
+		Settings.STATE = MODE_DIALOG;
 		updateCursor();
 	}
 	
 	private function removeDialog()
 	{
-		m_state = 0;
+		Settings.STATE = 0;
 		updateCursor();
 		if (m_dialog != null) {
 			removeChild(m_dialog);
@@ -138,7 +139,12 @@ class InterfaceManager extends Sprite
 			m_cursor.stopDrag();
 			removeChild(m_cursor);
 		}
-		switch(m_state) {
+		if (Settings.STATE != MODE_USE_ITEM && m_current_item != null) {
+			m_inv.addItem(m_current_item.data);
+			m_current_item = null;
+		}
+		
+		switch(Settings.STATE) {
 			case MODE_LOOK :
 				transformCursor('csr_look.png');
 			case MODE_WALK :
@@ -151,6 +157,8 @@ class InterfaceManager extends Sprite
 				transformCursor('csr_talk.png');
 			case MODE_DIALOG :
 				transformCursor('csr_select.png');
+			case MODE_USE_ITEM :
+				transformCursor('inv_' + m_current_item.data.graph);
 			default:
 				Mouse.show();
 		}
@@ -167,58 +175,71 @@ class InterfaceManager extends Sprite
 	
 	private function m_look_click(e:MouseEvent):Void
 	{
-		if (m_state == MODE_DIALOG) {
+		if (Settings.STATE == MODE_DIALOG) {
 			return;
 		}
-		m_state = MODE_LOOK;
+		Settings.STATE = MODE_LOOK;
 		updateCursor();
 	}
 
 	
 	private function m_use_click(e:MouseEvent):Void
 	{
-		if (m_state == MODE_DIALOG) {
+		if (Settings.STATE == MODE_DIALOG) {
 			return;
 		}
-		m_state = MODE_USE;
+		Settings.STATE = MODE_USE;
 		updateCursor();
 	}
 
 	
 	private function m_pick_click(e:MouseEvent):Void
 	{
-		if (m_state == MODE_DIALOG) {
+		if (Settings.STATE == MODE_DIALOG) {
 			return;
 		}
-		m_state = MODE_PICK;
+		Settings.STATE = MODE_PICK;
 		updateCursor();
 	}
 
 	
 	private function m_talk_click(e:MouseEvent):Void
 	{
-		if (m_state == MODE_DIALOG) {
+		if (Settings.STATE == MODE_DIALOG) {
 			return;
 		}
-		m_state = MODE_TALK;
+		Settings.STATE = MODE_TALK;
 		updateCursor();
 	}
 
 	
 	private function m_walk_click(e:Event):Void
 	{
-		if (m_state == MODE_DIALOG) {
+		if (Settings.STATE == MODE_DIALOG) {
 			return;
 		}
-		m_state = MODE_WALK;
+		Settings.STATE = MODE_WALK;
 		updateCursor();
 	}
 	
 	private function get_state():UInt
 	{
-		return m_state;
+		return Settings.STATE;
 	}
 	
 	public var state(get_state, null):UInt;
+	
+	private function get_current_item():InventoryItem
+	{
+		return m_current_item;
+	}
+	
+	public var current_item(get_current_item, null):InventoryItem;
+	
+	public function useItem(object:InventoryItem):Void {
+		m_current_item = object;
+		Settings.STATE = MODE_USE_ITEM;
+		updateCursor();
+	}
 	
 }

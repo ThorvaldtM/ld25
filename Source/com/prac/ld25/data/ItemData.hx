@@ -19,6 +19,7 @@ class ItemData
 	public var use:BehaviorData;
 	public var pick:BehaviorData;
 	public var talk:BehaviorData;
+	public var defaultUse:String;
 
 	public function new()
 	{

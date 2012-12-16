@@ -11,15 +11,18 @@ class SceneList
 	
 	private var m_scenes:Array<SceneData>;
 	private var m_items_pool:Array<ItemData>;
+	private var m_combines:Array<CombineData>;
 
 	public function new()
 	{
 		m_scenes = new Array<SceneData>();
 		m_items_pool =  new Array<ItemData>();
+		m_combines =  new Array<CombineData>();
 		
 		var _scene:SceneData;
 		var _item:ItemData;
 		var _dialogOption:DataOption;
+		var _combo:CombineData;
 		
 		/****** ROOM 666 ******/
 		_scene = new SceneData();
@@ -49,6 +52,7 @@ class SceneList
 		_scene.items.push(_item);
 		
 		_item = new ItemData();
+		_item.id = "receptionist";
 		_item.name = "Receptionist";
 		_item.graph = "receptionist.png";
 		_item.x = 300;
@@ -132,8 +136,13 @@ class SceneList
 		_item.graph = "lighter.png";
 		_item.look = new BehaviorData("I love fire");
 		_item.talk = new BehaviorData("No genie inside.");
+		_item.defaultUse = "I rather not";
 		m_items_pool.push(_item);
 		
+		
+		/*** COMBO LIST ****/
+		_combo = new CombineData('lighter', 'receptionist', 'She is already hot');
+		m_combines.push(_combo);
 		
 	}
 	
@@ -180,6 +189,19 @@ class SceneList
 			m_instance = new SceneList();
 		}
 		m_instance.m_items_pool.push(data);
+	}
+	
+	static public function combine(id1:String, id2:String):CombineData {
+		if (m_instance == null) {
+			m_instance = new SceneList();
+		}
+		
+		for (_combine in m_instance.m_combines) {
+			if ((_combine.id1 == id1 && _combine.id2 == id2 ) || (_combine.id1 == id2 && _combine.id2 == id1 )) {
+				return _combine;
+			}
+		}
+		return null;
 	}
 	
 }
