@@ -1,0 +1,8 @@
+Anims :
+	Hero monte sur tabouret et touche l'arlame
+	Hero monte sur tabouret et allume le briquet sur l'alarm. La cigarette du groom s'eteint. Il a jette et en sort une autre.
+	Hero touche le thermostat. On voit l'effet de chaleur. La receptionist defait un bouton de sa chemise
+	Hero voit la receptionist en mode texas avery (optionel)
+	Hero flash le magazine (devant la receptionist) (optionel)
+	Receptionist boit a la bouteille et tombe derriere le comptoir
+	
