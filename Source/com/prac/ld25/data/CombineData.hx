@@ -11,6 +11,8 @@ class CombineData
 	public var id2:String;
 	public var desc:String;
 	public var special:String;
+	public var dialog:DialogData;
+	public var target:String = "character";
 
 	public function new(id1:String = null, id2:String = null, desc:String = null, special:String = null)
 	{
