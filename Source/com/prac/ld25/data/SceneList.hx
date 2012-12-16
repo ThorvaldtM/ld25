@@ -31,7 +31,7 @@ class SceneList
 		_scene.collision = "col_room.png";
 		
 		_item = new ItemData();
-		_item.exit = "corridor;500;300";
+		_item.exit = "corridor;657;349";
 		_item.name = "exit";
 		_item.x = 218;
 		_item.y = 412;
@@ -97,23 +97,25 @@ class SceneList
 		/****** CORRIDOR ******/
 		_scene = new SceneData();
 		_scene.id = "corridor";
-		_scene.bg = "bg_corridor.png";
+		_scene.bg = "LIB/couloir.png";
 		_scene.collision = "col_corridor.png";
 		
 		_item = new ItemData();
 		_item.exit = "room666;238;392";
 		_item.name = "Room 666";
-		_item.graph = "door.png";
-		_item.x = 500;
-		_item.y = 100;
+		_item.x = 645;
+		_item.y = 73;
+		_item.width = 123;
+		_item.height = 235;
 		_scene.items.push(_item);
 		
 		_item = new ItemData();
 		_item.exit = "reception;495;225";
 		_item.name = "Stair";
-		_item.graph = "stair.png";
-		_item.x = 0;
-		_item.y = 100;
+		_item.x = 12;
+		_item.y = 410;
+		_item.width = 165;
+		_item.height = 72;
 		_scene.items.push(_item);
 		
 		m_scenes.push(_scene);
@@ -125,7 +127,7 @@ class SceneList
 		_scene.collision = "col_reception.png";
 		
 		_item = new ItemData();
-		_item.exit = "corridor;200;150";
+		_item.exit = "corridor;30;400";
 		_item.name = "Stair";
 		_item.x = 469;
 		_item.y = 11;
@@ -178,7 +180,7 @@ class SceneList
 		_item.talk = new BehaviorData();
 		_item.talk.dialog = new DialogData();
 		_dialogOption = new DataOption('Let\'s see. *6* *6* *6* ...', 'Myself');
-		_dialogOption.followup = new DialogData("*bip* *bip* *no answer*;character;How obvious");
+		_dialogOption.followup = new DialogData(";character;*bip* *bip* *no answer*;character;How obvious");
 		_item.talk.dialog.options.push(_dialogOption);
 		_item.talk.success = true;
 		_item.pick = new BehaviorData("It's fixed to the wall.");

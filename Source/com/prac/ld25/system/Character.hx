@@ -14,18 +14,19 @@ import nme.display.Tilesheet;
 class Character extends SceneObject
 {
 	
-	public var speed_y:Int = 5;
-	public var speed_x:Int = 12;
+	public var speed_y:Int = 3;
+	public var speed_x:Int = 6;
 	private var m_current:Int = 0;
 	private var m_tileSheet:Tilesheet;
+	private var m_skip:Bool = false;
 	
-	public var moving:Bool;
+	private var _moving:Bool;
 
 	public function new()
 	{
 		box_width = 100;
 		box_height = 50;
-		moving = false;
+		_moving = false;
 		m_tileSheet = new Tilesheet(Assets.getBitmapData('assets/LIB/heroe.png'));
 		for (i in 0...9) {
 			m_tileSheet.addTileRect(new Rectangle(i * 1530 / 9, 0, 1530 / 9, 247));
@@ -48,7 +49,7 @@ class Character extends SceneObject
 	override public function update():Void
 	{
 		super.update();
-		if(moving){
+		if(moving && !m_skip){
 			this.graphics.clear();
 			m_tileSheet.drawTiles(this.graphics, [-25, box_height - 247, m_current]);
 			m_current++;
@@ -61,6 +62,9 @@ class Character extends SceneObject
 				this.graphics.drawRect(0, 0, box_width, box_height);
 				this.graphics.endFill();
 			}
+			m_skip = true;
+		}else {
+			m_skip = false;
 		}
 		this.m_text.scaleX = this.scaleX;
 		this.m_text.x = (1530 / 9 - m_text.width  - 50) / 2 + ( m_text.width + 100) * (1 - this.scaleX ) / 4; //correct scaling position
@@ -69,5 +73,28 @@ class Character extends SceneObject
 			m_text.y = Settings.GAME_SIZE_H;
 		}
 	}
+	
+	private function get_moving():Bool
+	{
+		return _moving;
+	}
+	
+	private function set_moving(value:Bool):Bool
+	{
+		if (!value) {
+			this.graphics.clear();
+			m_tileSheet.drawTiles(this.graphics, [-25, box_height - 247, m_current]);
+			m_current = 3;
+			if(Settings.COLLISION){
+				/*** hitbox **/
+				this.graphics.beginFill(0x00FF00, 0.5);
+				this.graphics.drawRect(0, 0, box_width, box_height);
+				this.graphics.endFill();
+			}
+		}
+		return _moving = value;
+	}
+	
+	public var moving(get_moving, set_moving):Bool;
 	
 }

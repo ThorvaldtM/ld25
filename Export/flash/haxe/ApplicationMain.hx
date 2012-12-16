@@ -107,9 +107,24 @@ class ApplicationMain {
             return Assets.getBitmapData ("assets/col_room.png");
          
 		
+		if (inName=="assets/LIB/bottle.png")
+			 
+            return Assets.getBitmapData ("assets/LIB/bottle.png");
+         
+		
+		if (inName=="assets/LIB/couloir.png")
+			 
+            return Assets.getBitmapData ("assets/LIB/couloir.png");
+         
+		
 		if (inName=="assets/LIB/heroe.png")
 			 
             return Assets.getBitmapData ("assets/LIB/heroe.png");
+         
+		
+		if (inName=="assets/LIB/Justin.png")
+			 
+            return Assets.getBitmapData ("assets/LIB/Justin.png");
          
 		
 		if (inName=="assets/LIB/reception.png")
@@ -200,7 +215,10 @@ class ApplicationMain {
 class NME_assets_col_corridor_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_col_reception_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_col_room_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
+class NME_assets_lib_bottle_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
+class NME_assets_lib_couloir_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_heroe_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
+class NME_assets_lib_justin_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_reception_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_room_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_title_ld25_mp3 extends nme.media.Sound { }
