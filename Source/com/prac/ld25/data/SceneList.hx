@@ -145,8 +145,21 @@ class SceneList
 		_item.talk = new BehaviorData();
 		_item.talk.success = true;
 		_item.talk.dialog = new DialogData("Hi. I am marlene.");
-		_dialogOption = new DataOption('Hi hot stuff, let\'s dot it !');
+		_dialogOption = new DataOption('Hey hot stuff, how about going out ?', 'Flirt');
 		_dialogOption.followup = new DialogData("No way, you stinky goat.");
+		_item.talk.dialog.options.push(_dialogOption);
+		_dialogOption = new DataOption('Hi I am Greg, how are you doing ?', 'Salute');
+		_dialogOption.followup = new DialogData("What do you want ? I am busy.");
+		_dialogOption.followup.options[0] = new DataOption('How about giving me your number ? Just kidding', 'Flirt');
+		_dialogOption.followup.options[0].followup = new DialogData("There now leave me alone.;character;(wow she actually gave it to me !)");
+		_dialogOption.followup.options[0].followup.special = "gain;number;score;10;remove_option";
+		_dialogOption.followup.options[1] = new DataOption('Can I do anything for you ?','Ask');
+		_dialogOption.followup.options[1].followup = new DialogData("Bring me a magazine.");
+		_dialogOption.followup.options[2] = new DataOption('Goodbye.','Bye');
+		_dialogOption.followup.options[2].followup = new DialogData("Bybye.");
+		_item.talk.dialog.options.push(_dialogOption);
+		_dialogOption = new DataOption('Goodbye.','Bye');
+		_dialogOption.followup = new DialogData("Bybye.");
 		_item.talk.dialog.options.push(_dialogOption);
 		_item.pick = new BehaviorData("Hummm");
 		_scene.items.push(_item);
@@ -164,8 +177,8 @@ class SceneList
 		_item.use.special = "dialog";
 		_item.talk = new BehaviorData();
 		_item.talk.dialog = new DialogData();
-		_dialogOption = new DataOption('Call Me.');
-		_dialogOption.followup = new DialogData("This is crazy.");
+		_dialogOption = new DataOption('Let\'s see. *6* *6* *6* ...', 'Myself');
+		_dialogOption.followup = new DialogData("*bip* *bip* *no answer*;character;How obvious");
 		_item.talk.dialog.options.push(_dialogOption);
 		_item.talk.success = true;
 		_item.pick = new BehaviorData("It's fixed to the wall.");
@@ -180,7 +193,7 @@ class SceneList
 		_item.height = 40;
 		_item.look = new BehaviorData("20 degrees.");
 		_item.use = new BehaviorData('Oops I broke it.');
-		_item.use.special = "replace;thermostat_high;event_thermo";
+		_item.use.special = "score;10;replace;thermostat_high;event_thermo";
 		_item.talk = new BehaviorData("Nope.");
 		_item.pick = new BehaviorData("Nope.");
 		_scene.items.push(_item);
@@ -258,6 +271,24 @@ class SceneList
 		m_items_pool.push(_item);
 		
 		_item = new ItemData();
+		_item.id = "number";
+		_item.name = "Piece of Paper";
+		_item.graph = "number.png";
+		_item.look = new BehaviorData("Marlene's Number. Sweet !");
+		_item.talk = new BehaviorData("No Anwser.");
+		_item.defaultUse = "Nothing happened";
+		m_items_pool.push(_item);
+		
+		_item = new ItemData();
+		_item.id = "number_joe";
+		_item.name = "Joe's Number";
+		_item.graph = "number.png";
+		_item.look = new BehaviorData("Damn it was only Joe's number.");
+		_item.talk = new BehaviorData("No Anwser.");
+		_item.defaultUse = "Nothing happened";
+		m_items_pool.push(_item);
+		
+		_item = new ItemData();
 		_item.id = "thermostat_high";
 		_item.name = "Thermostat";
 		_item.x = 244;
@@ -273,6 +304,13 @@ class SceneList
 		
 		/*** COMBO LIST ****/
 		_combo = new CombineData('lighter', 'receptionist', 'She is already hot');
+		m_combines.push(_combo);
+		
+		_combo = new CombineData('number', 'receptionist', 'I don\'t want to give it back to her.');
+		m_combines.push(_combo);
+		
+		_combo = new CombineData('number', 'phone', 'Let\'s try that number.');
+		_combo.dialog = new DialogData('*bip* *bip* (male voice) Hi, Joe\'s speaking');
 		m_combines.push(_combo);
 		
 	}

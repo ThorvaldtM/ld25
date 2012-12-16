@@ -1,5 +1,6 @@
 package com.prac.ld25.interfaces;
 import com.prac.ld25.data.DataOption;
+import com.prac.ld25.data.DialogData;
 import com.prac.ld25.system.DataEvent;
 import com.prac.ld25.tools.AssetLoader;
 import nme.display.Sprite;
@@ -49,7 +50,7 @@ class DialogBox extends Sprite
 		m_text_1.multiline = true;
 		m_text_1.backgroundColor = 0x575757;
 		if(option.length > 0){
-			m_text_1.text = "1. " + option[0].answer;
+			m_text_1.text = "1. " + option[0].label;
 			m_text_1.addEventListener(MouseEvent.ROLL_OVER, highlightOption);
 			m_text_1.addEventListener(MouseEvent.ROLL_OUT, unhiglightOption);
 			m_text_1.addEventListener(MouseEvent.CLICK, clickOption1);
@@ -69,7 +70,7 @@ class DialogBox extends Sprite
 		m_text_2.multiline = true;
 		m_text_2.backgroundColor = 0x575757;
 		if(option.length > 1){
-			m_text_2.text = "2. " + option[1].answer;
+			m_text_2.text = "2. " + option[1].label;
 			m_text_2.addEventListener(MouseEvent.ROLL_OVER, highlightOption);
 			m_text_2.addEventListener(MouseEvent.ROLL_OUT, unhiglightOption);
 			m_text_2.addEventListener(MouseEvent.CLICK, clickOption2);
@@ -89,7 +90,7 @@ class DialogBox extends Sprite
 		m_text_3.multiline = true;
 		m_text_3.backgroundColor = 0x575757;
 		if(option.length > 2){
-			m_text_3.text = "3. " + option[2].answer;
+			m_text_3.text = "3. " + option[2].label;
 			m_text_3.addEventListener(MouseEvent.ROLL_OVER, highlightOption);
 			m_text_3.addEventListener(MouseEvent.ROLL_OUT, unhiglightOption);
 			m_text_3.addEventListener(MouseEvent.CLICK, clickOption3);
@@ -101,19 +102,17 @@ class DialogBox extends Sprite
 	
 	private function clickOption3(e:MouseEvent):Void
 	{
-		dispatchEvent(new DataEvent('dialog_choice', false, false, m_options[2].followup));
+		dispatchDialog(2);
 	}
 	
 	private function clickOption2(e:MouseEvent):Void
 	{
-		dispatchEvent(new DataEvent('dialog_choice', false, false, m_options[1].followup));
-		
+		dispatchDialog(1);
 	}
 	
 	private function clickOption1(e:MouseEvent):Void
 	{
-		dispatchEvent(new DataEvent('dialog_choice', false, false, m_options[0].followup));
-		
+		dispatchDialog(0);
 	}
 	
 	private function highlightOption(e:MouseEvent):Void
@@ -128,6 +127,16 @@ class DialogBox extends Sprite
 		m_text_1.background = false;
 		m_text_2.background = false;
 		m_text_3.background = false;
+	}
+	
+	private function dispatchDialog(index:Int):Void
+	{
+		var option:DataOption = m_options[index];
+		var followUp:DialogData = option.followup;
+		if (followUp != null && followUp.special != null && followUp.special.indexOf('remove_option') > -1) {
+			m_options.splice(index, 1);
+		}
+		dispatchEvent(new DataEvent('dialog_choice', false, false, option));
 	}
 	
 }

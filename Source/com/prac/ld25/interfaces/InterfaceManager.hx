@@ -125,8 +125,6 @@ class InterfaceManager extends Sprite
 	
 	private function removeDialog()
 	{
-		Settings.STATE = 0;
-		updateCursor();
 		if (m_dialog != null) {
 			removeChild(m_dialog);
 			m_dialog.removeEventListener('dialog_choice', dispatchDialog);
@@ -140,7 +138,7 @@ class InterfaceManager extends Sprite
 		dispatchEvent(new DataEvent('dialog_choice', false, false, e.data));
 	}
 	
-	private function updateCursor()
+	public function updateCursor()
 	{
 		if (m_cursor != null) {
 			m_cursor.stopDrag();
