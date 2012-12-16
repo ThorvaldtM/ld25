@@ -1,5 +1,8 @@
 package com.prac.ld25.interfaces;
+import com.prac.ld25.data.CombineData;
 import com.prac.ld25.data.ItemData;
+import com.prac.ld25.data.SceneList;
+import com.prac.ld25.interfaces.InventoryItem;
 import com.prac.ld25.Settings;
 import com.prac.ld25.tools.AssetLoader;
 import flash.events.Event;
@@ -23,18 +26,15 @@ class Inventory extends Sprite
 	{
 		super();
 		
-		m_prev = AssetLoader.loadAsset('btn_inv_prev.png', 20, 60);
+		m_prev = AssetLoader.loadAsset('UI/btn_prev.png', 20, 60);
 		m_prev.mouseEnabled = true;
 		m_prev.addEventListener(MouseEvent.CLICK, m_prev_click);
-		m_prev.x = 0;
-		m_prev.y = 5;
 		addChild(m_prev);
 		
-		m_next = AssetLoader.loadAsset('btn_inv_next.png', 20, 60);
+		m_next = AssetLoader.loadAsset('UI/btn_next.png', 20, 60);
 		m_next.mouseEnabled = true;
 		m_next.addEventListener(MouseEvent.CLICK, m_next_click);
-		m_next.x = width - m_next.width - 5;
-		m_next.y = 5;
+		m_next.x = m_prev.width + 65 * 5 +5;
 		addChild(m_next);
 		
 		m_prev.visible = false;
@@ -84,7 +84,6 @@ class Inventory extends Sprite
 	public function addItem(data:ItemData):Void {
 		var _item:InventoryItem = new InventoryItem(data);
 		_item.visible = false;
-		_item.y = 5;
 		_item.addEventListener(MouseEvent.CLICK, clickHandler);
 		addChild(_item);
 		m_items.push(_item);
@@ -109,7 +108,28 @@ class Inventory extends Sprite
 					}
 				case InterfaceManager.MODE_USE :
 					use(_item);
+				case InterfaceManager.MODE_USE_ITEM :
+					var _ui:InterfaceManager = cast(parent, InterfaceManager);
+					var _combo:CombineData = SceneList.combine(_ui.current_item.data.id, _item.data.id);
+					if (_combo != null) {
+						if (_combo.desc != null) {
+							Settings.CHARACTER.speak(_combo.desc);
+						}
+						if(_combo.special != null){
+							executeSpecial(_combo.special, _item);
+						}
+					}else {
+						if (_ui.current_item.data.defaultUse != null) {
+							Settings.CHARACTER.speak(_ui.current_item.data.defaultUse);
+						}
+					}
+					
 		}
+	}
+	
+	private function executeSpecial(special:String, item:InventoryItem)
+	{
+		
 	}
 	
 	private function use(object:InventoryItem)

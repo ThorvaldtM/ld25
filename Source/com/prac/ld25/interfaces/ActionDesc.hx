@@ -12,10 +12,9 @@ import nme.text.TextFormatAlign;
  * @author Thorvald ter Meer
  */
 
-class Score extends Sprite
+class ActionDesc extends Sprite
 {
 	private var m_text:TextField;
-	private var m_score:Int = 0;
 
 	public function new()
 	{
@@ -24,40 +23,23 @@ class Score extends Sprite
 		var font:Font = Assets.getFont ("assets/vgafix.ttf");
 		
 		var _textFormat:TextFormat = new TextFormat();
-		_textFormat.align = TextFormatAlign.LEFT;
+		_textFormat.align = TextFormatAlign.CENTER;
 		_textFormat.size = 15;
 		_textFormat.font = font.fontName;
 		_textFormat.color = 0xFFFFFF;
 		m_text = new TextField();
 		m_text.antiAliasType = AntiAliasType.ADVANCED;
 		m_text.defaultTextFormat = _textFormat;
-		m_text.width = 120;
+		m_text.width = 800;
 		m_text.height = 30;
 		m_text.selectable = false;
 		m_text.embedFonts = true;
-		m_text.text = "Score :    " + m_score;
+		m_text.text = "Walk To";
 		addChild(m_text);
 	}
 	
-	private function get_score():Int
-	{
-		return m_score;
+	public function setDesc(text:String):Void {
+		m_text.text = text;
 	}
-	
-	private function set_score(value:Int):Int
-	{
-		if(value > 999){
-			m_text.text = "Score : " + value;
-		}else if (value > 99) {
-			m_text.text = "Score :  " + m_score;
-		}else if (value > 9) {
-			m_text.text = "Score :   " + m_score;
-		}else {
-			m_text.text = "Score :    " + m_score;
-		}
-		return m_score = value;
-	}
-	
-	public var score(get_score, set_score):Int;
 	
 }

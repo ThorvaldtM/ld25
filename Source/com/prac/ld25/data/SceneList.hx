@@ -27,46 +27,48 @@ class SceneList
 		/****** ROOM 666 ******/
 		_scene = new SceneData();
 		_scene.id = "room666";
-		_scene.bg = "bg_room.png";
+		_scene.bg = "LIB/room.png";
 		_scene.collision = "col_room.png";
 		
 		_item = new ItemData();
 		_item.exit = "corridor;500;300";
 		_item.name = "exit";
-		_item.graph = "empty.png";
-		_item.x = 500;
-		_item.y = 400;
+		_item.x = 218;
+		_item.y = 412;
+		_item.width = 163;
+		_item.height = 69;
 		_scene.items.push(_item);
 		
-		_item = new ItemData();
-		_item.id = "desk";
-		_item.name = "desk";
-		_item.graph = "desk.png";
-		_item.x = 100;
-		_item.y = 400;
-		_item.look = new BehaviorData("Just a normal desk");
-		_item.use = new BehaviorData();
-		_item.use.special = "replace;desk_open";
-		_item.talk = new BehaviorData("Does desk talks ?");
-		_item.pick = new BehaviorData("And what you gonna do with a desk ?");
-		_scene.items.push(_item);
-		
-		_item = new ItemData();
-		_item.id = "receptionist";
-		_item.name = "Receptionist";
-		_item.graph = "receptionist.png";
-		_item.x = 300;
-		_item.y = 100;
-		_item.look = new BehaviorData("Wow she is hot !");
-		_item.use = new BehaviorData("I sure would like to use her");
-		_item.talk = new BehaviorData();
-		_item.talk.success = true;
-		_item.talk.dialog = new DialogData("Hi. I am marlene.");
-		_dialogOption = new DataOption('Hi hot stuff, let\'s dot it !');
-		_dialogOption.followup = new DialogData("No way, you stinky goat.");
-		_item.talk.dialog.options.push(_dialogOption);
-		_item.pick = new BehaviorData("Hummm");
-		_scene.items.push(_item);
+		//_item = new ItemData();
+		//_item.id = "desk";
+		//_item.name = "desk";
+		//_item.graph = "desk.png";
+		//_item.x = 100;
+		//_item.y = 400;
+		//_item.look = new BehaviorData("Just a normal desk");
+		//_item.use = new BehaviorData();
+		//_item.use.special = "replace;desk_open";
+		//_item.talk = new BehaviorData("Does desk talks ?");
+		//_item.pick = new BehaviorData("And what you gonna do with a desk ?");
+		//_item.pick.success = true;
+		//_scene.items.push(_item);
+		//
+		//_item = new ItemData();
+		//_item.id = "receptionist";
+		//_item.name = "Receptionist";
+		//_item.graph = "receptionist.png";
+		//_item.x = 300;
+		//_item.y = 100;
+		//_item.look = new BehaviorData("Wow she is hot !");
+		//_item.use = new BehaviorData("I sure would like to use her");
+		//_item.talk = new BehaviorData();
+		//_item.talk.success = true;
+		//_item.talk.dialog = new DialogData("Hi. I am marlene.");
+		//_dialogOption = new DataOption('Hi hot stuff, let\'s dot it !');
+		//_dialogOption.followup = new DialogData("No way, you stinky goat.");
+		//_item.talk.dialog.options.push(_dialogOption);
+		//_item.pick = new BehaviorData("Hummm");
+		//_scene.items.push(_item);
 		
 		m_scenes.push(_scene);
 		

@@ -69,6 +69,21 @@ class Scene extends Sprite
 		m_collision_map = Assets.getBitmapData('assets/' + data.collision);
 		
 		this.addEventListener(MouseEvent.CLICK, moveCharacter);
+		this.addEventListener(MouseEvent.MOUSE_OVER, overScene);
+	}
+	
+	private function overScene(e:MouseEvent):Void
+	{
+		if (Std.is(e.target, SceneObject)) {
+			var _secnObj:SceneObject = cast(e.target, SceneObject);
+			if(_secnObj.data != null){
+				m_interface.setTarget(_secnObj.data.name);
+			}
+		}else if (Std.is(e.target, Character)) {
+			m_interface.setTarget('My Self');
+		}else {
+			m_interface.setTarget('');
+		}
 	}
 	
 	private function moveCharacter(e:MouseEvent):Void

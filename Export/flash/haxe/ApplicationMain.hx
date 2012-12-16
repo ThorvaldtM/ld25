@@ -102,20 +102,60 @@ class ApplicationMain {
             return Assets.getBitmapData ("assets/LIB/heroe.png");
          
 		
+		if (inName=="assets/LIB/room.png")
+			 
+            return Assets.getBitmapData ("assets/LIB/room.png");
+         
+		
 		if (inName=="assets/LIB/Title_LD25.mp3")
 			 
             return Assets.getSound ("assets/LIB/Title_LD25.mp3");
 		 
 		
+		if (inName=="assets/UI/bg_ui.png")
+			 
+            return Assets.getBitmapData ("assets/UI/bg_ui.png");
+         
+		
+		if (inName=="assets/UI/btn_look.png")
+			 
+            return Assets.getBitmapData ("assets/UI/btn_look.png");
+         
+		
+		if (inName=="assets/UI/btn_next.png")
+			 
+            return Assets.getBitmapData ("assets/UI/btn_next.png");
+         
+		
+		if (inName=="assets/UI/btn_pick.png")
+			 
+            return Assets.getBitmapData ("assets/UI/btn_pick.png");
+         
+		
+		if (inName=="assets/UI/btn_prev.png")
+			 
+            return Assets.getBitmapData ("assets/UI/btn_prev.png");
+         
+		
+		if (inName=="assets/UI/btn_talk.png")
+			 
+            return Assets.getBitmapData ("assets/UI/btn_talk.png");
+         
+		
+		if (inName=="assets/UI/btn_use.png")
+			 
+            return Assets.getBitmapData ("assets/UI/btn_use.png");
+         
+		
+		if (inName=="assets/UI/btn_walk.png")
+			 
+            return Assets.getBitmapData ("assets/UI/btn_walk.png");
+         
+		
 		if (inName=="assets/vgafix.ttf")
 			 
 			 return Assets.getFont ("assets/vgafix.ttf");
 		 
-		
-		if (inName=="assets/WIP/posings01.jpg")
-			 
-            return Assets.getBitmapData ("assets/WIP/posings01.jpg");
-         
 		
 		
 		return null;
@@ -139,7 +179,15 @@ class ApplicationMain {
 
 class NME_assets_col_room_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_heroe_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
+class NME_assets_lib_room_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_title_ld25_mp3 extends nme.media.Sound { }
+class NME_assets_ui_bg_ui_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
+class NME_assets_ui_btn_look_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
+class NME_assets_ui_btn_next_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
+class NME_assets_ui_btn_pick_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
+class NME_assets_ui_btn_prev_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
+class NME_assets_ui_btn_talk_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
+class NME_assets_ui_btn_use_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
+class NME_assets_ui_btn_walk_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_vgafix_ttf extends nme.text.Font { }
-class NME_assets_wip_posings01_jpg extends nme.display.BitmapData { public function new () { super (0, 0); } }
 

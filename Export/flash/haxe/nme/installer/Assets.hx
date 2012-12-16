@@ -32,12 +32,28 @@ class Assets {
 			resourceTypes.set ("assets/col_room.png", "image");
 			resourceClasses.set ("assets/LIB/heroe.png", NME_assets_lib_heroe_png);
 			resourceTypes.set ("assets/LIB/heroe.png", "image");
+			resourceClasses.set ("assets/LIB/room.png", NME_assets_lib_room_png);
+			resourceTypes.set ("assets/LIB/room.png", "image");
 			resourceClasses.set ("assets/LIB/Title_LD25.mp3", NME_assets_lib_title_ld25_mp3);
 			resourceTypes.set ("assets/LIB/Title_LD25.mp3", "music");
+			resourceClasses.set ("assets/UI/bg_ui.png", NME_assets_ui_bg_ui_png);
+			resourceTypes.set ("assets/UI/bg_ui.png", "image");
+			resourceClasses.set ("assets/UI/btn_look.png", NME_assets_ui_btn_look_png);
+			resourceTypes.set ("assets/UI/btn_look.png", "image");
+			resourceClasses.set ("assets/UI/btn_next.png", NME_assets_ui_btn_next_png);
+			resourceTypes.set ("assets/UI/btn_next.png", "image");
+			resourceClasses.set ("assets/UI/btn_pick.png", NME_assets_ui_btn_pick_png);
+			resourceTypes.set ("assets/UI/btn_pick.png", "image");
+			resourceClasses.set ("assets/UI/btn_prev.png", NME_assets_ui_btn_prev_png);
+			resourceTypes.set ("assets/UI/btn_prev.png", "image");
+			resourceClasses.set ("assets/UI/btn_talk.png", NME_assets_ui_btn_talk_png);
+			resourceTypes.set ("assets/UI/btn_talk.png", "image");
+			resourceClasses.set ("assets/UI/btn_use.png", NME_assets_ui_btn_use_png);
+			resourceTypes.set ("assets/UI/btn_use.png", "image");
+			resourceClasses.set ("assets/UI/btn_walk.png", NME_assets_ui_btn_walk_png);
+			resourceTypes.set ("assets/UI/btn_walk.png", "image");
 			resourceClasses.set ("assets/vgafix.ttf", NME_assets_vgafix_ttf);
 			resourceTypes.set ("assets/vgafix.ttf", "font");
-			resourceClasses.set ("assets/WIP/posings01.jpg", NME_assets_wip_posings01_jpg);
-			resourceTypes.set ("assets/WIP/posings01.jpg", "image");
 			
 			initialized = true;
 			

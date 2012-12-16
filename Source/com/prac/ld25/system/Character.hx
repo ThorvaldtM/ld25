@@ -24,7 +24,7 @@ class Character extends SceneObject
 	public function new()
 	{
 		box_width = 100;
-		box_height = 100;
+		box_height = 50;
 		moving = false;
 		m_tileSheet = new Tilesheet(Assets.getBitmapData('assets/LIB/heroe.png'));
 		for (i in 0...9) {
@@ -39,7 +39,7 @@ class Character extends SceneObject
 		}
 		super(null);
 		box_width = 100;
-		box_height = 100;
+		box_height = 50;
 		m_text.y += box_height - 247;
 	}
 	

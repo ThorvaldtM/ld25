@@ -1,4 +1,5 @@
 package com.prac.ld25.tools;
+import com.prac.ld25.Settings;
 import haxe.Md5;
 import nme.Assets;
 import nme.display.Bitmap;
@@ -18,9 +19,16 @@ class AssetLoader
 {
 
 	static public function loadAsset(id:String, width:Int, height:Int):Sprite {
+		var _display:Sprite = new Sprite();
+		if (id == null) {
+			_display.graphics.beginFill(0xFF0000,(Settings.COLLISION) ? 0.5 : 0);
+			_display.graphics.drawRect(0, 0, width, height);
+			_display.graphics.endFill();
+			return _display;
+		}
+		
 		
 		var _data:BitmapData = Assets.getBitmapData('assets/' + id);
-			var _display:Sprite = new Sprite();
 		if (_data == null) {
 			var _textFormat:TextFormat = new TextFormat();
 			_textFormat.align = TextFormatAlign.CENTER;
