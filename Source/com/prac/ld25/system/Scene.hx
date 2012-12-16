@@ -27,7 +27,7 @@ class Scene extends Sprite
 	public var data:SceneData;
 	private var m_character:Character;
 	private var m_dest:Point;
-	private var m_exits:Array<SceneObject>;
+	private var m_collisions:Array<SceneObject>;
 	private var m_collision_map:BitmapData;
 	private var m_interface:InterfaceManager;
 	private var m_dest_action:UInt;
@@ -41,7 +41,7 @@ class Scene extends Sprite
 	{
 		super();
 		this.data = data;
-		m_exits = new Array<SceneObject> ();
+		m_collisions = new Array<SceneObject> ();
 		m_items = new Array<SceneObject>();
 		m_dialog_stack = new Array<Dialog>();
 		m_interface = _interface;
@@ -60,8 +60,8 @@ class Scene extends Sprite
 			var _itemObject:SceneObject = new SceneObject(_item);
 			addChild(_itemObject);
 			m_items.push(_itemObject);
-			if (_item.exit != null) {
-				m_exits.push(_itemObject);
+			if (_item.collision) {
+				m_collisions.push(_itemObject);
 			}
 		}
 		
@@ -162,9 +162,23 @@ class Scene extends Sprite
 							_isSafe = false;
 							m_dest = null;
 							executeAction();
+							break;
 						}
 					}
 				}
+				if(_isSafe){
+					/*** ITEM COLLISION ***/
+					for (_sceneObject in m_collisions) {
+						if (_next_x + m_character.box_width >= _sceneObject.x && _next_x < _sceneObject.x + _sceneObject.box_width
+							&& m_character.y < _sceneObject.y  + _sceneObject.box_height && m_character.y + m_character.box_height > _sceneObject.y ) {
+								_isSafe = false;
+								m_dest = null;
+								executeAction();
+								break;
+							}
+					}
+				}
+				
 				if (_isSafe) {
 					if(!m_dir){
 						if (_next_x > _reel_x) {
@@ -181,14 +195,6 @@ class Scene extends Sprite
 					m_character.x = _next_x + m_character.box_width * (1 - m_character.scaleX ) / 2;
 					m_character.y = _next_y;
 				}
-				
-				/*** ITEM COLLISION ***/
-				//for (_sceneObject in m_exits) {
-					//if (_next_x + m_character.box_width >= _sceneObject.x && _next_x < _sceneObject.x + _sceneObject.box_width
-						//&& m_character.y < _sceneObject.y  + _sceneObject.box_height && m_character.y + m_character.box_height > _sceneObject.y ) {
-							//dispatchExit(_sceneObject.data.exit);
-						//}
-				//}
 			}
 		}else{
 			m_character.moving = false;
@@ -209,7 +215,7 @@ class Scene extends Sprite
 				}
 			}
 			if (_dialog.special != null) {
-				executeSpecial(_dialog.special, _dialog.target);
+				executeSpecial(_dialog.special.special, _dialog.target, _dialog.special);
 			}
 		}
 		
@@ -225,9 +231,10 @@ class Scene extends Sprite
 			switch(m_dest_action) {
 				case InterfaceManager.MODE_LOOK :
 					if (m_dest_target.data.look != null) {
-						m_character.speak(m_dest_target.data.look.desc);
+						killDialogQueue();
+						parseDialog(m_dest_target.data.look.desc, m_character);
 						if (m_dest_target.data.look.special != null) {
-							executeSpecial(m_dest_target.data.look.special, m_dest_target);
+							executeSpecial(m_dest_target.data.look.special, m_dest_target, m_dest_target.data.look);
 						}
 					}
 					m_dest_target = null;
@@ -235,7 +242,8 @@ class Scene extends Sprite
 				case InterfaceManager.MODE_PICK :
 					if (m_dest_target.data.pick != null) {
 						if (m_dest_target.data.pick.desc != null) {
-							if(m_dest_target.data.pick.target == null){
+							if(m_dest_target.data.pick.target == "character"){
+								killDialogQueue();
 								m_character.speak(m_dest_target.data.pick.desc);
 							}else {
 								for (_dest in m_items) {
@@ -252,7 +260,7 @@ class Scene extends Sprite
 							data.items.remove(m_dest_target.data);
 						}
 						if (m_dest_target.data.pick.special != null) {
-							executeSpecial(m_dest_target.data.pick.special, m_dest_target);
+							executeSpecial(m_dest_target.data.pick.special, m_dest_target, m_dest_target.data.pick);
 						}
 					}
 					m_dest_target = null;
@@ -260,6 +268,7 @@ class Scene extends Sprite
 				case InterfaceManager.MODE_TALK :
 					if (m_dest_target.data.talk != null) {
 						if(m_dest_target.data.talk.desc != null){
+							killDialogQueue();
 							m_character.speak(m_dest_target.data.talk.desc);
 						}
 						if (m_dest_target.data.talk.success) {
@@ -285,10 +294,11 @@ class Scene extends Sprite
 					}
 					if (m_dest_target.data.use != null) {
 						if(m_dest_target.data.use.desc != null){
+							killDialogQueue();
 							m_character.speak(m_dest_target.data.use.desc);
 						}
 						if (m_dest_target.data.use.special != null) {
-							executeSpecial(m_dest_target.data.use.special, m_dest_target);
+							executeSpecial(m_dest_target.data.use.special, m_dest_target, m_dest_target.data.use);
 							if (m_dest_target.data.use.special.indexOf('dialog') == -1) {
 								m_dest_target = null;
 								Settings.STATE = InterfaceManager.MODE_WALK;
@@ -305,13 +315,15 @@ class Scene extends Sprite
 					var _combo:CombineData = SceneList.combine(m_interface.current_item.data.id, m_dest_target.data.id);
 					if (_combo != null) {
 						if (_combo.desc != null) {
+							killDialogQueue();
 							m_character.speak(_combo.desc);
 						}
 						if(_combo.special != null){
-							executeSpecial(_combo.special, m_dest_target);
+							executeSpecial(_combo.special, m_dest_target, _combo);
 						}
 					}else {
 						if (m_interface.current_item.data.defaultUse != null) {
+							killDialogQueue();
 							m_character.speak(m_interface.current_item.data.defaultUse);
 						}
 					}
@@ -327,11 +339,19 @@ class Scene extends Sprite
 		m_interface.updateCursor();
 	}
 	
-	private function executeSpecial(special:String, object:SceneObject)
+	private function killDialogQueue()
+	{
+		while (m_dialog_stack.length > 0) {
+			m_dialog_stack.shift();
+		}
+	}
+	
+	private function executeSpecial(special:String, object:SceneObject, source:Dynamic = null)
 	{
 		var _cmd:Array<String> = special.split(';');
 		var _item:ItemData;
 		var _object:SceneObject;
+		var _targetId:String;
 		while (_cmd.length > 0) {
 			switch(_cmd.shift()) {
 				case 'replace' :
@@ -343,8 +363,8 @@ class Scene extends Sprite
 					_object = new SceneObject(_item);
 					addChildAt(_object, _index);
 					m_items.push(_object);
-					if (_item.exit != null) {
-						m_exits.push(_object);
+					if (_item.collision) {
+						m_collisions.push(_object);
 					}
 				case 'gain' :
 					m_interface.addItem(SceneList.getItem(_cmd.shift()));
@@ -361,12 +381,42 @@ class Scene extends Sprite
 							break;
 						}
 					}
+				case 'event_stool':
+					for (_dest in m_items) {
+						if (_dest.data.id == "alarm") {
+							_dest.data.use.desc = "Nothing Happened.";
+							_dest.data.pick.desc = "It's fixed to the wall.";
+							break;
+						}
+					}
+					_item = m_interface.current_item.data;
+					_item.x = 270;
+					_item.y = 276;
+					_item.pick.success = false;
+					_item.pick.desc = "It's fine as it is.";
+					_item.pick.special = null;
+					_object = new SceneObject(_item);
+					addChildAt(_object, getChildIndex(m_character) - 1);
+					m_items.push(_object);
+					m_interface.consumeItem();
+				case 'skip':
+					source.special = _cmd.join(';');
+					return;
+				case 'disable':
+					_targetId = _cmd.shift();
+					for (_dest in m_items) {
+						if (_dest.data.id == _targetId) {
+							_dest.data.pick.desc = "I don't need more.";
+							_dest.data.pick.success = false;
+							_dest.data.pick.special = null;
+						}
+					}
 					
 			}
 		}
 	}
 	
-	private function parseDialog(text:String, current:SceneObject, options:Array<DataOption> = null, special:String = null):Void {
+	private function parseDialog(text:String, current:SceneObject, options:Array<DataOption> = null, special:Dynamic = null):Void {
 		if (text == null) {
 			return;
 		}
@@ -406,7 +456,7 @@ class Scene extends Sprite
 		var _dialog:DataOption = cast(e.data, DataOption);
 		parseDialog(_dialog.answer, m_character);
 		if (_dialog.followup != null && m_dest_target != null) {
-			parseDialog(_dialog.followup.question, m_dest_target,_dialog.followup.options,_dialog.followup.special);
+			parseDialog(_dialog.followup.question, m_dest_target,_dialog.followup.options,_dialog.followup);
 		}
 	}
 	

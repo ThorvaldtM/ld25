@@ -20,7 +20,7 @@ class AssetLoader
 
 	static public function loadAsset(id:String, width:Int, height:Int):Sprite {
 		var _display:Sprite = new Sprite();
-		if (id == null) {
+		if (id == null || id.indexOf('null') > -1) {
 			_display.graphics.beginFill(0xFF0000,(Settings.COLLISION) ? 0.5 : 0);
 			_display.graphics.drawRect(0, 0, width, height);
 			_display.graphics.endFill();

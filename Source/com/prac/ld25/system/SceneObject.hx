@@ -4,6 +4,7 @@ import com.prac.ld25.tools.AssetLoader;
 import nme.Assets;
 import nme.display.Sprite;
 import nme.events.MouseEvent;
+import nme.filters.DropShadowFilter;
 import nme.Lib;
 import nme.text.AntiAliasType;
 import nme.text.Font;
@@ -32,7 +33,7 @@ class SceneObject extends Sprite
 		m_fade = -1;
 		this.mouseChildren = false;
 		if(data != null){
-			var _bg:Sprite = AssetLoader.loadAsset(data.graph, data.width, data.height);
+			var _bg:Sprite = AssetLoader.loadAsset('LIB/' + data.graph, data.width, data.height);
 			addChild(_bg);
 			this.x = data.x;
 			this.y = data.y;
@@ -58,6 +59,7 @@ class SceneObject extends Sprite
 		m_text.wordWrap = true;
 		m_text.multiline = true;
 		m_text.mouseEnabled = false;
+		m_text.filters = [new DropShadowFilter()];
 		m_text.text = " ";
 		m_text.y = - 20;
 		m_text.x = (this.width - m_text.width) / 2;

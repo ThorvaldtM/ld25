@@ -20,6 +20,7 @@ class ItemData
 	public var pick:BehaviorData;
 	public var talk:BehaviorData;
 	public var defaultUse:String;
+	public var collision:Bool;
 
 	public function new()
 	{

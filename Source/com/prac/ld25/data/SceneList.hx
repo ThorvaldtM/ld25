@@ -194,6 +194,40 @@ class SceneList
 		_item.pick = new BehaviorData("I have no use for that right now.");
 		_scene.items.push(_item);
 		
+		_item = new ItemData();
+		_item.id = "bottle";
+		_item.name = "Bottle";
+		_item.graph = "bottle.png";
+		_item.x = 593;
+		_item.y = 226;
+		_item.width = 25;
+		_item.height = 69;
+		_item.look = new BehaviorData("A bottle of water");
+		_item.use = new BehaviorData('Ahh refreshing.');
+		_item.talk = new BehaviorData("Nope.");
+		_item.pick = new BehaviorData();
+		_item.pick.success = true;
+		_item.pick.special = "score;10";
+		_item.defaultUse = "I don't want to waste it";
+		_scene.items.push(_item);
+		
+		_item = new ItemData();
+		_item.id = "justin";
+		_item.name = "Magazine";
+		_item.graph = "Justin.png";
+		_item.x = 512;
+		_item.y = 275;
+		_item.width = 27;
+		_item.height = 24;
+		_item.look = new BehaviorData("Justin Bieber on the cover. Yuck !");
+		_item.use = new BehaviorData('I REALLY rather not read it.');
+		_item.talk = new BehaviorData("Not even if that was possible.");
+		_item.pick = new BehaviorData('Maybe I can use it as toilet paper.');
+		_item.pick.success = true;
+		_item.pick.special = "score;10";
+		_item.defaultUse = "Nope.";
+		_scene.items.push(_item);
+		
 		m_scenes.push(_scene);
 		
 		/****** RECEPTION ******/
@@ -280,10 +314,43 @@ class SceneList
 		_scene.items.push(_item);
 		
 		_item = new ItemData();
+		_item.id = "key142";
+		_item.name = "Key";
+		_item.graph = "key_blue.png";
+		_item.x = 62;
+		_item.y = 66;
+		_item.width = 14;
+		_item.height = 37;
+		_item.look = new BehaviorData("Room 142 is marked on it.");
+		_item.use = new BehaviorData("I need to pick it up first.");
+		_item.talk = new BehaviorData("Nah.");
+		_item.pick = new BehaviorData("Don't touch that !");
+		_item.pick.target = "receptionist";
+		_item.pick.special = "score;10";
+		_scene.items.push(_item);
+		
+		_item = new ItemData();
+		_item.id = "key664";
+		_item.name = "Key";
+		_item.graph = "key_green.png";
+		_item.x = 90;
+		_item.y = 66;
+		_item.width = 14;
+		_item.height = 37;
+		_item.look = new BehaviorData("Room 664 is marked on it.");
+		_item.use = new BehaviorData("I need to pick it up first.");
+		_item.talk = new BehaviorData("Nah.");
+		_item.pick = new BehaviorData("Don't touch that !");
+		_item.pick.target = "receptionist";
+		_item.pick.special = "score;10";
+		_scene.items.push(_item);
+		
+		_item = new ItemData();
 		_item.id = "key665";
 		_item.name = "Key";
-		_item.x = 48;
-		_item.y = 66;
+		_item.graph = "key_red.png";
+		_item.x = 76;
+		_item.y = 103;
 		_item.width = 14;
 		_item.height = 37;
 		_item.look = new BehaviorData("Room 665 is marked on it.");
@@ -291,6 +358,88 @@ class SceneList
 		_item.talk = new BehaviorData("Nah.");
 		_item.pick = new BehaviorData("Don't touch that !");
 		_item.pick.target = "receptionist";
+		_item.pick.special = "score;10";
+		_scene.items.push(_item);
+		
+		_item = new ItemData();
+		_item.id = "key777";
+		_item.name = "Key";
+		_item.graph = "key_gold.png";
+		_item.x = 20;
+		_item.y = 103;
+		_item.width = 14;
+		_item.height = 37;
+		_item.look = new BehaviorData("Room 777 is marked on it.");
+		_item.use = new BehaviorData("I need to pick it up first.");
+		_item.talk = new BehaviorData("Nah.");
+		_item.pick = new BehaviorData("Don't touch that !");
+		_item.pick.target = "receptionist";
+		_item.pick.special = "score;10";
+		_scene.items.push(_item);
+		
+		_item = new ItemData();
+		_item.id = "table";
+		_item.name = "Table";
+		_item.x = 473;
+		_item.y = 340;
+		_item.width = 155;
+		_item.height = 91;
+		_item.look = new BehaviorData("A truly magnificent table !;character;This is the one I was waiting all of my life;character;no, just a plain BORING table.");
+		_item.use = new BehaviorData("Huh ?");
+		_item.talk = new BehaviorData("Nah.");
+		_item.pick = new BehaviorData("Too Heavy.");
+		_item.collision = true;
+		_scene.items.push(_item);
+		
+		_item = new ItemData();
+		_item.id = "stool";
+		_item.name = "Stool";
+		_item.graph = "tabouret.png";
+		_item.x = 416;
+		_item.y = 370;
+		_item.width = 51;
+		_item.height = 53;
+		_item.look = new BehaviorData("Just a stool.");
+		_item.use = new BehaviorData("No time for that now.");
+		_item.talk = new BehaviorData("Nah.");
+		_item.pick = new BehaviorData();
+		_item.pick.success = true;
+		_item.pick.special = "score;10;disable;stool";
+		_item.collision = true;
+		_scene.items.push(_item);
+		
+		_item = new ItemData();
+		_item.id = "stool";
+		_item.name = "Stool";
+		_item.graph = "tabouret.png";
+		_item.x = 525;
+		_item.y = 426;
+		_item.width = 51;
+		_item.height = 53;
+		_item.look = new BehaviorData("Just a stool.");
+		_item.use = new BehaviorData("No time for that now.");
+		_item.talk = new BehaviorData("Nah.");
+		_item.pick = new BehaviorData();
+		_item.pick.special = "score;10;disable;stool";
+		_item.pick.success = true;
+		_item.collision = true;
+		_scene.items.push(_item);
+		
+		_item = new ItemData();
+		_item.id = "stool";
+		_item.name = "Stool";
+		_item.graph = "tabouret.png";
+		_item.x = 634;
+		_item.y = 370;
+		_item.width = 51;
+		_item.height = 53;
+		_item.look = new BehaviorData("Just a stool.");
+		_item.use = new BehaviorData("No time for that now.");
+		_item.talk = new BehaviorData("Nah.");
+		_item.pick = new BehaviorData();
+		_item.pick.success = true;
+		_item.pick.special = "score;10;disable;stool";
+		_item.collision = true;
 		_scene.items.push(_item);
 		
 		m_scenes.push(_scene);
@@ -311,7 +460,7 @@ class SceneList
 		_item.use.special = "replace;desk";
 		_item.talk = new BehaviorData("Does desk talks ?");
 		_item.pick = new BehaviorData("This lighter might come handy");
-		_item.pick.special = "gain;lighter;score;10;replace;desk_open_empty";
+		_item.pick.special = "gain;lighter;score;10;skip;gain;pills;score;10;replace;desk_open_empty";
 		m_items_pool.push(_item);
 		
 		_item = new ItemData();
@@ -348,6 +497,15 @@ class SceneList
 		_item.graph = "lighter.png";
 		_item.look = new BehaviorData("I love fire");
 		_item.talk = new BehaviorData("No genie inside.");
+		_item.defaultUse = "I rather not";
+		m_items_pool.push(_item);
+		
+		_item = new ItemData();
+		_item.id = "pills";
+		_item.name = "Box of Pills";
+		_item.graph = "pills.png";
+		_item.look = new BehaviorData("SweetMoon. Makes you dream about the moon. Effect Guaranteed");
+		_item.talk = new BehaviorData("No.");
 		_item.defaultUse = "I rather not";
 		m_items_pool.push(_item);
 		
@@ -392,6 +550,10 @@ class SceneList
 		
 		_combo = new CombineData('number', 'phone', 'Let\'s try that number.');
 		_combo.dialog = new DialogData('*bip* *bip* (male voice) Hi, Joe\'s speaking');
+		m_combines.push(_combo);
+		
+		_combo = new CombineData('stool', 'alarm', 'Now I can reach it.');
+		_combo.special = 'event_stool';
 		m_combines.push(_combo);
 		
 	}

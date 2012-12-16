@@ -29,6 +29,7 @@ class InterfaceManager extends Sprite
 	static  public inline var MODE_USE_ITEM = 6;
 	
 	private var m_cursor:Sprite;
+	private var m_cursor_type:UInt = 99;
 	
 	private var m_score:Score;
 	private var m_walk:Sprite;
@@ -140,6 +141,9 @@ class InterfaceManager extends Sprite
 	
 	public function updateCursor()
 	{
+		if (m_cursor_type == Settings.STATE) {
+			return;
+		}
 		if (m_cursor != null) {
 			m_cursor.stopDrag();
 			removeChild(m_cursor);
@@ -174,6 +178,7 @@ class InterfaceManager extends Sprite
 			default:
 				Mouse.show();
 		}
+		m_cursor_type = Settings.STATE;
 	}
 	
 	public function setTarget(text:String):Void {
@@ -269,6 +274,12 @@ class InterfaceManager extends Sprite
 	public function useItem(object:InventoryItem):Void {
 		m_current_item = object;
 		Settings.STATE = MODE_USE_ITEM;
+		updateCursor();
+	}
+	
+	public function consumeItem():Void {
+		m_current_item = null;
+		Settings.STATE = MODE_WALK;
 		updateCursor();
 	}
 	
