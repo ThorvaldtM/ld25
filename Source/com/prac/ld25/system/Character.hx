@@ -5,6 +5,7 @@ import flash.geom.Rectangle;
 import nme.Assets;
 import nme.display.Sprite;
 import nme.display.Tilesheet;
+import nme.filters.DropShadowFilter;
 
 /**
  * ...
@@ -44,6 +45,8 @@ class Character extends SceneObject
 		m_text.y += box_height - 247;
 		this.mouseChildren = false;
 		this.mouseEnabled = false;
+		this.m_text.filters = [new DropShadowFilter(4, 45, 0x0A0069)];
+		// 324*463
 	}
 	
 	override public function update():Void

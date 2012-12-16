@@ -122,6 +122,11 @@ class ApplicationMain {
             return Assets.getBitmapData ("assets/LIB/couloir.png");
          
 		
+		if (inName=="assets/LIB/douche.png")
+			 
+            return Assets.getBitmapData ("assets/LIB/douche.png");
+         
+		
 		if (inName=="assets/LIB/heroe.png")
 			 
             return Assets.getBitmapData ("assets/LIB/heroe.png");
@@ -248,6 +253,7 @@ class NME_assets_col_room_png extends nme.display.BitmapData { public function n
 class NME_assets_lib_bitch_theme_mp3 extends nme.media.Sound { }
 class NME_assets_lib_bottle_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_couloir_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
+class NME_assets_lib_douche_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_heroe_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_justin_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_key_blue_png extends nme.display.BitmapData { public function new () { super (0, 0); } }

@@ -52,17 +52,23 @@ class SceneObject extends Sprite
 		m_text = new TextField();
 		m_text.antiAliasType = AntiAliasType.ADVANCED;
 		m_text.defaultTextFormat = _textFormat;
-		m_text.width = 175;
+		m_text.width = 200;
 		m_text.height = 60;
 		m_text.selectable = false;
 		m_text.embedFonts = true;
 		m_text.wordWrap = true;
 		m_text.multiline = true;
 		m_text.mouseEnabled = false;
-		m_text.filters = [new DropShadowFilter()];
-		m_text.text = " ";
 		m_text.y = - 20;
 		m_text.x = (this.width - m_text.width) / 2;
+		if (data != null) {
+			m_text.filters = [new DropShadowFilter(4, 45, data.shadowColor)];
+			m_text.textColor = data.textColor;
+			if(data.id == "phone"){
+				m_text.x += 60;
+			}
+		}
+		m_text.text = " ";
 		
 		if (this.x + m_text.x < 0) {
 			m_text.x = - this.x;
@@ -76,7 +82,7 @@ class SceneObject extends Sprite
 		if (text == null) {
 			return;
 		}
-		m_text.text = text;
+		m_text.htmlText = text;
 		if (fade != -1) {
 			m_fade = Lib.getTimer() + fade;
 		}else {

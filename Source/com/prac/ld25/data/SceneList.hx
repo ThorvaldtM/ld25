@@ -205,9 +205,8 @@ class SceneList
 		_item.look = new BehaviorData("A bottle of water");
 		_item.use = new BehaviorData('Ahh refreshing.');
 		_item.talk = new BehaviorData("Nope.");
-		_item.pick = new BehaviorData();
-		_item.pick.success = true;
-		_item.pick.special = "score;10";
+		_item.pick = new BehaviorData('Hands off.');
+		_item.pick.target = "groom";
 		_item.defaultUse = "I don't want to waste it";
 		_scene.items.push(_item);
 		
@@ -222,10 +221,40 @@ class SceneList
 		_item.look = new BehaviorData("Justin Bieber on the cover. Yuck !");
 		_item.use = new BehaviorData('I REALLY rather not read it.');
 		_item.talk = new BehaviorData("Not even if that was possible.");
-		_item.pick = new BehaviorData('Maybe I can use it as toilet paper.');
-		_item.pick.success = true;
-		_item.pick.special = "score;10";
+		_item.pick = new BehaviorData('Hands off.');
+		_item.pick.target = "groom";
 		_item.defaultUse = "Nope.";
+		_scene.items.push(_item);
+		
+		_item = new ItemData();
+		_item.id = "groom";
+		_item.name = "Groom";
+		_item.graph = "groom.png";
+		_item.x = 513;
+		_item.y = 141;
+		_item.width = 78;
+		_item.height = 121;
+		_item.textColor = 0xF3FF87;
+		_item.shadowColor = 0xA37E02;
+		_item.look = new BehaviorData("A big smoker. Maybe I should do something about it.");
+		_item.use = new BehaviorData("Can you repeat that ?");
+		_item.talk = new BehaviorData();
+		_item.talk.success = true;
+		_item.talk.dialog = new DialogData("*sigh*");
+		_dialogOption = new DataOption('Hi I am Greg, how are you doing ?', 'Salute');
+		_dialogOption.followup = new DialogData("*looks up* *sigh*");
+		_dialogOption.followup.options[0] = new DataOption('Look a triple headed monkey !','Prank');
+		_dialogOption.followup.options[0].followup = new DialogData("*sigh*");
+		_dialogOption.followup.options[1] = new DataOption('You know anything about room 665 ?','Ask');
+		_dialogOption.followup.options[1].followup = new DialogData("Nah.");
+		_dialogOption.followup.options[2] = new DataOption('Goodbye.','Bye');
+		_item.talk.dialog.options.push(_dialogOption);
+		_dialogOption = new DataOption('I am a demon and I will eat you alive !;character;*makes scary face*', 'Prank');
+		_dialogOption.followup = new DialogData("*sigh*;character;(I really need to work on my act.)");
+		_item.talk.dialog.options.push(_dialogOption);
+		_dialogOption = new DataOption('Goodbye.','Bye');
+		_item.talk.dialog.options.push(_dialogOption);
+		_item.pick = new BehaviorData("Not my type.");
 		_scene.items.push(_item);
 		
 		m_scenes.push(_scene);
@@ -251,10 +280,13 @@ class SceneList
 		_item = new ItemData();
 		_item.id = "receptionist";
 		_item.name = "Receptionist";
+		_item.graph = "receptionist.png";
 		_item.x = 0;
 		_item.y = 180;
 		_item.width = 78;
 		_item.height = 121;
+		_item.textColor = 0xFFCCF5;
+		_item.shadowColor = 0x9E027F;
 		_item.look = new BehaviorData("Wow she is hot !");
 		_item.use = new BehaviorData("I sure would like to use her");
 		_item.talk = new BehaviorData();
@@ -265,16 +297,16 @@ class SceneList
 		_item.talk.dialog.options.push(_dialogOption);
 		_dialogOption = new DataOption('Hi I am Greg, how are you doing ?', 'Salute');
 		_dialogOption.followup = new DialogData("What do you want ? I am busy.");
-		_dialogOption.followup.options[0] = new DataOption('How about giving me your number ? Just kidding', 'Flirt');
+		_dialogOption.followup.options[0] = new DataOption('How about giving me your number ?;character;Just kidding !', 'Flirt');
 		_dialogOption.followup.options[0].followup = new DialogData("There now leave me alone.;character;(wow she actually gave it to me !)");
 		_dialogOption.followup.options[0].followup.special = "gain;number;score;10;remove_option";
 		_dialogOption.followup.options[1] = new DataOption('Can I do anything for you ?','Ask');
 		_dialogOption.followup.options[1].followup = new DialogData("Bring me a magazine.");
 		_dialogOption.followup.options[2] = new DataOption('Goodbye.','Bye');
-		_dialogOption.followup.options[2].followup = new DialogData("Bybye.");
+		_dialogOption.followup.options[2].followup = new DialogData("Hmph.");
 		_item.talk.dialog.options.push(_dialogOption);
 		_dialogOption = new DataOption('Goodbye.','Bye');
-		_dialogOption.followup = new DialogData("Bybye.");
+		_dialogOption.followup = new DialogData("Hmph.");
 		_item.talk.dialog.options.push(_dialogOption);
 		_item.pick = new BehaviorData("Hummm");
 		_scene.items.push(_item);
@@ -286,6 +318,8 @@ class SceneList
 		_item.y = 90;
 		_item.width = 66;
 		_item.height = 95;
+		_item.textColor = 0x75FA7E;
+		_item.shadowColor = 0x096900;
 		_item.look = new BehaviorData("The ideal tool for prank calls !");
 		_item.use = new BehaviorData();
 		_item.use.success = true;
@@ -293,8 +327,11 @@ class SceneList
 		_item.talk = new BehaviorData();
 		_item.talk.dialog = new DialogData();
 		_dialogOption = new DataOption('Let\'s see. *6* *6* *6* ...', 'Prank Myself');
-		_dialogOption.followup = new DialogData(";character;*bip* *bip* *no answer*;character;Tss. I was looking forward to that prank call !");
+		_dialogOption.followup = new DialogData("*bip* *bip* *no answer*;character;Tss. I was looking forward to that prank call !");
 		_item.talk.dialog.options.push(_dialogOption);
+		//_dialogOption = new DataOption('Let\'s see. *9* *1* *1* ...', 'Call 911');
+		//_dialogOption.followup = new DialogData("*bip* *bip* (male voice) 911, How can I help you ?;character;");
+		//_item.talk.dialog.options.push(_dialogOption);
 		_item.talk.success = true;
 		_item.pick = new BehaviorData("It's fixed to the wall.");
 		_scene.items.push(_item);
@@ -326,7 +363,6 @@ class SceneList
 		_item.talk = new BehaviorData("Nah.");
 		_item.pick = new BehaviorData("Don't touch that !");
 		_item.pick.target = "receptionist";
-		_item.pick.special = "score;10";
 		_scene.items.push(_item);
 		
 		_item = new ItemData();
@@ -342,7 +378,6 @@ class SceneList
 		_item.talk = new BehaviorData("Nah.");
 		_item.pick = new BehaviorData("Don't touch that !");
 		_item.pick.target = "receptionist";
-		_item.pick.special = "score;10";
 		_scene.items.push(_item);
 		
 		_item = new ItemData();
@@ -358,7 +393,6 @@ class SceneList
 		_item.talk = new BehaviorData("Nah.");
 		_item.pick = new BehaviorData("Don't touch that !");
 		_item.pick.target = "receptionist";
-		_item.pick.special = "score;10";
 		_scene.items.push(_item);
 		
 		_item = new ItemData();
@@ -374,12 +408,12 @@ class SceneList
 		_item.talk = new BehaviorData("Nah.");
 		_item.pick = new BehaviorData("Don't touch that !");
 		_item.pick.target = "receptionist";
-		_item.pick.special = "score;10";
 		_scene.items.push(_item);
 		
 		_item = new ItemData();
 		_item.id = "table";
 		_item.name = "Table";
+		_item.graph = "table.png";
 		_item.x = 473;
 		_item.y = 340;
 		_item.width = 155;
@@ -549,7 +583,36 @@ class SceneList
 		m_combines.push(_combo);
 		
 		_combo = new CombineData('number', 'phone', 'Let\'s try that number.');
-		_combo.dialog = new DialogData('*bip* *bip* (male voice) Hi, Joe\'s speaking');
+		_combo.dialog = new DialogData('*bip* *bip*;self;(male voice) Hi, Joe\'s speaking;character;*hangs up* Noooo ...');
+		_combo.dialog.special = "remove_item;gain;number_joe";
+		m_combines.push(_combo);
+		
+		_combo = new CombineData('number_joe', 'phone', 'Let\'s prank him !');
+		_combo.dialog = new DialogData('*bip* *bip*;self;(male voice) Hi, Joe\'s speaking');
+		_dialogOption = new DataOption('*female voice mode*;character;Hey, this is marlene', 'Flirt');
+		_dialogOption.followup = new DialogData("*sigh* What is it this time ?");
+		_dialogOption.followup.options[0] = new DataOption('Can you please bring me the magazine, sweetie.', 'Flirt');
+		_dialogOption.followup.options[0].followup = new DialogData("*sigh* *hangs up*");
+		_dialogOption.followup.options[1] = new DataOption('There are some luggage down here.;character;Hurry up to take them upstairs !','Order');
+		_dialogOption.followup.options[1].followup = new DialogData("*sigh* *hangs up*");
+		_dialogOption.followup.options[2] = new DataOption('(Wait ! I am demon not a killer !)','Kill');
+		_dialogOption.followup.options[2].followup = new DialogData("Hello ? *sigh*");
+		_dialogOption.followup.options[2].followup.options[0] = new DataOption('I am so horny for you !', 'Super Flirt');
+		_dialogOption.followup.options[2].followup.options[0].followup = new DialogData("*hangs up*");
+		_dialogOption.followup.options[2].followup.options[0].followup.special = "event_groom;score;10;remove_option";
+		_dialogOption.followup.options[2].followup.options[1] = new DataOption('Let\'s play strip poker.','Mega Flirt');
+		_dialogOption.followup.options[2].followup.options[1].followup = new DialogData("*hangs up*");
+		_dialogOption.followup.options[2].followup.options[1].followup.special = "event_groom;score;10;remove_option";
+		_dialogOption.followup.options[2].followup.options[2] = new DataOption('I want to experience new positions with you !','Ultra Flirt');
+		_dialogOption.followup.options[2].followup.options[2].followup = new DialogData("*hangs up*");
+		_dialogOption.followup.options[2].followup.options[2].followup.special = "event_groom;score;10;remove_option";
+		_combo.dialog.options.push(_dialogOption);
+		_dialogOption = new DataOption('I am the devil !', 'Fear');
+		_dialogOption.followup = new DialogData("And I am the queen of england ! *hangs up*");
+		_combo.dialog.options.push(_dialogOption);
+		_dialogOption = new DataOption('*breath* I am your father *breath*','Obiwan Kenobi');
+		_dialogOption.followup = new DialogData("Spoke is that you ?;character;*hangs up* I don't wanna live on this planet anymore.");
+		_combo.dialog.options.push(_dialogOption);
 		m_combines.push(_combo);
 		
 		_combo = new CombineData('stool', 'alarm', 'Now I can reach it.');

@@ -36,6 +36,7 @@ class Scene extends Sprite
 	private var m_dialog_stack:Array<Dialog>;
 	private var m_dir:Bool;
 	private var m_dialog_timer:Int = 0;
+	private var m_dialog_prev:SceneObject;
 
 	public function new(data:SceneData, spawn_x:Int, spawn_y:Int, _interface:InterfaceManager)
 	{
@@ -103,6 +104,7 @@ class Scene extends Sprite
 	private function moveCharacter(e:MouseEvent):Void
 	{
 		if (m_interface.state == InterfaceManager.MODE_DIALOG) {
+			m_dialog_timer = 0;
 			return;
 		}
 		m_dest_action = m_interface.state;
@@ -201,21 +203,27 @@ class Scene extends Sprite
 		}
 		
 		if (m_dialog_stack.length > 0 && m_dialog_timer < Lib.getTimer()) {
-			var _dialog:Dialog = m_dialog_stack.shift();
-			if(_dialog.text != null && _dialog.text != ''){
+			if (m_dialog_prev == m_dialog_stack[0].target) {
+				m_dialog_prev = null;
 				m_dialog_timer = Lib.getTimer() + 2000;
-				_dialog.target.speak(_dialog.text, _dialog.fade);
-			}
-			if (_dialog.options != null) {
-				if(_dialog.options.length > 0){
-					m_interface.popDialog(_dialog.options);
-				}else {
-					Settings.STATE = InterfaceManager.MODE_WALK;
-					m_interface.updateCursor();
+			}else{
+				var _dialog:Dialog = m_dialog_stack.shift();
+				m_dialog_prev = _dialog.target;
+				if(_dialog.text != null && _dialog.text != ''){
+					m_dialog_timer = Lib.getTimer() + 2000;
+					_dialog.target.speak(_dialog.text, _dialog.fade);
 				}
-			}
-			if (_dialog.special != null) {
-				executeSpecial(_dialog.special.special, _dialog.target, _dialog.special);
+				if (_dialog.special != null) {
+					executeSpecial(_dialog.special.special, _dialog.target, _dialog.special);
+				}
+				if (_dialog.options != null) {
+					if(_dialog.options.length > 0){
+						m_interface.popDialog(_dialog.options);
+					}else {
+						Settings.STATE = InterfaceManager.MODE_WALK;
+						m_interface.updateCursor();
+					}
+				}
 			}
 		}
 		
@@ -258,9 +266,9 @@ class Scene extends Sprite
 							m_interface.addItem(m_dest_target.data);
 							removeChild(m_dest_target);
 							data.items.remove(m_dest_target.data);
-						}
-						if (m_dest_target.data.pick.special != null) {
-							executeSpecial(m_dest_target.data.pick.special, m_dest_target, m_dest_target.data.pick);
+							if (m_dest_target.data.pick.special != null) {
+								executeSpecial(m_dest_target.data.pick.special, m_dest_target, m_dest_target.data.pick);
+							}
 						}
 					}
 					m_dest_target = null;
@@ -273,6 +281,9 @@ class Scene extends Sprite
 						}
 						if (m_dest_target.data.talk.success) {
 							if (m_dest_target.data.talk.dialog.options.length > 0) {
+								if(m_dest_target.data.talk.desc == null){
+									killDialogQueue();
+								}
 								parseDialog(m_dest_target.data.talk.dialog.question, m_dest_target);
 								m_interface.popDialog(m_dest_target.data.talk.dialog.options);
 							}else {
@@ -316,9 +327,11 @@ class Scene extends Sprite
 					if (_combo != null) {
 						if (_combo.desc != null) {
 							killDialogQueue();
-							m_character.speak(_combo.desc);
+							parseDialog(_combo.desc,m_character);
 						}
-						if(_combo.special != null){
+						if (_combo.dialog != null) {
+							parseDialog(_combo.dialog.question, m_dest_target,_combo.dialog.options,_combo.dialog);
+						}else if(_combo.special != null){
 							executeSpecial(_combo.special, m_dest_target, _combo);
 						}
 					}else {
@@ -344,10 +357,15 @@ class Scene extends Sprite
 		while (m_dialog_stack.length > 0) {
 			m_dialog_stack.shift();
 		}
+		m_dialog_prev = null;
+		m_dialog_timer = 0;
 	}
 	
 	private function executeSpecial(special:String, object:SceneObject, source:Dynamic = null)
 	{
+		if (special == null) {
+			return;
+		}
 		var _cmd:Array<String> = special.split(';');
 		var _item:ItemData;
 		var _object:SceneObject;
@@ -366,6 +384,8 @@ class Scene extends Sprite
 					if (_item.collision) {
 						m_collisions.push(_object);
 					}
+				case 'remove_item' :
+					m_interface.consumeItem();
 				case 'gain' :
 					m_interface.addItem(SceneList.getItem(_cmd.shift()));
 				case 'score':
@@ -409,6 +429,16 @@ class Scene extends Sprite
 							_dest.data.pick.desc = "I don't need more.";
 							_dest.data.pick.success = false;
 							_dest.data.pick.special = null;
+						}
+					}
+				case 'enable':
+					_targetId = _cmd.shift();
+					for (_dest in m_items) {
+						if (_dest.data.id == _targetId) {
+							_dest.data.pick.desc = "This might come handy.";
+							_dest.data.pick.target = "character";
+							_dest.data.pick.success = false;
+							_dest.data.pick.special = "score;10";
 						}
 					}
 					

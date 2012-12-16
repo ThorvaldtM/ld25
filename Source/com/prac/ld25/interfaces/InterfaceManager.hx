@@ -121,7 +121,7 @@ class InterfaceManager extends Sprite
 		m_dialog.addEventListener('dialog_choice', dispatchDialog);
 		addChild(m_dialog);
 		Settings.STATE = MODE_DIALOG;
-		updateCursor();
+		updateCursor(true);
 	}
 	
 	private function removeDialog()
@@ -139,9 +139,9 @@ class InterfaceManager extends Sprite
 		dispatchEvent(new DataEvent('dialog_choice', false, false, e.data));
 	}
 	
-	public function updateCursor()
+	public function updateCursor(force:Bool = false)
 	{
-		if (m_cursor_type == Settings.STATE) {
+		if (!force && m_cursor_type == Settings.STATE) {
 			return;
 		}
 		if (m_cursor != null) {

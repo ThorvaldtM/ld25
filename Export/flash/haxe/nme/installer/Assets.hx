@@ -40,6 +40,8 @@ class Assets {
 			resourceTypes.set ("assets/LIB/bottle.png", "image");
 			resourceClasses.set ("assets/LIB/couloir.png", NME_assets_lib_couloir_png);
 			resourceTypes.set ("assets/LIB/couloir.png", "image");
+			resourceClasses.set ("assets/LIB/douche.png", NME_assets_lib_douche_png);
+			resourceTypes.set ("assets/LIB/douche.png", "image");
 			resourceClasses.set ("assets/LIB/heroe.png", NME_assets_lib_heroe_png);
 			resourceTypes.set ("assets/LIB/heroe.png", "image");
 			resourceClasses.set ("assets/LIB/Justin.png", NME_assets_lib_justin_png);

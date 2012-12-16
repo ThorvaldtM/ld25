@@ -21,6 +21,8 @@ class ItemData
 	public var talk:BehaviorData;
 	public var defaultUse:String;
 	public var collision:Bool;
+	public var shadowColor:Int = 0x000000;
+	public var textColor:Int = 0xFFFFFF;
 
 	public function new()
 	{
