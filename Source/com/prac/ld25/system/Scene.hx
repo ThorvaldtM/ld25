@@ -275,9 +275,6 @@ class Scene extends Sprite
 							m_dest_target = null;
 							Settings.STATE = InterfaceManager.MODE_WALK;
 						}
-						if (m_dest_target.data.talk.special != null) {
-							executeSpecial(m_dest_target.data.talk.special, m_dest_target);
-						}
 					}else {
 						m_dest_target = null;
 						Settings.STATE = InterfaceManager.MODE_WALK;

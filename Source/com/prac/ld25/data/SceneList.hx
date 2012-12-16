@@ -37,6 +37,9 @@ class SceneList
 		_item.y = 412;
 		_item.width = 163;
 		_item.height = 69;
+		_item.look = new BehaviorData("The door leading out of the room");
+		_item.talk = new BehaviorData("Nope.");
+		_item.pick = new BehaviorData("Nah.");
 		_scene.items.push(_item);
 		
 		_item = new ItemData();
@@ -103,19 +106,92 @@ class SceneList
 		_item = new ItemData();
 		_item.exit = "room666;238;392";
 		_item.name = "Room 666";
+		_item.id = "door666";
 		_item.x = 645;
 		_item.y = 73;
 		_item.width = 123;
 		_item.height = 235;
+		_item.look = new BehaviorData("The door to my room");
+		_item.talk = new BehaviorData("Nope.");
+		_item.pick = new BehaviorData("Nah.");
+		_scene.items.push(_item);
+		
+		_item = new ItemData();
+		_item.name = "Room 665";
+		_item.id = "door665";
+		_item.x = 333;
+		_item.y = 73;
+		_item.width = 123;
+		_item.height = 235;
+		_item.look = new BehaviorData("This is where my target reside.");
+		_item.use = new BehaviorData("Damn, locked.");
+		_item.talk = new BehaviorData("Nope.");
+		_item.pick = new BehaviorData("Nah.");
+		_scene.items.push(_item);
+		
+		_item = new ItemData();
+		_item.name = "Room 664";
+		_item.id = "door664";
+		_item.x = 38;
+		_item.y = 71;
+		_item.width = 123;
+		_item.height = 235;
+		_item.look = new BehaviorData("I wonder who lives there.");
+		_item.use = new BehaviorData("Damn, locked.");
+		_item.talk = new BehaviorData("Nope.");
+		_item.pick = new BehaviorData("Nah.");
 		_scene.items.push(_item);
 		
 		_item = new ItemData();
 		_item.exit = "reception;495;225";
 		_item.name = "Stair";
+		_item.id = "stair";
 		_item.x = 12;
 		_item.y = 410;
 		_item.width = 165;
 		_item.height = 72;
+		_item.look = new BehaviorData("The stairs are going down.");
+		_item.talk = new BehaviorData("Nope.");
+		_item.pick = new BehaviorData("Nah.");
+		_scene.items.push(_item);
+		
+		_item = new ItemData();
+		_item.id = "alarm";
+		_item.name = "Fire Alarm";
+		_item.x = 279;
+		_item.y = 20;
+		_item.width = 35;
+		_item.height = 38;
+		_item.look = new BehaviorData("An old fire alarm. I wonder if it works");
+		_item.use = new BehaviorData('I can\'t reach it.');
+		_item.talk = new BehaviorData("It is not an interphone.");
+		_item.pick = new BehaviorData("I can\'t reach it.");
+		_scene.items.push(_item);
+		
+		_item = new ItemData();
+		_item.id = "book";
+		_item.name = "Book";
+		_item.x = 482;
+		_item.y = 275;
+		_item.width = 27;
+		_item.height = 24;
+		_item.look = new BehaviorData("The title reads : Goats and friends");
+		_item.use = new BehaviorData('I don\'t like reading.');
+		_item.talk = new BehaviorData("You don't talk to it. You READ it.");
+		_item.pick = new BehaviorData("I have no use for that.");
+		_scene.items.push(_item);
+		
+		_item = new ItemData();
+		_item.id = "mugs";
+		_item.name = "Mugs";
+		_item.x = 498;
+		_item.y = 332;
+		_item.width = 56;
+		_item.height = 43;
+		_item.look = new BehaviorData("Some empty mugs");
+		_item.use = new BehaviorData('They are empty.');
+		_item.talk = new BehaviorData("Nope.");
+		_item.pick = new BehaviorData("I have no use for that right now.");
 		_scene.items.push(_item);
 		
 		m_scenes.push(_scene);
@@ -133,6 +209,9 @@ class SceneList
 		_item.y = 11;
 		_item.width = 162;
 		_item.height = 213;
+		_item.look = new BehaviorData("The stairs are going up.");
+		_item.talk = new BehaviorData("Nope.");
+		_item.pick = new BehaviorData("Nah.");
 		_scene.items.push(_item);
 		
 		_item = new ItemData();
@@ -179,8 +258,8 @@ class SceneList
 		_item.use.special = "dialog";
 		_item.talk = new BehaviorData();
 		_item.talk.dialog = new DialogData();
-		_dialogOption = new DataOption('Let\'s see. *6* *6* *6* ...', 'Myself');
-		_dialogOption.followup = new DialogData(";character;*bip* *bip* *no answer*;character;How obvious");
+		_dialogOption = new DataOption('Let\'s see. *6* *6* *6* ...', 'Prank Myself');
+		_dialogOption.followup = new DialogData(";character;*bip* *bip* *no answer*;character;Tss. I was looking forward to that prank call !");
 		_item.talk.dialog.options.push(_dialogOption);
 		_item.talk.success = true;
 		_item.pick = new BehaviorData("It's fixed to the wall.");

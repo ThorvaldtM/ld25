@@ -33,7 +33,7 @@ class Game extends Sprite
 	}
 	
 	public function start():Void {
-		m_scene = new Scene(SceneList.getScene('reception'),300,300, m_interface);
+		m_scene = new Scene(SceneList.getScene('room666'),300,300, m_interface);
 		m_scene.addEventListener("scene_change", changeScene);
 		addChild(m_scene);
 		
@@ -57,6 +57,18 @@ class Game extends Sprite
 		m_scene.removeEventListener("scene_change", changeScene);
 		removeChild(m_scene);
 		var _data:Array<String> = e.data.split(';');
+		var sound:Sound;
+		if (m_scene.data.id == 'reception') {
+			m_channel.stop();
+			var sound:Sound = Assets.getSound ("assets/LIB/Title_LD25.mp3");
+			m_channel = sound.play(0, 99999);
+			Settings.applySound(m_channel);
+		}else if (_data[0] == 'reception') {
+			m_channel.stop();
+			var sound:Sound = Assets.getSound ("assets/LIB/bitch_theme.mp3");
+			m_channel = sound.play(0, 99999);
+			Settings.applySound(m_channel);
+		}
 		
 		m_scene = new Scene(SceneList.getScene(_data[0]), Std.parseInt(_data[1]), Std.parseInt(_data[2]), m_interface);
 		m_scene.addEventListener("scene_change", changeScene);

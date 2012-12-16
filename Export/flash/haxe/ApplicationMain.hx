@@ -107,6 +107,11 @@ class ApplicationMain {
             return Assets.getBitmapData ("assets/col_room.png");
          
 		
+		if (inName=="assets/LIB/bitch_theme.mp3")
+			 
+            return Assets.getSound ("assets/LIB/bitch_theme.mp3");
+		 
+		
 		if (inName=="assets/LIB/bottle.png")
 			 
             return Assets.getBitmapData ("assets/LIB/bottle.png");
@@ -127,6 +132,26 @@ class ApplicationMain {
             return Assets.getBitmapData ("assets/LIB/Justin.png");
          
 		
+		if (inName=="assets/LIB/key_blue.png")
+			 
+            return Assets.getBitmapData ("assets/LIB/key_blue.png");
+         
+		
+		if (inName=="assets/LIB/key_gold.png")
+			 
+            return Assets.getBitmapData ("assets/LIB/key_gold.png");
+         
+		
+		if (inName=="assets/LIB/key_green.png")
+			 
+            return Assets.getBitmapData ("assets/LIB/key_green.png");
+         
+		
+		if (inName=="assets/LIB/key_red.png")
+			 
+            return Assets.getBitmapData ("assets/LIB/key_red.png");
+         
+		
 		if (inName=="assets/LIB/reception.png")
 			 
             return Assets.getBitmapData ("assets/LIB/reception.png");
@@ -135,6 +160,11 @@ class ApplicationMain {
 		if (inName=="assets/LIB/room.png")
 			 
             return Assets.getBitmapData ("assets/LIB/room.png");
+         
+		
+		if (inName=="assets/LIB/tabouret.png")
+			 
+            return Assets.getBitmapData ("assets/LIB/tabouret.png");
          
 		
 		if (inName=="assets/LIB/Title_LD25.mp3")
@@ -215,12 +245,18 @@ class ApplicationMain {
 class NME_assets_col_corridor_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_col_reception_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_col_room_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
+class NME_assets_lib_bitch_theme_mp3 extends nme.media.Sound { }
 class NME_assets_lib_bottle_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_couloir_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_heroe_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_justin_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
+class NME_assets_lib_key_blue_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
+class NME_assets_lib_key_gold_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
+class NME_assets_lib_key_green_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
+class NME_assets_lib_key_red_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_reception_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_room_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
+class NME_assets_lib_tabouret_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_title_ld25_mp3 extends nme.media.Sound { }
 class NME_assets_ui_bg_ui_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_ui_btn_look_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
