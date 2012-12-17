@@ -16,7 +16,7 @@ class InventoryItem extends Sprite
 	{
 		super();
 		this.data = data;
-		var _bg:Sprite = AssetLoader.loadAsset('LIB/inv_' + data.graph, 76, 76);
+		var _bg:Sprite = AssetLoader.loadAsset('LIB/item_' + data.graph, 76, 76);
 		addChild(_bg);
 	}
 	

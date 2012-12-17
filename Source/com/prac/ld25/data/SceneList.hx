@@ -711,6 +711,20 @@ class SceneList
 		m_items_pool.push(_item);
 		
 		_item = new ItemData();
+		_item.id = "character";
+		_item.name = "Greg";
+		_item.textColor = 0xFFFFFF;
+		_item.shadowColor = 0x0A0069;
+		m_items_pool.push(_item);
+		
+		_item = new ItemData();
+		_item.id = "prey";
+		_item.name = "Unknown";
+		_item.textColor = 0xFA9352;
+		_item.shadowColor = 0x732101;
+		m_items_pool.push(_item);
+		
+		_item = new ItemData();
 		_item.id = "lighter";
 		_item.name = "lighter";
 		_item.graph = "lighter.png";
@@ -722,7 +736,7 @@ class SceneList
 		_item = new ItemData();
 		_item.id = "pills";
 		_item.name = "Box of Pills";
-		_item.graph = "pills.png";
+		_item.graph = "valium.png";
 		_item.look = new BehaviorData("SweetMoon. Makes you dream about the moon. Effect Guaranteed");
 		_item.talk = new BehaviorData("No.");
 		_item.defaultUse = "I rather not";
@@ -762,7 +776,7 @@ class SceneList
 		_item = new ItemData();
 		_item.id = "sleep_bottle";
 		_item.name = "Special Bottle";
-		_item.graph = "bottle.png";
+		_item.graph = "water_valium.png";
 		_item.x = 593;
 		_item.y = 226;
 		_item.width = 25;

@@ -512,6 +512,8 @@ class Scene extends Sprite
 						m_interface.consumeItem();
 						for (_dest in m_items) {
 							if (_dest.data.pick != null &&  _dest.data.pick.target == 'receptionist') {
+								_dest.data.pick.desc = null;
+								_dest.data.pick.target = null;
 								_dest.data.pick.success = true;
 							}
 						}

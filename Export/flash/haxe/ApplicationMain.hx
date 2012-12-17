@@ -132,6 +132,11 @@ class ApplicationMain {
             return Assets.getBitmapData ("assets/LIB/chariot.png");
          
 		
+		if (inName=="assets/LIB/chickdodospritesheet.png")
+			 
+            return Assets.getBitmapData ("assets/LIB/chickdodospritesheet.png");
+         
+		
 		if (inName=="assets/LIB/couloir.png")
 			 
             return Assets.getBitmapData ("assets/LIB/couloir.png");
@@ -165,6 +170,61 @@ class ApplicationMain {
 		if (inName=="assets/LIB/heroe.png")
 			 
             return Assets.getBitmapData ("assets/LIB/heroe.png");
+         
+		
+		if (inName=="assets/LIB/item_bottle.png")
+			 
+            return Assets.getBitmapData ("assets/LIB/item_bottle.png");
+         
+		
+		if (inName=="assets/LIB/item_Justin.png")
+			 
+            return Assets.getBitmapData ("assets/LIB/item_Justin.png");
+         
+		
+		if (inName=="assets/LIB/item_key_blue.png")
+			 
+            return Assets.getBitmapData ("assets/LIB/item_key_blue.png");
+         
+		
+		if (inName=="assets/LIB/item_key_gold.png")
+			 
+            return Assets.getBitmapData ("assets/LIB/item_key_gold.png");
+         
+		
+		if (inName=="assets/LIB/item_key_green.png")
+			 
+            return Assets.getBitmapData ("assets/LIB/item_key_green.png");
+         
+		
+		if (inName=="assets/LIB/item_key_red.png")
+			 
+            return Assets.getBitmapData ("assets/LIB/item_key_red.png");
+         
+		
+		if (inName=="assets/LIB/item_lighter.png")
+			 
+            return Assets.getBitmapData ("assets/LIB/item_lighter.png");
+         
+		
+		if (inName=="assets/LIB/item_number.png")
+			 
+            return Assets.getBitmapData ("assets/LIB/item_number.png");
+         
+		
+		if (inName=="assets/LIB/item_tabouret.png")
+			 
+            return Assets.getBitmapData ("assets/LIB/item_tabouret.png");
+         
+		
+		if (inName=="assets/LIB/item_valium.png")
+			 
+            return Assets.getBitmapData ("assets/LIB/item_valium.png");
+         
+		
+		if (inName=="assets/LIB/item_water_valium.png")
+			 
+            return Assets.getBitmapData ("assets/LIB/item_water_valium.png");
          
 		
 		if (inName=="assets/LIB/jump.png")
@@ -320,6 +380,7 @@ class NME_assets_lib_apuyer_png extends nme.display.BitmapData { public function
 class NME_assets_lib_bitch_theme_mp3 extends nme.media.Sound { }
 class NME_assets_lib_bottle_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_chariot_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
+class NME_assets_lib_chickdodospritesheet_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_couloir_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_douche_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_groom1_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
@@ -327,6 +388,17 @@ class NME_assets_lib_groom2_png extends nme.display.BitmapData { public function
 class NME_assets_lib_groom3_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_groom4_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_heroe_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
+class NME_assets_lib_item_bottle_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
+class NME_assets_lib_item_justin_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
+class NME_assets_lib_item_key_blue_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
+class NME_assets_lib_item_key_gold_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
+class NME_assets_lib_item_key_green_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
+class NME_assets_lib_item_key_red_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
+class NME_assets_lib_item_lighter_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
+class NME_assets_lib_item_number_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
+class NME_assets_lib_item_tabouret_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
+class NME_assets_lib_item_valium_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
+class NME_assets_lib_item_water_valium_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_jump_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_justin_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_key_blue_png extends nme.display.BitmapData { public function new () { super (0, 0); } }

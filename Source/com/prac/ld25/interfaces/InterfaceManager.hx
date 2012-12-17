@@ -173,7 +173,7 @@ class InterfaceManager extends Sprite
 				Mouse.show();
 				m_desc.setDesc('');
 			case MODE_USE_ITEM :
-				transformCursor('inv_' + m_current_item.data.graph);
+				transformCursor('LIB/item_' + m_current_item.data.graph);
 				m_desc.setDesc('Use ' + m_current_item.data.name + ' On');
 			default:
 				Mouse.show();
@@ -203,6 +203,8 @@ class InterfaceManager extends Sprite
 	{
 		Mouse.hide();
 		m_cursor = AssetLoader.loadAsset(file, 20, 20);
+		m_cursor.scaleX = 0.5;
+		m_cursor.scaleY = 0.5;
 		m_cursor.mouseEnabled = false;
 		addChild(m_cursor);
 		m_cursor.startDrag(true);
