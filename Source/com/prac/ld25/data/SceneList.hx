@@ -29,12 +29,12 @@ class SceneList
 		_scene = new SceneData();
 		_scene.id = "room664";
 		_scene.bg = "LIB/room664.png";
-		_scene.collision = "col_room.png";
+		_scene.collision = "col_room664.png";
 		
 		_item = new ItemData();
 		_item.exit = "corridor;50;349";
 		_item.name = "exit";
-		_item.x = 218;
+		_item.x = 418;
 		_item.y = 412;
 		_item.width = 163;
 		_item.height = 69;
@@ -46,7 +46,7 @@ class SceneList
 		_item = new ItemData();
 		_item.id = "bed";
 		_item.name = "Bed";
-		_item.x = 540;
+		_item.x = 53;
 		_item.y = 100;
 		_item.width = 211;
 		_item.height = 275;
@@ -59,7 +59,7 @@ class SceneList
 		_item = new ItemData();
 		_item.id = "window";
 		_item.name = "Window";
-		_item.x = 143;
+		_item.x = 484;
 		_item.y = 5;
 		_item.width = 105;
 		_item.height = 160;
@@ -72,7 +72,7 @@ class SceneList
 		_item = new ItemData();
 		_item.id = "desk";
 		_item.name = "desk";
-		_item.x = 375;
+		_item.x = 265;
 		_item.y = 134;
 		_item.width = 163;
 		_item.height = 116;
@@ -85,7 +85,7 @@ class SceneList
 		_item = new ItemData();
 		_item.id = "lamp";
 		_item.name = "Lamp";
-		_item.x = 454;
+		_item.x = 281;
 		_item.y = 72;
 		_item.width = 66;
 		_item.height = 95;
@@ -165,6 +165,20 @@ class SceneList
 		_item.use = new BehaviorData("That would wake him up.");
 		_item.talk = new BehaviorData("Nah.");
 		_item.pick = new BehaviorData("I rather not.");
+		_scene.items.push(_item);
+		
+		_item = new ItemData();
+		_item.id = "conduct";
+		_item.name = "Air Conduct";
+		_item.x = 685;
+		_item.y = 196;
+		_item.width = 50;
+		_item.height = 127;
+		_item.look = new BehaviorData("Looks like it leads to room 665.");
+		_item.use = new BehaviorData("Here I come !");
+		_item.use.special = "event_confrontation";
+		_item.talk = new BehaviorData("Nah.");
+		_item.pick = new BehaviorData("Nope.");
 		_scene.items.push(_item);
 		
 		m_scenes.push(_scene);

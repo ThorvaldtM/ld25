@@ -34,6 +34,8 @@ class Assets {
 			resourceTypes.set ("assets/col_reception.png", "image");
 			resourceClasses.set ("assets/col_room.png", NME_assets_col_room_png);
 			resourceTypes.set ("assets/col_room.png", "image");
+			resourceClasses.set ("assets/col_room664.png", NME_assets_col_room664_png);
+			resourceTypes.set ("assets/col_room664.png", "image");
 			resourceClasses.set ("assets/LIB/apuyer.png", NME_assets_lib_apuyer_png);
 			resourceTypes.set ("assets/LIB/apuyer.png", "image");
 			resourceClasses.set ("assets/LIB/bitch_theme.mp3", NME_assets_lib_bitch_theme_mp3);

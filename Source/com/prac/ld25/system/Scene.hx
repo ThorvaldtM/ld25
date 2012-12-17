@@ -517,7 +517,7 @@ class Scene extends Sprite
 						}
 					}
 				case 'event_room664' :
-					object.data.exit = "room664;238;392";
+					object.data.exit = "room664;438;392";
 					object.data.use = null;
 				case 'event_room665' :
 					object.data.use.desc = "";
