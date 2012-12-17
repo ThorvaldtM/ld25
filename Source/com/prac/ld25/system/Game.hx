@@ -37,7 +37,7 @@ class Game extends Sprite
 		m_scene.addEventListener("scene_change", changeScene);
 		addChild(m_scene);
 		
-		m_loop = new Timer(33);
+		m_loop = new Timer(28);
 		m_loop.addEventListener(TimerEvent.TIMER, update);
 		m_loop.start();
 		

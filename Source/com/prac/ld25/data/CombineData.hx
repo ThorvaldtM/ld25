@@ -13,6 +13,7 @@ class CombineData
 	public var special:String;
 	public var dialog:DialogData;
 	public var target:String = "character";
+	public var inventory_only:Bool = false;
 
 	public function new(id1:String = null, id2:String = null, desc:String = null, special:String = null)
 	{

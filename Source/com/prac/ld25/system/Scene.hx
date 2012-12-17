@@ -14,7 +14,6 @@ import nme.display.BitmapData;
 import nme.display.Sprite;
 import nme.events.MouseEvent;
 import nme.geom.Point;
-import nme.installer.Assets;
 import nme.Lib;
 
 /**
@@ -37,6 +36,7 @@ class Scene extends Sprite
 	private var m_dir:Bool;
 	private var m_dialog_timer:Int = 0;
 	private var m_dialog_prev:SceneObject;
+	private var m_groom:Bool = true;
 
 	public function new(data:SceneData, spawn_x:Int, spawn_y:Int, _interface:InterfaceManager)
 	{
@@ -56,9 +56,18 @@ class Scene extends Sprite
 			_bgCol.alpha = 0.5;
 			addChild(_bgCol);
 		}
-		
+		m_groom = Settings.GROOM;
 		for (_item in data.items) {
+			if (_item.id == "groom" && !Settings.GROOM) {
+				Settings.GROOM = true;
+				continue;
+			}
+			if (_item.pick != null && _item.pick.target == "groom") {
+				_item.pick.success = !m_groom;
+			}
 			var _itemObject:SceneObject = new SceneObject(_item);
+			_itemObject.addEventListener(MouseEvent.ROLL_OUT, rollOut);
+			_itemObject.addEventListener(MouseEvent.ROLL_OVER, rollOver);
 			addChild(_itemObject);
 			m_items.push(_itemObject);
 			if (_item.collision) {
@@ -81,7 +90,6 @@ class Scene extends Sprite
 		m_collision_map = Assets.getBitmapData('assets/' + data.collision);
 		
 		this.addEventListener(MouseEvent.CLICK, moveCharacter);
-		this.addEventListener(MouseEvent.MOUSE_OVER, overScene);
 		
 		
 		
@@ -89,6 +97,19 @@ class Scene extends Sprite
 	
 	public function destroy():Void {
 		m_interface.removeEventListener('dialog_choice', dialogResponse);
+	}
+	
+	private function rollOver(e:MouseEvent):Void
+	{
+		var _secnObj:SceneObject = cast(e.currentTarget, SceneObject);
+		if(_secnObj.data != null){
+			m_interface.setTarget(_secnObj.data.name);
+		}
+	}
+	
+	private function rollOut(e:MouseEvent):Void
+	{
+		m_interface.setTarget('');
 	}
 	
 	private function overScene(e:MouseEvent):Void
@@ -237,6 +258,11 @@ class Scene extends Sprite
 		m_character.update();
 		for (_sceneObject in m_items) {
 			_sceneObject.update();
+			if (_sceneObject.data.id == "stool" && m_character.douche) {
+				removeChild(_sceneObject);
+				m_items.remove(_sceneObject);
+				data.items.remove(_sceneObject.data);
+			}
 		}
 	}
 	
@@ -270,9 +296,11 @@ class Scene extends Sprite
 							}
 						}
 						if (m_dest_target.data.pick.success) {
-							m_interface.addItem(m_dest_target.data);
-							removeChild(m_dest_target);
-							data.items.remove(m_dest_target.data);
+							if(m_dest_target.data.id != "desk_open"){
+								m_interface.addItem(m_dest_target.data);
+								removeChild(m_dest_target);
+								data.items.remove(m_dest_target.data);
+							}
 							if (m_dest_target.data.pick.special != null) {
 								executeSpecial(m_dest_target.data.pick.special, m_dest_target, m_dest_target.data.pick);
 							}
@@ -331,7 +359,7 @@ class Scene extends Sprite
 					}
 				case InterfaceManager.MODE_USE_ITEM :
 					var _combo:CombineData = SceneList.combine(m_interface.current_item.data.id, m_dest_target.data.id);
-					if (_combo != null) {
+					if (_combo != null && !_combo.inventory_only) {
 						if (_combo.desc != null) {
 							killDialogQueue();
 							parseDialog(_combo.desc,m_character);
@@ -383,10 +411,13 @@ class Scene extends Sprite
 				case 'replace' :
 					var _index :Int = getChildIndex(m_dest_target);
 					removeChild(m_dest_target);
+					m_items.remove(m_dest_target);
 					data.items.remove(m_dest_target.data);
 					SceneList.poolItem(m_dest_target.data);
 					_item = SceneList.getItem(_cmd.shift());
 					_object = new SceneObject(_item);
+					_object.addEventListener(MouseEvent.ROLL_OUT, rollOut);
+					_object.addEventListener(MouseEvent.ROLL_OVER, rollOver);
 					addChildAt(_object, _index);
 					m_items.push(_object);
 					if (_item.collision) {
@@ -412,13 +443,14 @@ class Scene extends Sprite
 				case 'event_stool':
 					for (_dest in m_items) {
 						if (_dest.data.id == "alarm") {
+							_dest.data.id = "alarm2";
 							_dest.data.use.desc = "Nothing Happened.";
 							_dest.data.pick.desc = "It's fixed to the wall.";
 							break;
 						}
 					}
 					_item = m_interface.current_item.data;
-					_item.x = 270;
+					_item.x = 210;
 					_item.y = 276;
 					_item.pick.success = false;
 					_item.pick.desc = "It's fine as it is.";
@@ -429,17 +461,31 @@ class Scene extends Sprite
 					m_interface.consumeItem();
 					data.items.push(_item);
 				case 'event_douche':
-					//for (_dest in m_items) {
-						//if (_dest.data.id == "stool") {
-							//removeChild(_dest);
-							//m_items.remove(_dest);
-							//data.items.remove(_dest.data);
-							//break;
-						//}
-					//}
 					m_character.playDouche();
 					Settings.STATE = InterfaceManager.MODE_DIALOG;
 					m_interface.updateCursor();
+				case 'event_groom':
+					Settings.GROOM = false;
+					var _itemsList:Array<ItemData> = SceneList.getScene('corridor').items;
+					for (_item in _itemsList) {
+						if (_item.id == "groom") {
+							switch(_item.graph) {
+								case "groom_0.png" :
+									_item.graph = "groom_1.png";
+								case "groom_1.png" :
+									_item.graph = "groom_2.png";
+								case "groom_2.png" :
+									_item.graph = "groom_3.png";
+							}
+						}
+					}
+				case 'event_receptionist' :
+					for (_dest in m_items) {
+						if (_dest.data.pick != null &&  _dest.data.pick.target == 'receptionist') {
+							_dest.data.pick.success = true;
+						}
+					}
+					
 				case 'skip':
 					source.special = _cmd.join(';');
 					return;

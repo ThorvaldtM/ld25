@@ -19,6 +19,7 @@ class Settings
 	
 	static public var STATE:Int = 0;
 	static public var CHARACTER:Character;
+	static public var GROOM:Bool = false;
 	
 	static public function applySound(sound:SoundChannel):Void {
 		

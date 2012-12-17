@@ -1,0 +1,16 @@
+Sound :
+	Thermometre qui monte en chaleur et qui explose ( son cartoonesque )
+	alumage de briquet suivit d'une trombe d'eau (+bruit alarm optionel)
+	Bruit de composition d'un numero de telephone
+	Bruit du telephone lorsqu'on appel quelqu'un
+	Decrochement de telephone
+	Racrochement de telephone
+	3 FX different de coup de poing
+	Chute (la receptionist qui tombe de sommeil derriere son comptoir)
+Optionel :
+	Bruit de conversation generique pour chaque perso :
+		- demon : character bad ass
+		- receptionist : enervée et brutale
+		- groom : faignasse (soupir beaucoup)
+	
+	

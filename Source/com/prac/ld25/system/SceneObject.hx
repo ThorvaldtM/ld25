@@ -3,8 +3,11 @@ import com.prac.ld25.data.ItemData;
 import com.prac.ld25.tools.AssetLoader;
 import nme.Assets;
 import nme.display.Sprite;
+import nme.display.Tilesheet;
 import nme.events.MouseEvent;
 import nme.filters.DropShadowFilter;
+import nme.geom.Point;
+import nme.geom.Rectangle;
 import nme.Lib;
 import nme.text.AntiAliasType;
 import nme.text.Font;
@@ -22,6 +25,12 @@ class SceneObject extends Sprite
 	private var m_text:TextField;
 	private var m_fade:Int;
 	public var data:ItemData;
+	private var m_current:Int = 0;
+	private var m_tileSheet:Tilesheet;
+	private var m_skip:Int = 0;
+	private var m_current_sheet:Tilesheet;
+	private var m_current_max:Int;
+	private var m_current_point:Point;
 	
 	
 	public var box_width:Float;
@@ -33,13 +42,28 @@ class SceneObject extends Sprite
 		m_fade = -1;
 		this.mouseChildren = false;
 		if(data != null){
-			var _bg:Sprite = AssetLoader.loadAsset('LIB/' + data.graph, data.width, data.height);
-			addChild(_bg);
+			
+			box_width = data.width;
+			box_height = data.height;
+			switch(data.id) {
+				case 'receptionist' :
+					m_tileSheet = new Tilesheet(Assets.getBitmapData('assets/LIB/marlene.png'));
+					for (i in 0...15) {
+						m_tileSheet.addTileRect(new Rectangle(i * 1710 / 15, 0, 1710 / 15, 140));
+					}
+					m_tileSheet.drawTiles(this.graphics, [ 0, 0, 0]);
+					m_current_max = 15;
+					m_current_sheet = m_tileSheet;
+					m_current_point = new Point( 0,0);
+				default:
+					var _bg:Sprite = AssetLoader.loadAsset('LIB/' + data.graph, data.width, data.height);
+					addChild(_bg);
+					box_width = _bg.width;
+					box_height = _bg.height;
+			}
 			this.x = data.x;
 			this.y = data.y;
 			this.data = data;
-			box_width = _bg.width;
-			box_height = _bg.height;
 		}
 			
 		var font:Font = Assets.getFont ("assets/vgafix.ttf");
@@ -94,6 +118,19 @@ class SceneObject extends Sprite
 		if (m_fade != -1 && Lib.getTimer() > m_fade) {
 			m_text.text = " ";
 			m_fade = -1;
+		}
+		if (data != null) {
+			if(m_current_sheet != null && m_skip <= 0 ){
+				this.graphics.clear();
+				m_current_sheet.drawTiles(this.graphics, [m_current_point.x, m_current_point.y, m_current]);
+				m_current++;
+				if (m_current >= m_current_max) {
+					m_current = 0;
+				}
+				m_skip = 2;
+			}else {
+				m_skip--;
+			}
 		}
 	}
 	

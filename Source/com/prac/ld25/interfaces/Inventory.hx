@@ -85,9 +85,27 @@ class Inventory extends Sprite
 		var _item:InventoryItem = new InventoryItem(data);
 		_item.visible = false;
 		_item.addEventListener(MouseEvent.CLICK, clickHandler);
+		_item.addEventListener(MouseEvent.ROLL_OVER, rollOver);
+		_item.addEventListener(MouseEvent.ROLL_OUT, rollOut);
 		addChild(_item);
 		m_items.push(_item);
+		m_index = Std.int(Math.max(m_items.length - 5,0));
 		update();
+	}
+	
+	private function rollOut(e:MouseEvent):Void
+	{
+		var _ui:InterfaceManager = cast(parent, InterfaceManager);
+		_ui.setTarget('');
+	}
+	
+	private function rollOver(e:MouseEvent):Void
+	{
+		var _ui:InterfaceManager = cast(parent, InterfaceManager);
+		var _item:InventoryItem = cast(e.currentTarget, InventoryItem);
+		if(Settings.STATE != InterfaceManager.MODE_WALK){
+			_ui.setTarget(_item.data.name);
+		}
 	}
 	
 	private function clickHandler(e:MouseEvent):Void
@@ -116,7 +134,7 @@ class Inventory extends Sprite
 							Settings.CHARACTER.speak(_combo.desc);
 						}
 						if(_combo.special != null){
-							executeSpecial(_combo.special, _item);
+							executeSpecial(_combo.special, _item,_combo);
 						}
 					}else {
 						if (_ui.current_item.data.defaultUse != null) {
@@ -127,8 +145,34 @@ class Inventory extends Sprite
 		}
 	}
 	
-	private function executeSpecial(special:String, item:InventoryItem)
+	private function executeSpecial(special:String, item:InventoryItem, source:CombineData)
 	{
+		if (special == null) {
+			return;
+		}
+		var _cmd:Array<String> = special.split(';');
+		var _ui:InterfaceManager = cast(parent, InterfaceManager);
+		var _item:ItemData;
+		var _targetId:String;
+		while (_cmd.length > 0) {
+			
+			switch(_cmd.shift()) {
+				case 'remove_both_item' :
+					_ui.consumeItem();
+					this.m_items.remove(item);
+					removeChild(item);
+					update();
+				case 'remove_item' :
+					_ui.consumeItem();
+				case 'gain' :
+					_ui.addItem(SceneList.getItem(_cmd.shift()));
+				case 'score':
+					_ui.addScore(Std.parseInt(_cmd.shift()));
+				case 'skip':
+					source.special = _cmd.join(';');
+					return;
+			}
+		}
 		
 	}
 	

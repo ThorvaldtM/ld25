@@ -24,6 +24,150 @@ class SceneList
 		var _dialogOption:DataOption;
 		var _combo:CombineData;
 		
+		/****** ROOM 664 ******/
+		_scene = new SceneData();
+		_scene.id = "room664";
+		_scene.bg = "LIB/room.png";
+		_scene.collision = "col_room.png";
+		
+		_item = new ItemData();
+		_item.exit = "corridor;50;349";
+		_item.name = "exit";
+		_item.x = 218;
+		_item.y = 412;
+		_item.width = 163;
+		_item.height = 69;
+		_item.look = new BehaviorData("The door leading out of the room");
+		_item.talk = new BehaviorData("Nope.");
+		_item.pick = new BehaviorData("Nah.");
+		_scene.items.push(_item);
+		
+		_item = new ItemData();
+		_item.id = "bed";
+		_item.name = "Bed";
+		_item.x = 540;
+		_item.y = 100;
+		_item.width = 211;
+		_item.height = 275;
+		_item.look = new BehaviorData("Looks like a bed to me.");
+		_item.use = new BehaviorData("No time to sleep. I need to prank that businessman.");
+		_item.talk = new BehaviorData("Only when I am asleep.");
+		_item.pick = new BehaviorData("Doesn't look like a portable bed.");
+		_scene.items.push(_item);
+		
+		_item = new ItemData();
+		_item.id = "window";
+		_item.name = "Window";
+		_item.x = 143;
+		_item.y = 5;
+		_item.width = 105;
+		_item.height = 160;
+		_item.look = new BehaviorData("It's quite dark outside.");
+		_item.use = new BehaviorData("Don't want to catch a cold.");
+		_item.talk = new BehaviorData("Really ?");
+		_item.pick = new BehaviorData("Nope.");
+		_scene.items.push(_item);
+		
+		_item = new ItemData();
+		_item.id = "desk";
+		_item.name = "desk";
+		_item.x = 375;
+		_item.y = 134;
+		_item.width = 163;
+		_item.height = 116;
+		_item.look = new BehaviorData("A Desk.");
+		_item.use = new BehaviorData("Locked.");
+		_item.talk = new BehaviorData("Does desk talks ?");
+		_item.pick = new BehaviorData("And what you gonna do with a desk ?");
+		_scene.items.push(_item);
+		
+		_item = new ItemData();
+		_item.id = "lamp";
+		_item.name = "Lamp";
+		_item.x = 454;
+		_item.y = 72;
+		_item.width = 66;
+		_item.height = 95;
+		_item.look = new BehaviorData("A Lamp.");
+		_item.use = new BehaviorData("I could turn it off but it would to be too dark afterward.");
+		_item.talk = new BehaviorData("Nah.");
+		_item.pick = new BehaviorData("I rather not.");
+		_scene.items.push(_item);
+		
+		m_scenes.push(_scene);
+		
+		/****** ROOM 665 ******/
+		_scene = new SceneData();
+		_scene.id = "room665";
+		_scene.bg = "LIB/room.png";
+		_scene.collision = "col_room.png";
+		
+		_item = new ItemData();
+		_item.exit = "corridor;345;349";
+		_item.name = "exit";
+		_item.x = 218;
+		_item.y = 412;
+		_item.width = 163;
+		_item.height = 69;
+		_item.look = new BehaviorData("The door leading out of the room");
+		_item.talk = new BehaviorData("Nope.");
+		_item.pick = new BehaviorData("Nah.");
+		_scene.items.push(_item);
+		
+		_item = new ItemData();
+		_item.id = "bed";
+		_item.name = "Bed";
+		_item.x = 540;
+		_item.y = 100;
+		_item.width = 211;
+		_item.height = 275;
+		_item.look = new BehaviorData("Looks like a bed to me.");
+		_item.use = new BehaviorData("No time to sleep. I need to prank that businessman.");
+		_item.talk = new BehaviorData("Only when I am asleep.");
+		_item.pick = new BehaviorData("Doesn't look like a portable bed.");
+		_scene.items.push(_item);
+		
+		_item = new ItemData();
+		_item.id = "window";
+		_item.name = "Window";
+		_item.x = 143;
+		_item.y = 5;
+		_item.width = 105;
+		_item.height = 160;
+		_item.look = new BehaviorData("It's quite dark outside.");
+		_item.use = new BehaviorData("Don't want to catch a cold.");
+		_item.talk = new BehaviorData("Really ?");
+		_item.pick = new BehaviorData("Nope.");
+		_scene.items.push(_item);
+		
+		_item = new ItemData();
+		_item.id = "desk";
+		_item.name = "desk";
+		_item.x = 375;
+		_item.y = 134;
+		_item.width = 163;
+		_item.height = 116;
+		_item.look = new BehaviorData("A Desk.");
+		_item.use = new BehaviorData("Locked.");
+		_item.talk = new BehaviorData("Does desk talks ?");
+		_item.pick = new BehaviorData("And what you gonna do with a desk ?");
+		_scene.items.push(_item);
+		
+		_item = new ItemData();
+		_item.id = "lamp";
+		_item.name = "Lamp";
+		_item.x = 454;
+		_item.y = 72;
+		_item.width = 66;
+		_item.height = 95;
+		_item.look = new BehaviorData("A Lamp.");
+		_item.use = new BehaviorData("That would wake him up.");
+		_item.talk = new BehaviorData("Nah.");
+		_item.pick = new BehaviorData("I rather not.");
+		_scene.items.push(_item);
+		
+		m_scenes.push(_scene);
+		
 		/****** ROOM 666 ******/
 		_scene = new SceneData();
 		_scene.id = "room666";
@@ -90,7 +234,7 @@ class SceneList
 		_item.width = 66;
 		_item.height = 95;
 		_item.look = new BehaviorData("A Lamp.");
-		_item.use = new BehaviorData("I could turn it off but it would to be dark afterward.");
+		_item.use = new BehaviorData("I could turn it off but it would to be too dark afterward.");
 		_item.talk = new BehaviorData("Nah.");
 		_item.pick = new BehaviorData("I rather not.");
 		_scene.items.push(_item);
@@ -229,7 +373,7 @@ class SceneList
 		_item = new ItemData();
 		_item.id = "groom";
 		_item.name = "Groom";
-		_item.graph = "groom.png";
+		_item.graph = "groom_0.png";
 		_item.x = 513;
 		_item.y = 141;
 		_item.width = 78;
@@ -241,7 +385,7 @@ class SceneList
 		_item.talk = new BehaviorData();
 		_item.talk.success = true;
 		_item.talk.dialog = new DialogData("*sigh*");
-		_dialogOption = new DataOption('Hi I am Greg, how are you doing ?', 'Salute');
+		_dialogOption = new DataOption('Hi I am Greg, how are you doing ?', 'Greet');
 		_dialogOption.followup = new DialogData("*looks up* *sigh*");
 		_dialogOption.followup.options[0] = new DataOption('Look a triple headed monkey !','Prank');
 		_dialogOption.followup.options[0].followup = new DialogData("*sigh*");
@@ -282,7 +426,7 @@ class SceneList
 		_item.name = "Receptionist";
 		_item.graph = "marlene.png";
 		_item.x = 0;
-		_item.y = 180;
+		_item.y = 160;
 		_item.width = 78;
 		_item.height = 121;
 		_item.textColor = 0xFFCCF5;
@@ -295,7 +439,7 @@ class SceneList
 		_dialogOption = new DataOption('Hey hot stuff, how about going out ?', 'Flirt');
 		_dialogOption.followup = new DialogData("No way, you stinky goat.");
 		_item.talk.dialog.options.push(_dialogOption);
-		_dialogOption = new DataOption('Hi I am Greg, how are you doing ?', 'Salute');
+		_dialogOption = new DataOption('Hi I am Greg, how are you doing ?', 'Greet');
 		_dialogOption.followup = new DialogData("What do you want ? I am busy.");
 		_dialogOption.followup.options[0] = new DataOption('How about giving me your number ?;character;Just kidding !', 'Flirt');
 		_dialogOption.followup.options[0].followup = new DialogData("There now leave me alone.;character;(wow she actually gave it to me !)");
@@ -489,12 +633,13 @@ class SceneList
 		_item.y = 134;
 		_item.width = 163;
 		_item.height = 116;
-		_item.look = new BehaviorData("There is a lighter inside.");
+		_item.look = new BehaviorData("There seems to be some usefull items inside.");
 		_item.use = new BehaviorData();
 		_item.use.special = "replace;desk";
 		_item.talk = new BehaviorData("Does desk talks ?");
-		_item.pick = new BehaviorData("This lighter might come handy");
+		_item.pick = new BehaviorData("This might come handy");
 		_item.pick.special = "gain;lighter;score;10;skip;gain;pills;score;10;replace;desk_open_empty";
+		_item.pick.success = true;
 		m_items_pool.push(_item);
 		
 		_item = new ItemData();
@@ -574,9 +719,29 @@ class SceneList
 		_item.pick = new BehaviorData("Nope.");
 		m_items_pool.push(_item);
 		
+		_item = new ItemData();
+		_item.id = "sleep_bottle";
+		_item.name = "Special Bottle";
+		_item.graph = "bottle.png";
+		_item.x = 593;
+		_item.y = 226;
+		_item.width = 25;
+		_item.height = 69;
+		_item.look = new BehaviorData("A bottle mixed with SweetMoon pills");
+		_item.talk = new BehaviorData("Nope.");
+		_item.defaultUse = "I don't want to waste it";
+		m_items_pool.push(_item);
+		
 		
 		/*** COMBO LIST ****/
 		_combo = new CombineData('lighter', 'receptionist', 'She is already hot');
+		m_combines.push(_combo);
+		
+		_combo = new CombineData('lighter', 'alarm', 'It is out of reach');
+		m_combines.push(_combo);
+		
+		_combo = new CombineData('lighter', 'alarm2', 'Showtime !');
+		_combo.special = "remove_item;event_douche;score;10";
 		m_combines.push(_combo);
 		
 		_combo = new CombineData('number', 'receptionist', 'I don\'t want to give it back to her.');
@@ -595,7 +760,7 @@ class SceneList
 		_dialogOption.followup.options[0].followup = new DialogData("*sigh* *hangs up*");
 		_dialogOption.followup.options[1] = new DataOption('There are some luggage down here.;character;Hurry up to take them upstairs !','Order');
 		_dialogOption.followup.options[1].followup = new DialogData("*sigh* *hangs up*");
-		_dialogOption.followup.options[2] = new DataOption('(Wait ! I am demon not a killer !)','Kill');
+		_dialogOption.followup.options[2] = new DataOption('(Wait ! I am a demon not a killer !)','Kill');
 		_dialogOption.followup.options[2].followup = new DialogData("Hello ? *sigh*");
 		_dialogOption.followup.options[2].followup.options[0] = new DataOption('I am so horny for you !', 'Super Flirt');
 		_dialogOption.followup.options[2].followup.options[0].followup = new DialogData("*hangs up*");
@@ -610,13 +775,23 @@ class SceneList
 		_dialogOption = new DataOption('I am the devil !', 'Fear');
 		_dialogOption.followup = new DialogData("And I am the queen of england ! *hangs up*");
 		_combo.dialog.options.push(_dialogOption);
-		_dialogOption = new DataOption('*breath* I am your father *breath*','Obiwan Kenobi');
+		_dialogOption = new DataOption('*breath* I am your father *breath*','Obi-wan Kenobi');
 		_dialogOption.followup = new DialogData("Spoke is that you ?;character;*hangs up* I don't wanna live on this planet anymore.");
 		_combo.dialog.options.push(_dialogOption);
 		m_combines.push(_combo);
 		
 		_combo = new CombineData('stool', 'alarm', 'Now I can reach it.');
 		_combo.special = 'event_stool';
+		m_combines.push(_combo);
+		
+		_combo = new CombineData('bottle', 'pills', 'Nice. Let\'s find a guiny pig.');
+		_combo.special = 'remove_both_item;gain;sleep_bottle';
+		_combo.inventory_only = true;
+		m_combines.push(_combo);
+		
+		_combo = new CombineData('sleep_bottle', 'receptionist');
+		_combo.special = 'event_receptionist';
+		_combo.inventory_only = true;
 		m_combines.push(_combo);
 		
 	}
