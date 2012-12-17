@@ -87,6 +87,10 @@ class Scene extends Sprite
 		
 	}
 	
+	public function destroy():Void {
+		m_interface.removeEventListener('dialog_choice', dialogResponse);
+	}
+	
 	private function overScene(e:MouseEvent):Void
 	{
 		if (Std.is(e.target, SceneObject)) {
@@ -333,17 +337,18 @@ class Scene extends Sprite
 							parseDialog(_combo.desc,m_character);
 						}
 						if (_combo.dialog != null) {
-							parseDialog(_combo.dialog.question, m_dest_target,_combo.dialog.options,_combo.dialog);
+							parseDialog(_combo.dialog.question, m_dest_target, _combo.dialog.options, _combo.dialog);
 						}else if(_combo.special != null){
 							executeSpecial(_combo.special, m_dest_target, _combo);
+							m_dest_target = null;
 						}
 					}else {
 						if (m_interface.current_item.data.defaultUse != null) {
 							killDialogQueue();
 							m_character.speak(m_interface.current_item.data.defaultUse);
 						}
+						m_dest_target = null;
 					}
-					m_dest_target = null;
 				case InterfaceManager.MODE_WALK :
 					if (m_dest_target.data.exit != null) {
 						dispatchExit(m_dest_target.data.exit);
