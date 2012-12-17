@@ -29,7 +29,7 @@ class InterfaceManager extends Sprite
 	static  public inline var MODE_USE_ITEM = 6;
 	
 	private var m_cursor:Sprite;
-	private var m_cursor_type:UInt = 99;
+	private var m_cursor_type:Int = 99;
 	
 	private var m_score:Score;
 	private var m_walk:Sprite;
@@ -257,12 +257,12 @@ class InterfaceManager extends Sprite
 		updateCursor();
 	}
 	
-	private function get_state():UInt
+	private function get_state():Int
 	{
 		return Settings.STATE;
 	}
 	
-	public var state(get_state, null):UInt;
+	public var state(get_state, null):Int;
 	
 	private function get_current_item():InventoryItem
 	{
