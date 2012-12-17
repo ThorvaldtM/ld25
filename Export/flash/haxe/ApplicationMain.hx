@@ -127,6 +127,26 @@ class ApplicationMain {
             return Assets.getBitmapData ("assets/LIB/douche.png");
          
 		
+		if (inName=="assets/LIB/groom1.png")
+			 
+            return Assets.getBitmapData ("assets/LIB/groom1.png");
+         
+		
+		if (inName=="assets/LIB/groom2.png")
+			 
+            return Assets.getBitmapData ("assets/LIB/groom2.png");
+         
+		
+		if (inName=="assets/LIB/groom3.png")
+			 
+            return Assets.getBitmapData ("assets/LIB/groom3.png");
+         
+		
+		if (inName=="assets/LIB/groom4.png")
+			 
+            return Assets.getBitmapData ("assets/LIB/groom4.png");
+         
+		
 		if (inName=="assets/LIB/heroe.png")
 			 
             return Assets.getBitmapData ("assets/LIB/heroe.png");
@@ -269,6 +289,10 @@ class NME_assets_lib_bitch_theme_mp3 extends nme.media.Sound { }
 class NME_assets_lib_bottle_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_couloir_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_douche_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
+class NME_assets_lib_groom1_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
+class NME_assets_lib_groom2_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
+class NME_assets_lib_groom3_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
+class NME_assets_lib_groom4_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_heroe_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_jump_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_justin_png extends nme.display.BitmapData { public function new () { super (0, 0); } }

@@ -42,6 +42,14 @@ class Assets {
 			resourceTypes.set ("assets/LIB/couloir.png", "image");
 			resourceClasses.set ("assets/LIB/douche.png", NME_assets_lib_douche_png);
 			resourceTypes.set ("assets/LIB/douche.png", "image");
+			resourceClasses.set ("assets/LIB/groom1.png", NME_assets_lib_groom1_png);
+			resourceTypes.set ("assets/LIB/groom1.png", "image");
+			resourceClasses.set ("assets/LIB/groom2.png", NME_assets_lib_groom2_png);
+			resourceTypes.set ("assets/LIB/groom2.png", "image");
+			resourceClasses.set ("assets/LIB/groom3.png", NME_assets_lib_groom3_png);
+			resourceTypes.set ("assets/LIB/groom3.png", "image");
+			resourceClasses.set ("assets/LIB/groom4.png", NME_assets_lib_groom4_png);
+			resourceTypes.set ("assets/LIB/groom4.png", "image");
 			resourceClasses.set ("assets/LIB/heroe.png", NME_assets_lib_heroe_png);
 			resourceTypes.set ("assets/LIB/heroe.png", "image");
 			resourceClasses.set ("assets/LIB/jump.png", NME_assets_lib_jump_png);

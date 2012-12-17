@@ -31,6 +31,7 @@ class SceneObject extends Sprite
 	private var m_current_sheet:Tilesheet;
 	private var m_current_max:Int;
 	private var m_current_point:Point;
+	private var m_current_pause:Int = 0;
 	
 	
 	public var box_width:Float;
@@ -52,9 +53,10 @@ class SceneObject extends Sprite
 						m_tileSheet.addTileRect(new Rectangle(i * 1710 / 15, 0, 1710 / 15, 140));
 					}
 					m_tileSheet.drawTiles(this.graphics, [ 0, 0, 0]);
-					m_current_max = 15;
+					m_current_max = (data.talk.dialog.question == "I am so thirsty ...") ? 15 : 1;
 					m_current_sheet = m_tileSheet;
-					m_current_point = new Point( 0,0);
+					m_current_point = new Point( 0, 0);
+					m_current_pause = (data.talk.dialog.question == "I am so thirsty ...") ? Std.int(Math.random() * 36 * 10) : -99999;
 				default:
 					var _bg:Sprite = AssetLoader.loadAsset('LIB/' + data.graph, data.width, data.height);
 					addChild(_bg);
@@ -120,10 +122,17 @@ class SceneObject extends Sprite
 			m_fade = -1;
 		}
 		if (data != null) {
-			if(m_current_sheet != null && m_skip <= 0 ){
+			m_current_pause--;
+			if(m_current_sheet != null && m_skip <= 0 && m_current_pause <= 0){
 				this.graphics.clear();
 				m_current_sheet.drawTiles(this.graphics, [m_current_point.x, m_current_point.y, m_current]);
 				m_current++;
+				if(m_current == 1 && m_current_pause > -99999){
+					m_current_pause = Std.int(Math.random() * 36 * 10);
+				}
+				if (m_current == 2 && m_current_pause < -99999){
+					m_current_pause = 0;
+				}
 				if (m_current >= m_current_max) {
 					m_current = 0;
 				}
@@ -140,5 +149,17 @@ class SceneObject extends Sprite
 	}
 	
 	public var text(get_text, null):TextField;
+	
+	private function get_current_max():Int
+	{
+		return m_current_max;
+	}
+	
+	private function set_current_max(value:Int):Int
+	{
+		return m_current_max = value;
+	}
+	
+	public var current_max(get_current_max, set_current_max):Int;
 	
 }

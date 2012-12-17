@@ -435,7 +435,8 @@ class Scene extends Sprite
 				case 'event_thermo':
 					for (_dest in m_items) {
 						if (_dest.data.id == "receptionist") {
-							_dest.speak("I am so thirsty ...");
+							_dest.current_max = 15;
+							_dest.speak("So hot in here ...");
 							_dest.data.talk.dialog.question = "I am so thirsty ...";
 							break;
 						}
