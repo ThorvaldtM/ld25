@@ -189,7 +189,7 @@ class InterfaceManager extends Sprite
 			case MODE_WALK :
 				m_desc.setDesc('Walk To ' + text);
 			case MODE_PICK :
-				m_desc.setDesc('Pick ' + text);
+				m_desc.setDesc('Pick Up ' + text);
 			case MODE_USE :
 				m_desc.setDesc('Use ' + text);
 			case MODE_TALK :

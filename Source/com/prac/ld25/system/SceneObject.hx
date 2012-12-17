@@ -48,6 +48,16 @@ class SceneObject extends Sprite
 			box_width = data.width;
 			box_height = data.height;
 			switch(data.id) {
+				case 'receptionist_sleep' :
+					m_tileSheet = new Tilesheet(Assets.getBitmapData('assets/LIB/chickdodospritesheet.png'));
+					for (i in 0...4) {
+						m_tileSheet.addTileRect(new Rectangle(i * 456 / 4, 0, 456 / 4, 140));
+					}
+					m_tileSheet.drawTiles(this.graphics, [ 0, 0, 0]);
+					m_current_max = 4;
+					m_current_sheet = m_tileSheet;
+					m_current_point = new Point( 0, 0);
+					m_current_pause = -99999;
 				case 'receptionist' :
 					m_tileSheet = new Tilesheet(Assets.getBitmapData('assets/LIB/marlene.png'));
 					for (i in 0...15) {
@@ -149,7 +159,13 @@ class SceneObject extends Sprite
 				if (m_current_max != -1 && m_current >= m_current_max) {
 					if (data.id == 'thermometer') {
 						m_current = m_current_max -2;
-					}else{
+					}else if (data.id == 'receptionist_sleep') {
+						m_current = m_current_max -1;
+						if(m_fade <= 0){
+							speak('zzZzZ', 3000);
+							m_current_pause = 300;
+						}
+					} else	{
 						m_current = 0;
 					}
 				}

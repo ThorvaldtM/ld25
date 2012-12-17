@@ -786,6 +786,23 @@ class SceneList
 		_item.defaultUse = "I don't want to waste it";
 		m_items_pool.push(_item);
 		
+		_item = new ItemData();
+		_item.id = "receptionist_sleep";
+		_item.name = "Receptionist";
+		_item.graph = "chickdodospritesheet.png";
+		_item.x = 0;
+		_item.y = 160;
+		_item.width = 78;
+		_item.height = 121;
+		_item.dest = new Point(145,331);
+		_item.textColor = 0xFFCCF5;
+		_item.shadowColor = 0x9E027F;
+		_item.look = new BehaviorData("Wow she is hot !");
+		_item.use = new BehaviorData("I would if you would stop watching !");
+		_item.talk = new BehaviorData("HELLO !;receptionist_sleep;*zzzZzzZZzz*");
+		_item.pick = new BehaviorData("Hummm");
+		m_items_pool.push(_item);
+		
 		
 		/*** COMBO LIST ****/
 		_combo = new CombineData('lighter', 'receptionist', 'She is already hot');

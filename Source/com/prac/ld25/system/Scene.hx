@@ -432,6 +432,10 @@ class Scene extends Sprite
 		while (_cmd.length > 0) {
 			switch(_cmd.shift()) {
 				case 'replace' :
+					if (object == null) {
+						return;
+					}
+					m_dest_target.speak('');
 					var _index :Int = getChildIndex(m_dest_target);
 					removeChild(m_dest_target);
 					m_items.remove(m_dest_target);
@@ -510,13 +514,19 @@ class Scene extends Sprite
 				case 'event_receptionist' :
 					if (Settings.THERMO) {
 						m_interface.consumeItem();
+						var _receptionist:SceneObject = null;
 						for (_dest in m_items) {
 							if (_dest.data.pick != null &&  _dest.data.pick.target == 'receptionist') {
 								_dest.data.pick.desc = null;
 								_dest.data.pick.target = null;
 								_dest.data.pick.success = true;
 							}
+							if (_dest.data.id == 'receptionist') {
+								_receptionist = _dest;
+							}
+						
 						}
+						executeSpecial('replace;receptionist_sleep', _receptionist);
 					}
 				case 'event_room664' :
 					object.data.exit = "room664;438;392";

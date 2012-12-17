@@ -15,7 +15,7 @@ class Settings
 	
 	static public var VOLUME:Float = 1;
 	static public var COLLISION:Bool =  false;
-	static public var TRACE:Bool =  false;
+	static public var TRACE:Bool =  true;
 	
 	static public var STATE:Int = 0;
 	static public var CHARACTER:Character;
