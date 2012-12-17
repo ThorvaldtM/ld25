@@ -13,7 +13,7 @@ class Settings
 	static public var GAME_SIZE_H:Int = 600;
 	static public var GAME_SIZE_W:Int = 800;
 	
-	static public var VOLUME:Float = 0;
+	static public var VOLUME:Float = 1;
 	static public var COLLISION:Bool =  false;
 	static public var TRACE:Bool =  false;
 	

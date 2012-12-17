@@ -43,7 +43,7 @@ class DialogBox extends Sprite
 		m_text_1.antiAliasType = AntiAliasType.ADVANCED;
 		m_text_1.defaultTextFormat = _textFormat;
 		m_text_1.width = 380;
-		m_text_1.height = 40;
+		m_text_1.height = 20;
 		m_text_1.selectable = false;
 		m_text_1.embedFonts = true;
 		m_text_1.wordWrap = true;
@@ -55,7 +55,7 @@ class DialogBox extends Sprite
 			m_text_1.addEventListener(MouseEvent.ROLL_OUT, unhiglightOption);
 			m_text_1.addEventListener(MouseEvent.CLICK, clickOption1);
 		}
-		m_text_1.y = 5;
+		m_text_1.y = 20;
 		m_text_1.x = 5;
 		addChild(m_text_1);
 		
@@ -63,7 +63,7 @@ class DialogBox extends Sprite
 		m_text_2.antiAliasType = AntiAliasType.ADVANCED;
 		m_text_2.defaultTextFormat = _textFormat;
 		m_text_2.width = 380;
-		m_text_2.height = 40;
+		m_text_2.height = 20;
 		m_text_2.selectable = false;
 		m_text_2.embedFonts = true;
 		m_text_2.wordWrap = true;
@@ -75,7 +75,7 @@ class DialogBox extends Sprite
 			m_text_2.addEventListener(MouseEvent.ROLL_OUT, unhiglightOption);
 			m_text_2.addEventListener(MouseEvent.CLICK, clickOption2);
 		}
-		m_text_2.y = 5 + m_text_1.y + m_text_1.height;
+		m_text_2.y = 20 + m_text_1.y + m_text_1.height;
 		m_text_2.x = 5;
 		addChild(m_text_2);
 		
@@ -83,7 +83,8 @@ class DialogBox extends Sprite
 		m_text_3.antiAliasType = AntiAliasType.ADVANCED;
 		m_text_3.defaultTextFormat = _textFormat;
 		m_text_3.width = 380;
-		m_text_3.height = 40;
+		m_text_3.height = 20;
+		m_text_3.x = 100;
 		m_text_3.selectable = false;
 		m_text_3.embedFonts = true;
 		m_text_3.wordWrap = true;
@@ -95,7 +96,7 @@ class DialogBox extends Sprite
 			m_text_3.addEventListener(MouseEvent.ROLL_OUT, unhiglightOption);
 			m_text_3.addEventListener(MouseEvent.CLICK, clickOption3);
 		}
-		m_text_3.y = 5 + m_text_2.y + m_text_2.height;
+		m_text_3.y = 20 + m_text_2.y + m_text_2.height;
 		m_text_3.x = 5;
 		addChild(m_text_3);
 	}

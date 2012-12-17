@@ -28,7 +28,7 @@ class SceneList
 		/****** ROOM 664 ******/
 		_scene = new SceneData();
 		_scene.id = "room664";
-		_scene.bg = "LIB/room.png";
+		_scene.bg = "LIB/room664.png";
 		_scene.collision = "col_room.png";
 		
 		_item = new ItemData();
@@ -441,6 +441,7 @@ class SceneList
 		_item.y = 160;
 		_item.width = 78;
 		_item.height = 121;
+		_item.dest = new Point(145,331);
 		_item.textColor = 0xFFCCF5;
 		_item.shadowColor = 0x9E027F;
 		_item.look = new BehaviorData("Wow she is hot !");

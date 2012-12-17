@@ -32,11 +32,10 @@ class InterfaceManager extends Sprite
 	private var m_cursor_type:Int = 99;
 	
 	private var m_score:Score;
-	private var m_walk:Sprite;
-	private var m_talk:Sprite;
-	private var m_pick:Sprite;
-	private var m_use:Sprite;
-	private var m_look:Sprite;
+	private var m_talk:Button;
+	private var m_pick:Button;
+	private var m_use:Button;
+	private var m_look:Button;
 	private var m_inv:Inventory;
 	private var m_dialog:DialogBox;
 	private var m_current_item:InventoryItem;
@@ -49,52 +48,42 @@ class InterfaceManager extends Sprite
 		
 		this.mouseEnabled = false;
 		
-		m_ui_bg = AssetLoader.loadAsset('UI/bg_ui.png', 800, 120);
+		m_ui_bg = AssetLoader.loadAsset('UI/background_interface.png', 800, 120);
 		m_ui_bg.y = Settings.GAME_SIZE_H - m_ui_bg.height;
 		addChild(m_ui_bg);
 		
-		m_walk = AssetLoader.loadAsset('UI/btn_walk.png', 75, 75);
-		m_walk.mouseEnabled = true;
-		m_walk.addEventListener(MouseEvent.CLICK, m_walk_click);
-		m_walk.x = 5;
-		m_walk.y = Settings.GAME_SIZE_H - m_walk.height - 5;
-		addChild(m_walk);
 		
-		m_look = AssetLoader.loadAsset('UI/btn_look.png', 75, 75);
-		m_look.mouseEnabled = true;
+		m_look = new Button('button', 'LOOK AT');
 		m_look.addEventListener(MouseEvent.CLICK, m_look_click);
-		m_look.x = m_walk.x + m_walk.width + 5;
-		m_look.y = Settings.GAME_SIZE_H - m_look.height - 5;
+		m_look.x =  4;
+		m_look.y = 519;
 		addChild(m_look);
 		
-		m_talk = AssetLoader.loadAsset('UI/btn_talk.png', 75, 75);
-		m_talk.mouseEnabled = true;
+		m_talk = new Button('button', 'TALK TO');
 		m_talk.addEventListener(MouseEvent.CLICK, m_talk_click);
-		m_talk.x = m_look.x + m_look.width + 5;
-		m_talk.y = Settings.GAME_SIZE_H - m_talk.height - 5;
+		m_talk.x = m_look.x + m_look.width + 4;
+		m_talk.y = m_look.y;
 		addChild(m_talk);
 		
-		m_pick = AssetLoader.loadAsset('UI/btn_pick.png', 75, 75);
-		m_pick.mouseEnabled = true;
+		m_pick = new Button('button', 'PICK UP');
 		m_pick.addEventListener(MouseEvent.CLICK, m_pick_click);
-		m_pick.x = m_talk.x + m_talk.width + 5;
-		m_pick.y = Settings.GAME_SIZE_H - m_pick.height - 5;
+		m_pick.x = m_look.x ;
+		m_pick.y = m_look.y + m_look.height + 4;
 		addChild(m_pick);
 		
-		m_use = AssetLoader.loadAsset('UI/btn_use.png', 75, 75);
-		m_use.mouseEnabled = true;
+		m_use = new Button('button', 'USE');
 		m_use.addEventListener(MouseEvent.CLICK, m_use_click);
-		m_use.x = m_pick.x + m_pick.width + 5;
-		m_use.y = Settings.GAME_SIZE_H - m_use.height - 5;
+		m_use.x = m_talk.x;
+		m_use.y = m_pick.y;
 		addChild(m_use);
 		
-		m_inv = new Inventory(Std.int(Settings.GAME_SIZE_W - m_use.x - m_use.width - 5));
-		m_inv.x = 414;
-		m_inv.y = 480 + 47;
+		m_inv = new Inventory();
+		m_inv.x = 404;
+		m_inv.y = 519;
 		addChild(m_inv);
 		
 		m_desc = new ActionDesc();
-		m_desc.y = m_walk.y - m_desc.height;
+		m_desc.y = m_look.y - m_desc.height;
 		addChild(m_desc);
 		
 		m_score = new Score();
@@ -155,22 +144,31 @@ class InterfaceManager extends Sprite
 			m_current_item = null;
 		}
 		
+		m_pick.pushed = false;
+		m_look.pushed = false;
+		m_talk.pushed = false;
+		m_use.pushed = false;
+		
 		switch(Settings.STATE) {
 			case MODE_LOOK :
 				Mouse.show();
 				m_desc.setDesc('Look');
+				m_look.pushed = true;
 			case MODE_WALK :
 				Mouse.show();
 				m_desc.setDesc('Walk To');
 			case MODE_PICK :
 				Mouse.show();
-				m_desc.setDesc('Pick');
+				m_desc.setDesc('Pick Up');
+				m_pick.pushed = true;
 			case MODE_USE :
 				Mouse.show();
 				m_desc.setDesc('Use');
+				m_use.pushed = true;
 			case MODE_TALK :
 				Mouse.show();
 				m_desc.setDesc('Talk To');
+				m_talk.pushed = true;
 			case MODE_DIALOG :
 				Mouse.show();
 				m_desc.setDesc('');

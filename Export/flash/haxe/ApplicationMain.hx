@@ -212,6 +212,11 @@ class ApplicationMain {
             return Assets.getBitmapData ("assets/LIB/room.png");
          
 		
+		if (inName=="assets/LIB/room664.png")
+			 
+            return Assets.getBitmapData ("assets/LIB/room664.png");
+         
+		
 		if (inName=="assets/LIB/table.png")
 			 
             return Assets.getBitmapData ("assets/LIB/table.png");
@@ -237,44 +242,39 @@ class ApplicationMain {
             return Assets.getSound ("assets/LIB/Title_LD25.mp3");
 		 
 		
-		if (inName=="assets/UI/bg_ui.png")
+		if (inName=="assets/UI/arrow_left.png")
 			 
-            return Assets.getBitmapData ("assets/UI/bg_ui.png");
+            return Assets.getBitmapData ("assets/UI/arrow_left.png");
          
 		
-		if (inName=="assets/UI/btn_look.png")
+		if (inName=="assets/UI/arrow_left_hover.png")
 			 
-            return Assets.getBitmapData ("assets/UI/btn_look.png");
+            return Assets.getBitmapData ("assets/UI/arrow_left_hover.png");
          
 		
-		if (inName=="assets/UI/btn_next.png")
+		if (inName=="assets/UI/arrow_right.png")
 			 
-            return Assets.getBitmapData ("assets/UI/btn_next.png");
+            return Assets.getBitmapData ("assets/UI/arrow_right.png");
          
 		
-		if (inName=="assets/UI/btn_pick.png")
+		if (inName=="assets/UI/arrow_right_hover.png")
 			 
-            return Assets.getBitmapData ("assets/UI/btn_pick.png");
+            return Assets.getBitmapData ("assets/UI/arrow_right_hover.png");
          
 		
-		if (inName=="assets/UI/btn_prev.png")
+		if (inName=="assets/UI/background_interface.png")
 			 
-            return Assets.getBitmapData ("assets/UI/btn_prev.png");
+            return Assets.getBitmapData ("assets/UI/background_interface.png");
          
 		
-		if (inName=="assets/UI/btn_talk.png")
+		if (inName=="assets/UI/button.png")
 			 
-            return Assets.getBitmapData ("assets/UI/btn_talk.png");
+            return Assets.getBitmapData ("assets/UI/button.png");
          
 		
-		if (inName=="assets/UI/btn_use.png")
+		if (inName=="assets/UI/button_hover.png")
 			 
-            return Assets.getBitmapData ("assets/UI/btn_use.png");
-         
-		
-		if (inName=="assets/UI/btn_walk.png")
-			 
-            return Assets.getBitmapData ("assets/UI/btn_walk.png");
+            return Assets.getBitmapData ("assets/UI/button_hover.png");
          
 		
 		if (inName=="assets/UI/dialog.png")
@@ -331,19 +331,19 @@ class NME_assets_lib_lighter_png extends nme.display.BitmapData { public functio
 class NME_assets_lib_marlene_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_reception_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_room_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
+class NME_assets_lib_room664_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_table_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_tabouret_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_thermometer_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_tiroir_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_title_ld25_mp3 extends nme.media.Sound { }
-class NME_assets_ui_bg_ui_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
-class NME_assets_ui_btn_look_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
-class NME_assets_ui_btn_next_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
-class NME_assets_ui_btn_pick_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
-class NME_assets_ui_btn_prev_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
-class NME_assets_ui_btn_talk_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
-class NME_assets_ui_btn_use_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
-class NME_assets_ui_btn_walk_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
+class NME_assets_ui_arrow_left_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
+class NME_assets_ui_arrow_left_hover_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
+class NME_assets_ui_arrow_right_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
+class NME_assets_ui_arrow_right_hover_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
+class NME_assets_ui_background_interface_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
+class NME_assets_ui_button_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
+class NME_assets_ui_button_hover_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_ui_dialog_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_vgafix_ttf extends nme.text.Font { }
 

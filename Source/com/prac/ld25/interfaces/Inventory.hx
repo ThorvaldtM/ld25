@@ -16,25 +16,25 @@ import nme.events.MouseEvent;
 
 class Inventory extends Sprite
 {
-	private var m_prev:Sprite;
-	private var m_next:Sprite;
+	private var m_prev:Button;
+	private var m_next:Button;
 	
 	private var m_index:Int = 0;
 	private var m_items:Array<InventoryItem>;
 
-	public function new(width:Int)
+	public function new()
 	{
 		super();
 		
-		m_prev = AssetLoader.loadAsset('UI/btn_prev.png', 20, 60);
-		m_prev.mouseEnabled = true;
+		this.mouseEnabled = false;
+		
+		m_prev = new Button('arrow_left');
 		m_prev.addEventListener(MouseEvent.CLICK, m_prev_click);
 		addChild(m_prev);
 		
-		m_next = AssetLoader.loadAsset('UI/btn_next.png', 20, 60);
-		m_next.mouseEnabled = true;
+		m_next = new Button('arrow_right');
 		m_next.addEventListener(MouseEvent.CLICK, m_next_click);
-		m_next.x = m_prev.width + 65 * 5 +5;
+		m_next.x = m_prev.x + m_prev.width+ 4 + 80 * 4;
 		addChild(m_next);
 		
 		m_prev.visible = false;
@@ -64,20 +64,20 @@ class Inventory extends Sprite
 	
 	private function update()
 	{
-		if (m_items.length < 5) {
+		if (m_items.length < 4) {
 			m_index = 0;
 		}
 		for (i in 0...m_items.length) {
-			if (i >= m_index && i < m_index + 5) {
+			if (i >= m_index && i < m_index + 4) {
 				m_items[i].visible = true;
-				m_items[i].x = m_prev.x + m_prev.width + 5 + (i - m_index) * 65;
+				m_items[i].x = m_prev.x + m_prev.width + 4 + (i - m_index) * 80;
 			}else {
 				m_items[i].visible = false;
 			}
 		}
-		if (m_items.length > 5) {
+		if (m_items.length > 4) {
 			m_prev.visible = (m_index != 0);
-			m_next.visible = (m_index +5 < m_items.length);
+			m_next.visible = (m_index +4 < m_items.length);
 		}
 	}
 	
