@@ -725,6 +725,20 @@ class SceneList
 		m_items_pool.push(_item);
 		
 		_item = new ItemData();
+		_item.id = "marlene_special";
+		_item.name = "Receptionist";
+		_item.textColor = 0xFFCCF5;
+		_item.shadowColor = 0x9E027F;
+		m_items_pool.push(_item);
+		
+		_item = new ItemData();
+		_item.id = "joe_special";
+		_item.name = "Groom";
+		_item.textColor = 0xF3FF87;
+		_item.shadowColor = 0xA37E02;
+		m_items_pool.push(_item);
+		
+		_item = new ItemData();
 		_item.id = "lighter";
 		_item.name = "lighter";
 		_item.graph = "lighter.png";
@@ -899,13 +913,15 @@ class SceneList
 		}
 	}
 	
-	static public function getItem(id:String):ItemData {
+	static public function getItem(id:String, remove:Bool = true):ItemData {
 		if (m_instance == null) {
 			m_instance = new SceneList();
 		}
 		for (_item in m_instance.m_items_pool) {
 			if (_item.id == id) {
-				m_instance.m_items_pool.remove(_item);
+				if(remove){
+					m_instance.m_items_pool.remove(_item);
+				}
 				return _item;
 			}
 		}
