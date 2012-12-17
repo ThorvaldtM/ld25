@@ -280,7 +280,7 @@ class SceneList
 		_item = new ItemData();
 		_item.id = "receptionist";
 		_item.name = "Receptionist";
-		_item.graph = "receptionist.png";
+		_item.graph = "marlene.png";
 		_item.x = 0;
 		_item.y = 180;
 		_item.width = 78;

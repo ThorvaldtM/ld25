@@ -30,7 +30,7 @@ class Scene extends Sprite
 	private var m_collisions:Array<SceneObject>;
 	private var m_collision_map:BitmapData;
 	private var m_interface:InterfaceManager;
-	private var m_dest_action:UInt;
+	private var m_dest_action:Int;
 	private var m_dest_target:SceneObject;
 	private var m_items:Array<SceneObject>;
 	private var m_dialog_stack:Array<Dialog>;
@@ -87,6 +87,10 @@ class Scene extends Sprite
 		
 	}
 	
+	public function destroy():Void {
+		m_interface.removeEventListener('dialog_choice', dialogResponse);
+	}
+	
 	private function overScene(e:MouseEvent):Void
 	{
 		if (Std.is(e.target, SceneObject)) {
@@ -115,7 +119,10 @@ class Scene extends Sprite
 		}
 		if (m_interface.state == InterfaceManager.MODE_WALK  || (m_interface.state != InterfaceManager.MODE_LOOK && m_dest_target != null)) {
 			if(m_dest_target != null){
-				m_dest = new Point(m_dest_target.x + m_dest_target.box_width /2 - m_character.box_width / 2 , m_dest_target.y + m_dest_target.box_height /2 + m_character.box_height * 2 );
+				m_dest = new Point(m_dest_target.x + m_dest_target.box_width / 2 - m_character.box_width / 2 , m_dest_target.y + m_dest_target.box_height / 2 + m_character.box_height * 2 );
+				if (this.data.id == 'corridor' && m_dest_target.data.id == 'stool') {
+					m_dest = new Point(270,276);
+				}
 			}else {
 				m_dest = new Point(e.stageX - m_character.box_width / 2 , e.stageY - m_character.box_height / 2 );
 			}
@@ -330,17 +337,18 @@ class Scene extends Sprite
 							parseDialog(_combo.desc,m_character);
 						}
 						if (_combo.dialog != null) {
-							parseDialog(_combo.dialog.question, m_dest_target,_combo.dialog.options,_combo.dialog);
+							parseDialog(_combo.dialog.question, m_dest_target, _combo.dialog.options, _combo.dialog);
 						}else if(_combo.special != null){
 							executeSpecial(_combo.special, m_dest_target, _combo);
+							m_dest_target = null;
 						}
 					}else {
 						if (m_interface.current_item.data.defaultUse != null) {
 							killDialogQueue();
 							m_character.speak(m_interface.current_item.data.defaultUse);
 						}
+						m_dest_target = null;
 					}
-					m_dest_target = null;
 				case InterfaceManager.MODE_WALK :
 					if (m_dest_target.data.exit != null) {
 						dispatchExit(m_dest_target.data.exit);
@@ -419,6 +427,19 @@ class Scene extends Sprite
 					addChildAt(_object, getChildIndex(m_character) - 1);
 					m_items.push(_object);
 					m_interface.consumeItem();
+					data.items.push(_item);
+				case 'event_douche':
+					//for (_dest in m_items) {
+						//if (_dest.data.id == "stool") {
+							//removeChild(_dest);
+							//m_items.remove(_dest);
+							//data.items.remove(_dest.data);
+							//break;
+						//}
+					//}
+					m_character.playDouche();
+					Settings.STATE = InterfaceManager.MODE_DIALOG;
+					m_interface.updateCursor();
 				case 'skip':
 					source.special = _cmd.join(';');
 					return;

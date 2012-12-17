@@ -132,6 +132,11 @@ class ApplicationMain {
             return Assets.getBitmapData ("assets/LIB/heroe.png");
          
 		
+		if (inName=="assets/LIB/jump.png")
+			 
+            return Assets.getBitmapData ("assets/LIB/jump.png");
+         
+		
 		if (inName=="assets/LIB/Justin.png")
 			 
             return Assets.getBitmapData ("assets/LIB/Justin.png");
@@ -155,6 +160,16 @@ class ApplicationMain {
 		if (inName=="assets/LIB/key_red.png")
 			 
             return Assets.getBitmapData ("assets/LIB/key_red.png");
+         
+		
+		if (inName=="assets/LIB/lighter.png")
+			 
+            return Assets.getBitmapData ("assets/LIB/lighter.png");
+         
+		
+		if (inName=="assets/LIB/marlene.png")
+			 
+            return Assets.getBitmapData ("assets/LIB/marlene.png");
          
 		
 		if (inName=="assets/LIB/reception.png")
@@ -255,11 +270,14 @@ class NME_assets_lib_bottle_png extends nme.display.BitmapData { public function
 class NME_assets_lib_couloir_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_douche_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_heroe_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
+class NME_assets_lib_jump_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_justin_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_key_blue_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_key_gold_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_key_green_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_key_red_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
+class NME_assets_lib_lighter_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
+class NME_assets_lib_marlene_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_reception_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_room_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_tabouret_png extends nme.display.BitmapData { public function new () { super (0, 0); } }

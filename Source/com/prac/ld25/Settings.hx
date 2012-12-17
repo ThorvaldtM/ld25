@@ -17,7 +17,7 @@ class Settings
 	static public var COLLISION:Bool =  false;
 	static public var TRACE:Bool =  false;
 	
-	static public var STATE:UInt = 0;
+	static public var STATE:Int = 0;
 	static public var CHARACTER:Character;
 	
 	static public function applySound(sound:SoundChannel):Void {

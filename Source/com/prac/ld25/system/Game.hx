@@ -56,6 +56,7 @@ class Game extends Sprite
 		SceneList.saveScene(m_scene.data);
 		m_scene.removeEventListener("scene_change", changeScene);
 		removeChild(m_scene);
+		m_scene.destroy();
 		var _data:Array<String> = e.data.split(';');
 		var sound:Sound;
 		if (m_scene.data.id == 'reception') {
