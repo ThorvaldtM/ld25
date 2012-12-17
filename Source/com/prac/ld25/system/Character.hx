@@ -83,7 +83,7 @@ class Character extends SceneObject
 			this.graphics.clear();
 			if(m_current_sheet != m_tileSheet && m_current_sheet != m_tileSheet_push){
 				this.x = 217;
-				this.y = 281;
+				this.y = 301;
 				this.scaleX = 1;
 				this.x -= this.scaleX * box_width;
 				this.douche = true;

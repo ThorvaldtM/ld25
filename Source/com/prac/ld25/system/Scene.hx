@@ -7,6 +7,7 @@ import com.prac.ld25.data.SceneData;
 import com.prac.ld25.data.SceneList;
 import com.prac.ld25.interfaces.InterfaceManager;
 import com.prac.ld25.Settings;
+import com.prac.ld25.system.SceneObject;
 import com.prac.ld25.system.SpecialEvent;
 import com.prac.ld25.tools.AssetLoader;
 import flash.events.Event;
@@ -39,6 +40,7 @@ class Scene extends Sprite
 	private var m_dialog_prev:SceneObject;
 	private var m_groom:Bool = true;
 	private var m_event:SpecialEvent;
+	private var m_special_anim:SceneObject;
 
 	public function new(data:SceneData, spawn_x:Int, spawn_y:Int, _interface:InterfaceManager)
 	{
@@ -313,6 +315,12 @@ class Scene extends Sprite
 		if (m_event != null) {
 			m_event.update();
 		}
+		if (m_special_anim != null) {
+			m_special_anim.update();
+			if (m_special_anim.text.text.length < 5) {
+				m_special_anim = null;
+			}
+		}
 	}
 	
 	private function executeAction()
@@ -506,8 +514,8 @@ class Scene extends Sprite
 					}
 					_item = m_interface.current_item.data;
 					_item.x = 210;
-					_item.y = 276;
-					_item.dest = new Point(124,308);
+					_item.y = 296;
+					_item.dest = new Point(124,328);
 					_item.pick.success = false;
 					_item.pick.desc = "It's fine as it is.";
 					_item.pick.special = null;
@@ -560,9 +568,23 @@ class Scene extends Sprite
 				case 'event_room665' :
 					object.data.use.desc = "";
 					object.data.use.special = "event_room665_open";
+					object.data.dest = new Point(340, 370);
 				case 'event_room665_open':
-					//play open anim
-					return;
+					if (m_special_anim != null) {
+						return; //event in progress
+					}
+					Settings.STATE = InterfaceManager.MODE_DIALOG;
+					m_special_anim = new SceneObject(SceneList.getItem('door665_anim', false));
+					addChildAt(m_special_anim, getChildIndex(m_character) - 1);
+					m_special_anim.text.x += m_special_anim.x;
+					m_special_anim.text.y += m_special_anim.y;
+					addChild(m_special_anim.text);
+					parseDialog('What do you think you are doing ?;self;Stop bothering me *vlam*', m_special_anim, null, m_special_anim.data.use);
+				case 'event_room665_close':
+					if (m_special_anim != null && m_special_anim.parent != null) {
+						m_special_anim.speak('Stop bothering me *vlam*', 2000);
+						removeChild(m_special_anim);
+					}
 				case 'skip':
 					source.special = _cmd.join(';');
 					return;

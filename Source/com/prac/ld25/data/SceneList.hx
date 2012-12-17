@@ -315,7 +315,7 @@ class SceneList
 		_item.width = 123;
 		_item.height = 235;
 		_item.look = new BehaviorData("This is where my target reside.");
-		_item.use = new BehaviorData("Damn, locked.");
+		_item.use = new BehaviorData("Damn, Locked.");
 		_item.talk = new BehaviorData("Nope.");
 		_item.pick = new BehaviorData("Nah.");
 		_scene.items.push(_item);
@@ -815,6 +815,22 @@ class SceneList
 		_item.use = new BehaviorData("I would if you would stop watching !");
 		_item.talk = new BehaviorData("HELLO !;receptionist_sleep;*zzzZzzZZzz*");
 		_item.pick = new BehaviorData("Hummm");
+		m_items_pool.push(_item);
+		
+		_item = new ItemData();
+		_item.name = "Room 665";
+		_item.id = "door665_anim";
+		_item.graph = "dark_guest.png";
+		_item.x = 333;
+		_item.y = 73;
+		_item.width = 123;
+		_item.height = 235;
+		_item.textColor = 0xFA9352;
+		_item.shadowColor = 0x732101;
+		_item.look = new BehaviorData("My target is in front of me.");
+		_item.use = new BehaviorData("He is blocking the way.");
+		_item.use.special = 'event_room665_close';
+		_item.pick = new BehaviorData("Nah.");
 		m_items_pool.push(_item);
 		
 		

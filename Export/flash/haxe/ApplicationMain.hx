@@ -142,6 +142,11 @@ class ApplicationMain {
             return Assets.getBitmapData ("assets/LIB/couloir.png");
          
 		
+		if (inName=="assets/LIB/dark_guest.png")
+			 
+            return Assets.getBitmapData ("assets/LIB/dark_guest.png");
+         
+		
 		if (inName=="assets/LIB/douche.png")
 			 
             return Assets.getBitmapData ("assets/LIB/douche.png");
@@ -382,6 +387,7 @@ class NME_assets_lib_bottle_png extends nme.display.BitmapData { public function
 class NME_assets_lib_chariot_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_chickdodospritesheet_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_couloir_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
+class NME_assets_lib_dark_guest_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_douche_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_groom1_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_groom2_png extends nme.display.BitmapData { public function new () { super (0, 0); } }

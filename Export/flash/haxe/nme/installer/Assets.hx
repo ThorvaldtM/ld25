@@ -48,6 +48,8 @@ class Assets {
 			resourceTypes.set ("assets/LIB/chickdodospritesheet.png", "image");
 			resourceClasses.set ("assets/LIB/couloir.png", NME_assets_lib_couloir_png);
 			resourceTypes.set ("assets/LIB/couloir.png", "image");
+			resourceClasses.set ("assets/LIB/dark_guest.png", NME_assets_lib_dark_guest_png);
+			resourceTypes.set ("assets/LIB/dark_guest.png", "image");
 			resourceClasses.set ("assets/LIB/douche.png", NME_assets_lib_douche_png);
 			resourceTypes.set ("assets/LIB/douche.png", "image");
 			resourceClasses.set ("assets/LIB/groom1.png", NME_assets_lib_groom1_png);
