@@ -107,6 +107,11 @@ class ApplicationMain {
             return Assets.getBitmapData ("assets/col_room.png");
          
 		
+		if (inName=="assets/LIB/apuyer.png")
+			 
+            return Assets.getBitmapData ("assets/LIB/apuyer.png");
+         
+		
 		if (inName=="assets/LIB/bitch_theme.mp3")
 			 
             return Assets.getSound ("assets/LIB/bitch_theme.mp3");
@@ -115,6 +120,11 @@ class ApplicationMain {
 		if (inName=="assets/LIB/bottle.png")
 			 
             return Assets.getBitmapData ("assets/LIB/bottle.png");
+         
+		
+		if (inName=="assets/LIB/chariot.png")
+			 
+            return Assets.getBitmapData ("assets/LIB/chariot.png");
          
 		
 		if (inName=="assets/LIB/couloir.png")
@@ -202,9 +212,24 @@ class ApplicationMain {
             return Assets.getBitmapData ("assets/LIB/room.png");
          
 		
+		if (inName=="assets/LIB/table.png")
+			 
+            return Assets.getBitmapData ("assets/LIB/table.png");
+         
+		
 		if (inName=="assets/LIB/tabouret.png")
 			 
             return Assets.getBitmapData ("assets/LIB/tabouret.png");
+         
+		
+		if (inName=="assets/LIB/thermometer.png")
+			 
+            return Assets.getBitmapData ("assets/LIB/thermometer.png");
+         
+		
+		if (inName=="assets/LIB/tiroir.png")
+			 
+            return Assets.getBitmapData ("assets/LIB/tiroir.png");
          
 		
 		if (inName=="assets/LIB/Title_LD25.mp3")
@@ -285,8 +310,10 @@ class ApplicationMain {
 class NME_assets_col_corridor_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_col_reception_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_col_room_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
+class NME_assets_lib_apuyer_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_bitch_theme_mp3 extends nme.media.Sound { }
 class NME_assets_lib_bottle_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
+class NME_assets_lib_chariot_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_couloir_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_douche_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_groom1_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
@@ -304,7 +331,10 @@ class NME_assets_lib_lighter_png extends nme.display.BitmapData { public functio
 class NME_assets_lib_marlene_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_reception_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_room_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
+class NME_assets_lib_table_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_tabouret_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
+class NME_assets_lib_thermometer_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
+class NME_assets_lib_tiroir_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_title_ld25_mp3 extends nme.media.Sound { }
 class NME_assets_ui_bg_ui_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_ui_btn_look_png extends nme.display.BitmapData { public function new () { super (0, 0); } }

@@ -1,4 +1,5 @@
 package com.prac.ld25.data;
+import nme.geom.Point;
 
 /**
  * ...
@@ -23,6 +24,7 @@ class ItemData
 	public var collision:Bool;
 	public var shadowColor:Int = 0x000000;
 	public var textColor:Int = 0xFFFFFF;
+	public var dest:Point;
 
 	public function new()
 	{

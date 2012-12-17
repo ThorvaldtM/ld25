@@ -21,17 +21,23 @@ class Character extends SceneObject
 	public var speed_y:Int = 3;
 	public var speed_x:Int = 5;
 	public var douche:Bool = false;
+	public var push:Bool = false;
 	private var m_tileSheet_douche:Tilesheet;
 	
 	private var _moving:Bool;
 	private var m_tileSheet_jump:Tilesheet;
 	private var m_tileSheet_light:Tilesheet;
+	private var m_tileSheet_push:Tilesheet;
 
 	public function new()
 	{
 		box_width = 100;
 		box_height = 50;
 		_moving = false;
+		m_tileSheet_push = new Tilesheet(Assets.getBitmapData('assets/LIB/apuyer.png'));
+		for (i in 0...10) {
+			m_tileSheet_push.addTileRect(new Rectangle(i * 170, 0, 170, 247));
+		}
 		m_tileSheet_jump = new Tilesheet(Assets.getBitmapData('assets/LIB/jump.png'));
 		for (i in 1...12) {
 			m_tileSheet_jump.addTileRect(new Rectangle(i * 324, 0, 324, 463));
@@ -46,7 +52,7 @@ class Character extends SceneObject
 		}
 		m_tileSheet = new Tilesheet(Assets.getBitmapData('assets/LIB/heroe.png'));
 		for (i in 0...9) {
-			m_tileSheet.addTileRect(new Rectangle(i * 1530 / 9, 0, 1530 / 9, 247));
+			m_tileSheet.addTileRect(new Rectangle(i * 170, 0, 170, 247));
 		}
 		m_tileSheet.drawTiles(this.graphics, [ -25, box_height - 247, 0]);
 		m_current_max = 9;
@@ -75,12 +81,16 @@ class Character extends SceneObject
 		}
 		if((moving || (m_current_sheet != m_tileSheet && m_fade == -1) ) && m_skip <= 0 ){
 			this.graphics.clear();
-			if(m_current_sheet != m_tileSheet ){
+			if(m_current_sheet != m_tileSheet && m_current_sheet != m_tileSheet_push){
 				this.x = 217;
 				this.y = 281;
 				this.scaleX = 1;
 				this.x -= this.scaleX * box_width;
 				this.douche = true;
+			}else if (m_current_sheet == m_tileSheet_push) {
+				this.x = 309;
+				this.y = 222;
+				this.scaleX = 1;
 			}
 			m_current_sheet.drawTiles(this.graphics, [m_current_point.x, m_current_point.y, m_current]);
 			m_current++;
@@ -100,6 +110,12 @@ class Character extends SceneObject
 					case m_tileSheet_light :
 						m_current_max = 8;
 						m_current_sheet = m_tileSheet_douche;
+					case m_tileSheet_push :
+						push = true;
+						m_current_max = 9;
+						m_current_sheet = m_tileSheet;
+						m_current_point = new Point( -25, box_height - 247);
+						Settings.STATE = InterfaceManager.MODE_WALK;
 				}
 			}
 			if(Settings.COLLISION){
@@ -116,7 +132,7 @@ class Character extends SceneObject
 		this.m_text.x = (1530 / 9 - m_text.width  - 50) / 2 + ( m_text.width + 100) * (1 - this.scaleX ) / 4; //correct scaling position
 		m_text.y = -20 + box_height - 247;
 		if (m_text.y + this.y < 0) {
-			m_text.y = Settings.GAME_SIZE_H;
+			m_text.y = -this.y;
 		}
 	}
 	
@@ -127,6 +143,14 @@ class Character extends SceneObject
 		m_current_max = 11;
 		m_current_sheet = m_tileSheet_jump;
 		m_current_point = new Point( -25, -380);
+	}
+	
+	public function playPush():Void {
+		moving = false;
+		m_current = 0;
+		m_current_max = 10;
+		m_current_sheet = m_tileSheet_push;
+		m_current_point = new Point( -25, box_height - 247);
 	}
 	
 	private function get_moving():Bool

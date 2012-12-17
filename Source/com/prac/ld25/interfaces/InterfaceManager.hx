@@ -146,7 +146,9 @@ class InterfaceManager extends Sprite
 		}
 		if (m_cursor != null) {
 			m_cursor.stopDrag();
-			removeChild(m_cursor);
+			if(m_cursor.parent == this){
+				removeChild(m_cursor);
+			}
 		}
 		if (Settings.STATE != MODE_USE_ITEM && m_current_item != null) {
 			m_inv.addItem(m_current_item.data);
@@ -155,22 +157,22 @@ class InterfaceManager extends Sprite
 		
 		switch(Settings.STATE) {
 			case MODE_LOOK :
-				transformCursor('csr_look.png');
+				Mouse.show();
 				m_desc.setDesc('Look');
 			case MODE_WALK :
-				transformCursor('csr_walk.png');
+				Mouse.show();
 				m_desc.setDesc('Walk To');
 			case MODE_PICK :
-				transformCursor('csr_pick.png');
+				Mouse.show();
 				m_desc.setDesc('Pick');
 			case MODE_USE :
-				transformCursor('csr_use.png');
+				Mouse.show();
 				m_desc.setDesc('Use');
 			case MODE_TALK :
-				transformCursor('csr_talk.png');
+				Mouse.show();
 				m_desc.setDesc('Talk To');
 			case MODE_DIALOG :
-				transformCursor('csr_select.png');
+				Mouse.show();
 				m_desc.setDesc('');
 			case MODE_USE_ITEM :
 				transformCursor('inv_' + m_current_item.data.graph);

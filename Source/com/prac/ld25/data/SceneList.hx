@@ -1,4 +1,5 @@
 package com.prac.ld25.data;
+import nme.geom.Point;
 
 /**
  * ...
@@ -219,6 +220,7 @@ class SceneList
 		_item.y = 134;
 		_item.width = 163;
 		_item.height = 116;
+		_item.dest = new Point(333, 251);
 		_item.look = new BehaviorData("A Desk.");
 		_item.use = new BehaviorData();
 		_item.use.special = "replace;desk_open";
@@ -246,6 +248,37 @@ class SceneList
 		_scene.id = "corridor";
 		_scene.bg = "LIB/couloir.png";
 		_scene.collision = "col_corridor.png";
+		
+		_item = new ItemData();
+		_item.id = "groom";
+		_item.name = "Groom";
+		_item.graph = "groom1.png";
+		_item.x = 513;
+		_item.y = 111;
+		_item.width = 78;
+		_item.height = 121;
+		_item.textColor = 0xF3FF87;
+		_item.shadowColor = 0xA37E02;
+		_item.look = new BehaviorData("A big smoker. Maybe I should do something about it.");
+		_item.use = new BehaviorData("Can you repeat that ?");
+		_item.talk = new BehaviorData();
+		_item.talk.success = true;
+		_item.talk.dialog = new DialogData("*sigh*");
+		_dialogOption = new DataOption('Hi I am Greg, how are you doing ?', 'Greet');
+		_dialogOption.followup = new DialogData("*looks up* *sigh*");
+		_dialogOption.followup.options[0] = new DataOption('Look a triple headed monkey !','Prank');
+		_dialogOption.followup.options[0].followup = new DialogData("*sigh*");
+		_dialogOption.followup.options[1] = new DataOption('You know anything about room 665 ?','Ask');
+		_dialogOption.followup.options[1].followup = new DialogData("Nah.");
+		_dialogOption.followup.options[2] = new DataOption('Goodbye.','Bye');
+		_item.talk.dialog.options.push(_dialogOption);
+		_dialogOption = new DataOption('I am a demon and I will eat you alive !;character;*makes scary face*', 'Prank');
+		_dialogOption.followup = new DialogData("*sigh*;character;(I really need to work on my act.)");
+		_item.talk.dialog.options.push(_dialogOption);
+		_dialogOption = new DataOption('Goodbye.','Bye');
+		_item.talk.dialog.options.push(_dialogOption);
+		_item.pick = new BehaviorData("Not my type.");
+		_scene.items.push(_item);
 		
 		_item = new ItemData();
 		_item.exit = "room666;238;392";
@@ -313,6 +346,16 @@ class SceneList
 		_scene.items.push(_item);
 		
 		_item = new ItemData();
+		_item.id = "chariot";
+		_item.name = "";
+		_item.graph = "chariot.png";
+		_item.x = 472;
+		_item.y = 275;
+		_item.width = 156;
+		_item.height = 145;
+		_scene.items.push(_item);
+		
+		_item = new ItemData();
 		_item.id = "book";
 		_item.name = "Book";
 		_item.x = 482;
@@ -368,37 +411,6 @@ class SceneList
 		_item.pick = new BehaviorData('Hands off.');
 		_item.pick.target = "groom";
 		_item.defaultUse = "Nope.";
-		_scene.items.push(_item);
-		
-		_item = new ItemData();
-		_item.id = "groom";
-		_item.name = "Groom";
-		_item.graph = "groom_0.png";
-		_item.x = 513;
-		_item.y = 141;
-		_item.width = 78;
-		_item.height = 121;
-		_item.textColor = 0xF3FF87;
-		_item.shadowColor = 0xA37E02;
-		_item.look = new BehaviorData("A big smoker. Maybe I should do something about it.");
-		_item.use = new BehaviorData("Can you repeat that ?");
-		_item.talk = new BehaviorData();
-		_item.talk.success = true;
-		_item.talk.dialog = new DialogData("*sigh*");
-		_dialogOption = new DataOption('Hi I am Greg, how are you doing ?', 'Greet');
-		_dialogOption.followup = new DialogData("*looks up* *sigh*");
-		_dialogOption.followup.options[0] = new DataOption('Look a triple headed monkey !','Prank');
-		_dialogOption.followup.options[0].followup = new DialogData("*sigh*");
-		_dialogOption.followup.options[1] = new DataOption('You know anything about room 665 ?','Ask');
-		_dialogOption.followup.options[1].followup = new DialogData("Nah.");
-		_dialogOption.followup.options[2] = new DataOption('Goodbye.','Bye');
-		_item.talk.dialog.options.push(_dialogOption);
-		_dialogOption = new DataOption('I am a demon and I will eat you alive !;character;*makes scary face*', 'Prank');
-		_dialogOption.followup = new DialogData("*sigh*;character;(I really need to work on my act.)");
-		_item.talk.dialog.options.push(_dialogOption);
-		_dialogOption = new DataOption('Goodbye.','Bye');
-		_item.talk.dialog.options.push(_dialogOption);
-		_item.pick = new BehaviorData("Not my type.");
 		_scene.items.push(_item);
 		
 		m_scenes.push(_scene);
@@ -481,14 +493,25 @@ class SceneList
 		_scene.items.push(_item);
 		
 		_item = new ItemData();
+		_item.id = "thermometer";
+		_item.name = "";
+		_item.graph = "thermometer.png";
+		_item.x = 234;
+		_item.y = 56;
+		_item.width = 61;
+		_item.height = 40;
+		_scene.items.push(_item);
+		
+		_item = new ItemData();
 		_item.id = "thermostat";
 		_item.name = "Thermostat";
 		_item.x = 244;
 		_item.y = 96;
 		_item.width = 61;
 		_item.height = 40;
+		_item.dest = new Point(329, 222);
 		_item.look = new BehaviorData("20 degrees.");
-		_item.use = new BehaviorData('Oops I broke it.');
+		_item.use = new BehaviorData();
 		_item.use.special = "score;10;replace;thermostat_high;event_thermo";
 		_item.talk = new BehaviorData("Nope.");
 		_item.pick = new BehaviorData("Nope.");
@@ -559,7 +582,7 @@ class SceneList
 		_item.name = "Table";
 		_item.graph = "table.png";
 		_item.x = 473;
-		_item.y = 340;
+		_item.y = 290;
 		_item.width = 155;
 		_item.height = 91;
 		_item.look = new BehaviorData("A truly magnificent table !;character;This is the one I was waiting all of my life;character;no, just a plain BORING table.");
@@ -576,7 +599,7 @@ class SceneList
 		_item.x = 416;
 		_item.y = 370;
 		_item.width = 51;
-		_item.height = 53;
+		_item.height = 83;
 		_item.look = new BehaviorData("Just a stool.");
 		_item.use = new BehaviorData("No time for that now.");
 		_item.talk = new BehaviorData("Nah.");
@@ -593,7 +616,7 @@ class SceneList
 		_item.x = 525;
 		_item.y = 426;
 		_item.width = 51;
-		_item.height = 53;
+		_item.height = 83;
 		_item.look = new BehaviorData("Just a stool.");
 		_item.use = new BehaviorData("No time for that now.");
 		_item.talk = new BehaviorData("Nah.");
@@ -610,7 +633,7 @@ class SceneList
 		_item.x = 634;
 		_item.y = 370;
 		_item.width = 51;
-		_item.height = 53;
+		_item.height = 83;
 		_item.look = new BehaviorData("Just a stool.");
 		_item.use = new BehaviorData("No time for that now.");
 		_item.talk = new BehaviorData("Nah.");
@@ -629,11 +652,12 @@ class SceneList
 		_item = new ItemData();
 		_item.id = "desk_open";
 		_item.name = "desk";
+		_item.graph = "tiroir.png";
 		_item.x = 375;
 		_item.y = 134;
 		_item.width = 163;
 		_item.height = 116;
-		_item.look = new BehaviorData("There seems to be some usefull items inside.");
+		_item.look = new BehaviorData("So many stuff inside.");
 		_item.use = new BehaviorData();
 		_item.use.special = "replace;desk";
 		_item.talk = new BehaviorData("Does desk talks ?");
@@ -645,15 +669,16 @@ class SceneList
 		_item = new ItemData();
 		_item.id = "desk_open_empty";
 		_item.name = "desk";
+		_item.graph = "tiroir.png";
 		_item.x = 375;
 		_item.y = 134;
 		_item.width = 163;
 		_item.height = 116;
-		_item.look = new BehaviorData("Nothing left.");
+		_item.look = new BehaviorData("Only junk left.");
 		_item.use = new BehaviorData();
 		_item.use.special = "replace;desk_empty";
 		_item.talk = new BehaviorData("Does desk talks ?");
-		_item.pick = new BehaviorData("Nothing left.");
+		_item.pick = new BehaviorData("Only junk left.");
 		m_items_pool.push(_item);
 		
 		_item = new ItemData();
@@ -791,7 +816,14 @@ class SceneList
 		
 		_combo = new CombineData('sleep_bottle', 'receptionist');
 		_combo.special = 'event_receptionist';
-		_combo.inventory_only = true;
+		m_combines.push(_combo);
+		
+		_combo = new CombineData('key664', 'door664', 'The door is unlocked!');
+		_combo.special = 'event_room664';
+		m_combines.push(_combo);
+		
+		_combo = new CombineData('key665', 'door665', 'The door is unlocked!');
+		_combo.special = 'event_room665';
 		m_combines.push(_combo);
 		
 	}

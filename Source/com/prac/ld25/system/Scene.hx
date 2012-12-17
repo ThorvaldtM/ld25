@@ -56,10 +56,16 @@ class Scene extends Sprite
 			_bgCol.alpha = 0.5;
 			addChild(_bgCol);
 		}
+		
+		m_collision_map = Assets.getBitmapData('assets/' + data.collision);
 		m_groom = Settings.GROOM;
+		var _child:Int = -1;
 		for (_item in data.items) {
 			if (_item.id == "groom" && !Settings.GROOM) {
 				Settings.GROOM = true;
+				if (_item.graph == "groom4.png") {
+					m_groom = false;
+				}
 				continue;
 			}
 			if (_item.pick != null && _item.pick.target == "groom") {
@@ -71,14 +77,24 @@ class Scene extends Sprite
 			addChild(_itemObject);
 			m_items.push(_itemObject);
 			if (_item.collision) {
-				m_collisions.push(_itemObject);
+				var _offset:Int = (_item.id == "table") ? 80 : 0;
+				for (x in _item.x..._item.x + _item.width) {
+					for (y in _item.y..._item.y + _item.height) {
+						m_collision_map.setPixel(x, y+_offset, 0x000000);
+					}
+				}
+			}
+			if (_item.id == 'table') {
+				_child = this.getChildIndex(_itemObject);
 			}
 		}
-		
+		if (_child == -1) {
+			_child = numChildren;
+		}
 		m_character = new Character();
 		m_character.x = spawn_x;
 		m_character.y = spawn_y;
-		addChild(m_character);
+		addChildAt(m_character,_child);
 		Settings.CHARACTER = m_character;
 		
 		for (_item in m_items) {
@@ -86,8 +102,6 @@ class Scene extends Sprite
 			_item.text.y += _item.y;
 			addChild(_item.text);
 		}
-		
-		m_collision_map = Assets.getBitmapData('assets/' + data.collision);
 		
 		this.addEventListener(MouseEvent.CLICK, moveCharacter);
 		
@@ -138,11 +152,13 @@ class Scene extends Sprite
 		}else {
 			m_dest_target = null;
 		}
-		if (m_interface.state == InterfaceManager.MODE_WALK  || (m_interface.state != InterfaceManager.MODE_LOOK && m_dest_target != null)) {
-			if(m_dest_target != null){
-				m_dest = new Point(m_dest_target.x + m_dest_target.box_width / 2 - m_character.box_width / 2 , m_dest_target.y + m_dest_target.box_height / 2 + m_character.box_height * 2 );
-				if (this.data.id == 'corridor' && m_dest_target.data.id == 'stool') {
-					m_dest = new Point(270,276);
+		if (true) {
+			if (m_dest_target != null) {
+				if(m_dest_target.data.dest != null) {
+					m_dest = m_dest_target.data.dest.clone();
+				}else{
+					m_dest = new Point(Math.round(m_dest_target.x + m_dest_target.box_width / 2 - m_character.box_width / 2) , Math.round(m_dest_target.y + m_dest_target.box_height / 2 - m_character.box_height / 2) );
+					normaliseDestination();
 				}
 			}else {
 				m_dest = new Point(e.stageX - m_character.box_width / 2 , e.stageY - m_character.box_height / 2 );
@@ -151,6 +167,10 @@ class Scene extends Sprite
 		}else {
 			executeAction();
 		}
+	}
+	
+	private function normaliseDestination():Void {
+		
 	}
 	
 	private function dispatchExit(data:String):Void
@@ -196,18 +216,6 @@ class Scene extends Sprite
 						}
 					}
 				}
-				if(_isSafe){
-					/*** ITEM COLLISION ***/
-					for (_sceneObject in m_collisions) {
-						if (_next_x + m_character.box_width >= _sceneObject.x && _next_x < _sceneObject.x + _sceneObject.box_width
-							&& m_character.y < _sceneObject.y  + _sceneObject.box_height && m_character.y + m_character.box_height > _sceneObject.y ) {
-								_isSafe = false;
-								m_dest = null;
-								executeAction();
-								break;
-							}
-					}
-				}
 				
 				if (_isSafe) {
 					if(!m_dir){
@@ -224,6 +232,9 @@ class Scene extends Sprite
 					}
 					m_character.x = _next_x + m_character.box_width * (1 - m_character.scaleX ) / 2;
 					m_character.y = _next_y;
+					if(Settings.COLLISION){
+						m_character.speak(_next_x + ':' + _next_y, -1);
+					}
 				}
 			}
 		}else{
@@ -262,6 +273,18 @@ class Scene extends Sprite
 				removeChild(_sceneObject);
 				m_items.remove(_sceneObject);
 				data.items.remove(_sceneObject.data);
+			}
+		}
+		if (m_character.push) {
+			m_character.push = false;
+			for (_dest in m_items) {
+				if (_dest.data.id == "receptionist") {
+					_dest.current_max = 15;
+					_dest.speak("So hot in here ...");
+					_dest.data.talk.dialog.question = "I am so thirsty ...";
+				}else if(_dest.data.id == "thermometer") {
+					_dest.current_max = 23;
+				}
 			}
 		}
 	}
@@ -419,9 +442,14 @@ class Scene extends Sprite
 					_object.addEventListener(MouseEvent.ROLL_OUT, rollOut);
 					_object.addEventListener(MouseEvent.ROLL_OVER, rollOver);
 					addChildAt(_object, _index);
+					this.data.items.push(_item);
 					m_items.push(_object);
 					if (_item.collision) {
-						m_collisions.push(_object);
+						for (x in _item.x..._item.x + _item.width) {
+							for (y in _item.y..._item.y + _item.height) {
+								m_collision_map.setPixel(x, y, 0x000000);
+							}
+						}
 					}
 				case 'remove_item' :
 					m_interface.consumeItem();
@@ -433,14 +461,10 @@ class Scene extends Sprite
 					m_dest_action = InterfaceManager.MODE_TALK;
 					executeAction();
 				case 'event_thermo':
-					for (_dest in m_items) {
-						if (_dest.data.id == "receptionist") {
-							_dest.current_max = 15;
-							_dest.speak("So hot in here ...");
-							_dest.data.talk.dialog.question = "I am so thirsty ...";
-							break;
-						}
-					}
+					Settings.THERMO = true;
+					m_character.playPush();
+					Settings.STATE = InterfaceManager.MODE_DIALOG;
+					m_interface.updateCursor();
 				case 'event_stool':
 					for (_dest in m_items) {
 						if (_dest.data.id == "alarm") {
@@ -453,10 +477,13 @@ class Scene extends Sprite
 					_item = m_interface.current_item.data;
 					_item.x = 210;
 					_item.y = 276;
+					_item.dest = new Point(124,308);
 					_item.pick.success = false;
 					_item.pick.desc = "It's fine as it is.";
 					_item.pick.special = null;
 					_object = new SceneObject(_item);
+					_object.addEventListener(MouseEvent.ROLL_OUT, rollOut);
+					_object.addEventListener(MouseEvent.ROLL_OVER, rollOver);
 					addChildAt(_object, getChildIndex(m_character) - 1);
 					m_items.push(_object);
 					m_interface.consumeItem();
@@ -471,22 +498,33 @@ class Scene extends Sprite
 					for (_item in _itemsList) {
 						if (_item.id == "groom") {
 							switch(_item.graph) {
-								case "groom_0.png" :
-									_item.graph = "groom_1.png";
-								case "groom_1.png" :
-									_item.graph = "groom_2.png";
-								case "groom_2.png" :
-									_item.graph = "groom_3.png";
+								case "groom1.png" :
+									_item.graph = "groom2.png";
+								case "groom2.png" :
+									_item.graph = "groom3.png";
+								case "groom3.png" :
+									_item.graph = "groom4.png";
 							}
 						}
 					}
 				case 'event_receptionist' :
-					for (_dest in m_items) {
-						if (_dest.data.pick != null &&  _dest.data.pick.target == 'receptionist') {
-							_dest.data.pick.success = true;
+					if (Settings.THERMO) {
+						m_interface.consumeItem();
+						for (_dest in m_items) {
+							if (_dest.data.pick != null &&  _dest.data.pick.target == 'receptionist') {
+								_dest.data.pick.success = true;
+							}
 						}
 					}
-					
+				case 'event_room664' :
+					object.data.exit = "room664;238;392";
+					object.data.use = null;
+				case 'event_room665' :
+					object.data.use.desc = "";
+					object.data.use.special = "event_room665_open";
+				case 'event_room665_open':
+					//play open anim
+					return;
 				case 'skip':
 					source.special = _cmd.join(';');
 					return;

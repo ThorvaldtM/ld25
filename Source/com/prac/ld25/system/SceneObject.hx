@@ -1,5 +1,6 @@
 package com.prac.ld25.system;
 import com.prac.ld25.data.ItemData;
+import com.prac.ld25.Settings;
 import com.prac.ld25.tools.AssetLoader;
 import nme.Assets;
 import nme.display.Sprite;
@@ -31,7 +32,7 @@ class SceneObject extends Sprite
 	private var m_current_sheet:Tilesheet;
 	private var m_current_max:Int;
 	private var m_current_point:Point;
-	private var m_current_pause:Int = 0;
+	private var m_current_pause:Int = -99999;
 	
 	
 	public var box_width:Float;
@@ -53,10 +54,20 @@ class SceneObject extends Sprite
 						m_tileSheet.addTileRect(new Rectangle(i * 1710 / 15, 0, 1710 / 15, 140));
 					}
 					m_tileSheet.drawTiles(this.graphics, [ 0, 0, 0]);
-					m_current_max = (data.talk.dialog.question == "I am so thirsty ...") ? 15 : 1;
+					m_current_max = (Settings.THERMO) ? 15 : 1;
 					m_current_sheet = m_tileSheet;
 					m_current_point = new Point( 0, 0);
-					m_current_pause = (data.talk.dialog.question == "I am so thirsty ...") ? Std.int(Math.random() * 36 * 10) : -99999;
+					m_current_pause = (Settings.THERMO) ? Std.int(Math.random() * 36 * 10) : -99999;
+				case 'thermometer' :
+					m_tileSheet = new Tilesheet(Assets.getBitmapData('assets/LIB/thermometer.png'));
+					for (i in 0...23) {
+						m_tileSheet.addTileRect(new Rectangle(i * 759 / 23, 0, 759 / 23, 78));
+					}
+					m_tileSheet.drawTiles(this.graphics, [ 0, 0, 0]);
+					m_current = (Settings.THERMO) ? 21 : 0;
+					m_current_max = -1;
+					m_current_sheet = m_tileSheet;
+					m_current_point = new Point( 0, 0);
 				default:
 					var _bg:Sprite = AssetLoader.loadAsset('LIB/' + data.graph, data.width, data.height);
 					addChild(_bg);
@@ -126,15 +137,21 @@ class SceneObject extends Sprite
 			if(m_current_sheet != null && m_skip <= 0 && m_current_pause <= 0){
 				this.graphics.clear();
 				m_current_sheet.drawTiles(this.graphics, [m_current_point.x, m_current_point.y, m_current]);
-				m_current++;
+				if (m_current_max != -1){
+					m_current++;
+				}
 				if(m_current == 1 && m_current_pause > -99999){
 					m_current_pause = Std.int(Math.random() * 36 * 10);
 				}
 				if (m_current == 2 && m_current_pause < -99999){
 					m_current_pause = 0;
 				}
-				if (m_current >= m_current_max) {
-					m_current = 0;
+				if (m_current_max != -1 && m_current >= m_current_max) {
+					if (data.id == 'thermometer') {
+						m_current = m_current_max -2;
+					}else{
+						m_current = 0;
+					}
 				}
 				m_skip = 2;
 			}else {
