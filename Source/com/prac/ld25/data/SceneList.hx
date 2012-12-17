@@ -711,6 +711,34 @@ class SceneList
 		m_items_pool.push(_item);
 		
 		_item = new ItemData();
+		_item.id = "character";
+		_item.name = "Greg";
+		_item.textColor = 0xFFFFFF;
+		_item.shadowColor = 0x0A0069;
+		m_items_pool.push(_item);
+		
+		_item = new ItemData();
+		_item.id = "prey";
+		_item.name = "Unknown";
+		_item.textColor = 0xFA9352;
+		_item.shadowColor = 0x732101;
+		m_items_pool.push(_item);
+		
+		_item = new ItemData();
+		_item.id = "marlene_special";
+		_item.name = "Receptionist";
+		_item.textColor = 0xFFCCF5;
+		_item.shadowColor = 0x9E027F;
+		m_items_pool.push(_item);
+		
+		_item = new ItemData();
+		_item.id = "joe_special";
+		_item.name = "Groom";
+		_item.textColor = 0xF3FF87;
+		_item.shadowColor = 0xA37E02;
+		m_items_pool.push(_item);
+		
+		_item = new ItemData();
 		_item.id = "lighter";
 		_item.name = "lighter";
 		_item.graph = "lighter.png";
@@ -722,7 +750,7 @@ class SceneList
 		_item = new ItemData();
 		_item.id = "pills";
 		_item.name = "Box of Pills";
-		_item.graph = "pills.png";
+		_item.graph = "valium.png";
 		_item.look = new BehaviorData("SweetMoon. Makes you dream about the moon. Effect Guaranteed");
 		_item.talk = new BehaviorData("No.");
 		_item.defaultUse = "I rather not";
@@ -762,7 +790,7 @@ class SceneList
 		_item = new ItemData();
 		_item.id = "sleep_bottle";
 		_item.name = "Special Bottle";
-		_item.graph = "bottle.png";
+		_item.graph = "water_valium.png";
 		_item.x = 593;
 		_item.y = 226;
 		_item.width = 25;
@@ -770,6 +798,23 @@ class SceneList
 		_item.look = new BehaviorData("A bottle mixed with SweetMoon pills");
 		_item.talk = new BehaviorData("Nope.");
 		_item.defaultUse = "I don't want to waste it";
+		m_items_pool.push(_item);
+		
+		_item = new ItemData();
+		_item.id = "receptionist_sleep";
+		_item.name = "Receptionist";
+		_item.graph = "chickdodospritesheet.png";
+		_item.x = 0;
+		_item.y = 160;
+		_item.width = 78;
+		_item.height = 121;
+		_item.dest = new Point(145,331);
+		_item.textColor = 0xFFCCF5;
+		_item.shadowColor = 0x9E027F;
+		_item.look = new BehaviorData("Wow she is hot !");
+		_item.use = new BehaviorData("I would if you would stop watching !");
+		_item.talk = new BehaviorData("HELLO !;receptionist_sleep;*zzzZzzZZzz*");
+		_item.pick = new BehaviorData("Hummm");
 		m_items_pool.push(_item);
 		
 		
@@ -868,13 +913,15 @@ class SceneList
 		}
 	}
 	
-	static public function getItem(id:String):ItemData {
+	static public function getItem(id:String, remove:Bool = true):ItemData {
 		if (m_instance == null) {
 			m_instance = new SceneList();
 		}
 		for (_item in m_instance.m_items_pool) {
 			if (_item.id == id) {
-				m_instance.m_items_pool.remove(_item);
+				if(remove){
+					m_instance.m_items_pool.remove(_item);
+				}
 				return _item;
 			}
 		}

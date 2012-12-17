@@ -7,6 +7,7 @@ import com.prac.ld25.data.SceneData;
 import com.prac.ld25.data.SceneList;
 import com.prac.ld25.interfaces.InterfaceManager;
 import com.prac.ld25.Settings;
+import com.prac.ld25.system.SpecialEvent;
 import com.prac.ld25.tools.AssetLoader;
 import flash.events.Event;
 import nme.Assets;
@@ -37,6 +38,7 @@ class Scene extends Sprite
 	private var m_dialog_timer:Int = 0;
 	private var m_dialog_prev:SceneObject;
 	private var m_groom:Bool = true;
+	private var m_event:SpecialEvent;
 
 	public function new(data:SceneData, spawn_x:Int, spawn_y:Int, _interface:InterfaceManager)
 	{
@@ -48,7 +50,6 @@ class Scene extends Sprite
 		m_interface = _interface;
 		m_interface.addEventListener('dialog_choice', dialogResponse);
 		m_dir = false;
-		
 		var _bg:Sprite = AssetLoader.loadAsset(data.bg, 800, 600);
 		addChild(_bg);
 		if(Settings.COLLISION){
@@ -60,13 +61,18 @@ class Scene extends Sprite
 		m_collision_map = Assets.getBitmapData('assets/' + data.collision);
 		m_groom = Settings.GROOM;
 		var _child:Int = -1;
+		var _isEvent:Bool = !m_groom;
+		var _eventID:String = "";
 		for (_item in data.items) {
-			if (_item.id == "groom" && !Settings.GROOM) {
-				Settings.GROOM = true;
-				if (_item.graph == "groom4.png") {
+			if (_item.id == "groom") {
+				_eventID = _item.graph;
+				if (!Settings.GROOM) {
+					Settings.GROOM = true;
+					continue;
+				}else if (_item.graph == "groom4.png") {
 					m_groom = false;
+					_isEvent = false;
 				}
-				continue;
 			}
 			if (_item.pick != null && _item.pick.target == "groom") {
 				_item.pick.success = !m_groom;
@@ -106,6 +112,23 @@ class Scene extends Sprite
 		this.addEventListener(MouseEvent.CLICK, moveCharacter);
 		
 		
+		if (_isEvent) {
+			switch(_eventID) {
+				case "groom4.png":
+					m_event = new SpecialEvent([new SpecialText('I still forgiv...', 'joe_special'), new SpecialText('You bastard ! *BAM*', 'marlene_special'),  new SpecialText('*BIM* *BAM*', 'marlene_special'), new SpecialText('Someone helll...', 'joe_special'), new SpecialText('*CRUSH* *BAM* *BAM*', 'marlene_special')], [SceneList.getItem('marlene_special',false), SceneList.getItem('joe_special',false)]);
+				case "groom3.png":
+					m_event = new SpecialEvent([new SpecialText('Marlene I knew it was a misunderstanding !', 'joe_special'),new SpecialText('*zip* Let\'s dot it !', 'joe_special'), new SpecialText('What the !', 'marlene_special'), new SpecialText('*BIM* *CRUSH*', 'marlene_special') ], [SceneList.getItem('marlene_special',false), SceneList.getItem('joe_special',false)]);
+				case "groom2.png":
+					m_event = new SpecialEvent([new SpecialText('Oh Marlene !', 'joe_special'), new SpecialText('What the !', 'marlene_special'), new SpecialText('Come here Sweet..', 'joe_special'), new SpecialText('*BAM*', 'marlene_special') ], [SceneList.getItem('marlene_special',false), SceneList.getItem('joe_special',false)]);
+					
+			}
+			if (m_event != null) {
+				m_event.x = 29;
+				m_event.y = 431;
+				addChild(m_event);
+				m_event.start();
+			}
+		}
 		
 	}
 	
@@ -287,6 +310,9 @@ class Scene extends Sprite
 				}
 			}
 		}
+		if (m_event != null) {
+			m_event.update();
+		}
 	}
 	
 	private function executeAction()
@@ -432,6 +458,10 @@ class Scene extends Sprite
 		while (_cmd.length > 0) {
 			switch(_cmd.shift()) {
 				case 'replace' :
+					if (object == null) {
+						return;
+					}
+					m_dest_target.speak('');
 					var _index :Int = getChildIndex(m_dest_target);
 					removeChild(m_dest_target);
 					m_items.remove(m_dest_target);
@@ -510,11 +540,19 @@ class Scene extends Sprite
 				case 'event_receptionist' :
 					if (Settings.THERMO) {
 						m_interface.consumeItem();
+						var _receptionist:SceneObject = null;
 						for (_dest in m_items) {
 							if (_dest.data.pick != null &&  _dest.data.pick.target == 'receptionist') {
+								_dest.data.pick.desc = null;
+								_dest.data.pick.target = null;
 								_dest.data.pick.success = true;
 							}
+							if (_dest.data.id == 'receptionist') {
+								_receptionist = _dest;
+							}
+						
 						}
+						executeSpecial('replace;receptionist_sleep', _receptionist);
 					}
 				case 'event_room664' :
 					object.data.exit = "room664;438;392";
