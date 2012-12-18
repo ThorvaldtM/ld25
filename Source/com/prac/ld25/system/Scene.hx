@@ -137,6 +137,7 @@ class Scene extends Sprite
 			//parseDialog(';character;Sweet, I can finally exert my skill on those humans;character;I better start checking that room 665 and perform some pranks', m_character);
 		//}
 		if (data.id == "room665") {
+			m_interface.addScore(40);
 			parseDialog(";prey;Wtf are you doing in my room ?;greg;Oops, looks I have been found out *shrug*;prey;Get out now !;greg;That's not very nice mister;prey;I'll get you f**king thief *PAN*;greg;Missed me, ahah !;greg;Well play's time over now;greg;*MORPH*;prey;What the hell are you ?!;prey; Please spare me;greg;*demonic voice* I shall rip you heart;prey;nooooooo *feint*;greg;bah that was too easy;greg;I bet those lazy developer cut off the budget for that scene;character;go_end",m_character);
 		}
 	}
@@ -617,7 +618,7 @@ class Scene extends Sprite
 							_dest.data.pick.desc = "This might come handy.";
 							_dest.data.pick.target = "character";
 							_dest.data.pick.success = false;
-							_dest.data.pick.special = "score;10";
+							_dest.data.pick.special = "score;80";
 						}
 					}
 					

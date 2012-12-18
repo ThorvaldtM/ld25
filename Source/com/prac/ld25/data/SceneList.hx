@@ -452,7 +452,7 @@ class SceneList
 		_dialogOption.followup = new DialogData("What do you want ? I am busy.");
 		_dialogOption.followup.options[0] = new DataOption('How about giving me your number ?;character;Just kidding !', 'Flirt');
 		_dialogOption.followup.options[0].followup = new DialogData("There now leave me alone.;character;(wow she actually gave it to me !)");
-		_dialogOption.followup.options[0].followup.special = "gain;number;score;10;remove_option";
+		_dialogOption.followup.options[0].followup.special = "gain;number;score;80;remove_option";
 		_dialogOption.followup.options[1] = new DataOption('Can I do anything for you ?','Ask');
 		_dialogOption.followup.options[1].followup = new DialogData("Bring me a magazine.");
 		_dialogOption.followup.options[2] = new DataOption('Goodbye.','Bye');
@@ -509,7 +509,7 @@ class SceneList
 		_item.dest = new Point(329, 222);
 		_item.look = new BehaviorData("20 degrees.");
 		_item.use = new BehaviorData();
-		_item.use.special = "score;10;replace;thermostat_high;event_thermo";
+		_item.use.special = "score;80;replace;thermostat_high;event_thermo";
 		_item.talk = new BehaviorData("Nope.");
 		_item.pick = new BehaviorData("Nope.");
 		_scene.items.push(_item);
@@ -602,7 +602,7 @@ class SceneList
 		_item.talk = new BehaviorData("Nah.");
 		_item.pick = new BehaviorData();
 		_item.pick.success = true;
-		_item.pick.special = "score;10;disable;stool";
+		_item.pick.special = "score;80;disable;stool";
 		_item.collision = true;
 		_scene.items.push(_item);
 		
@@ -618,7 +618,7 @@ class SceneList
 		_item.use = new BehaviorData("No time for that now.");
 		_item.talk = new BehaviorData("Nah.");
 		_item.pick = new BehaviorData();
-		_item.pick.special = "score;10;disable;stool";
+		_item.pick.special = "score;80;disable;stool";
 		_item.pick.success = true;
 		_item.collision = true;
 		_scene.items.push(_item);
@@ -636,7 +636,7 @@ class SceneList
 		_item.talk = new BehaviorData("Nah.");
 		_item.pick = new BehaviorData();
 		_item.pick.success = true;
-		_item.pick.special = "score;10;disable;stool";
+		_item.pick.special = "score;80;disable;stool";
 		_item.collision = true;
 		_scene.items.push(_item);
 		
@@ -659,7 +659,7 @@ class SceneList
 		_item.use.special = "replace;desk";
 		_item.talk = new BehaviorData("Does desk talks ?");
 		_item.pick = new BehaviorData("This might come handy");
-		_item.pick.special = "gain;lighter;score;10;skip;gain;pills;score;10;replace;desk_open_empty";
+		_item.pick.special = "gain;lighter;score;80;skip;gain;pills;score;80;replace;desk_open_empty";
 		_item.pick.success = true;
 		m_items_pool.push(_item);
 		
@@ -824,7 +824,7 @@ class SceneList
 		m_combines.push(_combo);
 		
 		_combo = new CombineData('lighter', 'alarm2', 'Showtime !');
-		_combo.special = "remove_item;event_douche;score;10";
+		_combo.special = "remove_item;event_douche;score;80";
 		m_combines.push(_combo);
 		
 		_combo = new CombineData('number', 'receptionist', 'I don\'t want to give it back to her.');
@@ -847,13 +847,13 @@ class SceneList
 		_dialogOption.followup.options[2].followup = new DialogData("Hello ? *sigh*");
 		_dialogOption.followup.options[2].followup.options[0] = new DataOption('I am so horny for you !', 'Super Flirt');
 		_dialogOption.followup.options[2].followup.options[0].followup = new DialogData("*hangs up*");
-		_dialogOption.followup.options[2].followup.options[0].followup.special = "event_groom;score;10;remove_option";
+		_dialogOption.followup.options[2].followup.options[0].followup.special = "event_groom;score;80;remove_option";
 		_dialogOption.followup.options[2].followup.options[1] = new DataOption('Let\'s play strip poker.','Mega Flirt');
 		_dialogOption.followup.options[2].followup.options[1].followup = new DialogData("*hangs up*");
-		_dialogOption.followup.options[2].followup.options[1].followup.special = "event_groom;score;10;remove_option";
+		_dialogOption.followup.options[2].followup.options[1].followup.special = "event_groom;score;80;remove_option";
 		_dialogOption.followup.options[2].followup.options[2] = new DataOption('I want to experience new positions with you !','Ultra Flirt');
 		_dialogOption.followup.options[2].followup.options[2].followup = new DialogData("*hangs up*");
-		_dialogOption.followup.options[2].followup.options[2].followup.special = "event_groom;score;10;remove_option";
+		_dialogOption.followup.options[2].followup.options[2].followup.special = "event_groom;score;80;remove_option";
 		_combo.dialog.options.push(_dialogOption);
 		_dialogOption = new DataOption('I am the devil !', 'Fear');
 		_dialogOption.followup = new DialogData("And I am the queen of england ! *hangs up*");
