@@ -2,6 +2,7 @@ package com.prac.ld25.system;
 import com.prac.ld25.data.SceneList;
 import com.prac.ld25.interfaces.InterfaceManager;
 import com.prac.ld25.Settings;
+import com.prac.ld25.system.Ending;
 import com.prac.ld25.system.Intro;
 import flash.events.Event;
 import nme.Assets;
@@ -25,6 +26,7 @@ class Game extends Sprite
 	private var m_loop:Timer;
 	private var m_channel:SoundChannel;
 	private var m_intro:Intro;
+	private var m_ending:Ending;
 
 	public function new()
 	{
@@ -40,10 +42,12 @@ class Game extends Sprite
 	}
 	
 	public function start(e:Event = null):Void {
+		var _main:Main = cast( parent, Main);
+		_main.resetInterface();
+		
 		if (m_channel != null) {
 			m_channel.stop();
 		}
-	
 		
 		var sound:Sound = Assets.getSound ("assets/LIB/Title_LD25.mp3");
 		m_channel = sound.play(0, 99999);
@@ -75,9 +79,24 @@ class Game extends Sprite
 		m_intro = null;
 		m_interface.visible = true;
 		
-		m_scene = new Scene(SceneList.getScene('room666'),300,300, m_interface, true);
+		m_scene = new Scene(SceneList.getScene('room666'),220,283, m_interface, true);
 		m_scene.addEventListener("scene_change", changeScene);
+		m_scene.addEventListener("go_final", startEnding);
 		addChild(m_scene);
+	}
+	
+	private function startEnding(e:Event):Void
+	{
+		m_scene.removeEventListener("scene_change", changeScene);
+		m_scene.removeEventListener("go_final", startEnding);
+		removeChild(m_scene);
+		m_scene.destroy();
+		m_scene = null;
+		m_interface.visible = false;
+	
+		m_ending = new Ending();
+		m_ending.addEventListener('go_start', start);
+		addChild(m_ending);
 	}
 	
 	private function update(e:TimerEvent):Void
@@ -91,12 +110,16 @@ class Game extends Sprite
 		if(m_scene != null){
 			m_scene.update();
 		}
+		if(m_ending != null){
+			m_ending.update();
+		}
 	}
 	
 	private function changeScene(e:DataEvent):Void
 	{
 		SceneList.saveScene(m_scene.data);
 		m_scene.removeEventListener("scene_change", changeScene);
+		m_scene.removeEventListener("go_final", startEnding);
 		removeChild(m_scene);
 		m_scene.destroy();
 		var _data:Array<String> = e.data.split(';');

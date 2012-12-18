@@ -40,6 +40,8 @@ class Assets {
 			resourceTypes.set ("assets/LIB/apuyer.png", "image");
 			resourceClasses.set ("assets/LIB/bitch_theme.mp3", NME_assets_lib_bitch_theme_mp3);
 			resourceTypes.set ("assets/LIB/bitch_theme.mp3", "music");
+			resourceClasses.set ("assets/LIB/bossfight.png", NME_assets_lib_bossfight_png);
+			resourceTypes.set ("assets/LIB/bossfight.png", "image");
 			resourceClasses.set ("assets/LIB/bottle.png", NME_assets_lib_bottle_png);
 			resourceTypes.set ("assets/LIB/bottle.png", "image");
 			resourceClasses.set ("assets/LIB/chariot.png", NME_assets_lib_chariot_png);
@@ -52,6 +54,10 @@ class Assets {
 			resourceTypes.set ("assets/LIB/dark_guest.png", "image");
 			resourceClasses.set ("assets/LIB/douche.png", NME_assets_lib_douche_png);
 			resourceTypes.set ("assets/LIB/douche.png", "image");
+			resourceClasses.set ("assets/LIB/eye_boss.png", NME_assets_lib_eye_boss_png);
+			resourceTypes.set ("assets/LIB/eye_boss.png", "image");
+			resourceClasses.set ("assets/LIB/eye_greg.png", NME_assets_lib_eye_greg_png);
+			resourceTypes.set ("assets/LIB/eye_greg.png", "image");
 			resourceClasses.set ("assets/LIB/groom1.png", NME_assets_lib_groom1_png);
 			resourceTypes.set ("assets/LIB/groom1.png", "image");
 			resourceClasses.set ("assets/LIB/groom2.png", NME_assets_lib_groom2_png);

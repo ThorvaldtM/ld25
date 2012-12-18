@@ -122,6 +122,11 @@ class ApplicationMain {
             return Assets.getSound ("assets/LIB/bitch_theme.mp3");
 		 
 		
+		if (inName=="assets/LIB/bossfight.png")
+			 
+            return Assets.getBitmapData ("assets/LIB/bossfight.png");
+         
+		
 		if (inName=="assets/LIB/bottle.png")
 			 
             return Assets.getBitmapData ("assets/LIB/bottle.png");
@@ -150,6 +155,16 @@ class ApplicationMain {
 		if (inName=="assets/LIB/douche.png")
 			 
             return Assets.getBitmapData ("assets/LIB/douche.png");
+         
+		
+		if (inName=="assets/LIB/eye_boss.png")
+			 
+            return Assets.getBitmapData ("assets/LIB/eye_boss.png");
+         
+		
+		if (inName=="assets/LIB/eye_greg.png")
+			 
+            return Assets.getBitmapData ("assets/LIB/eye_greg.png");
          
 		
 		if (inName=="assets/LIB/groom1.png")
@@ -393,12 +408,15 @@ class NME_assets_col_room_png extends nme.display.BitmapData { public function n
 class NME_assets_col_room664_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_apuyer_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_bitch_theme_mp3 extends nme.media.Sound { }
+class NME_assets_lib_bossfight_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_bottle_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_chariot_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_chickdodospritesheet_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_couloir_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_dark_guest_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_douche_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
+class NME_assets_lib_eye_boss_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
+class NME_assets_lib_eye_greg_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_groom1_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_groom2_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_groom3_png extends nme.display.BitmapData { public function new () { super (0, 0); } }

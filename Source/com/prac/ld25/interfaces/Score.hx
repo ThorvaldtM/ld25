@@ -1,4 +1,5 @@
 package com.prac.ld25.interfaces;
+import com.prac.ld25.Settings;
 import nme.Assets;
 import nme.display.Sprite;
 import nme.events.TimerEvent;
@@ -65,6 +66,7 @@ class Score extends Sprite
 		m_feedback.addEventListener(TimerEvent.TIMER, updateFeedback);
 		m_feedback.addEventListener(TimerEvent.TIMER_COMPLETE, killFeedback);
 		m_feedback.start();
+		Settings.SCORE += value;
 		return m_score = value;
 	}
 	

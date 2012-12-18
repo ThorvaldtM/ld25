@@ -24,6 +24,7 @@ class SceneList
 		var _item:ItemData;
 		var _dialogOption:DataOption;
 		var _combo:CombineData;
+			
 		
 		/****** ROOM 664 ******/
 		_scene = new SceneData();
@@ -51,7 +52,7 @@ class SceneList
 		_item.width = 211;
 		_item.height = 275;
 		_item.look = new BehaviorData("Looks like a bed to me.");
-		_item.use = new BehaviorData("No time to sleep. I need to prank that businessman.");
+		_item.use = new BehaviorData("No time to sleep. I need to prank THAT guy.");
 		_item.talk = new BehaviorData("Only when I am asleep.");
 		_item.pick = new BehaviorData("Doesn't look like a portable bed.");
 		_scene.items.push(_item);
@@ -100,85 +101,27 @@ class SceneList
 		/****** ROOM 665 ******/
 		_scene = new SceneData();
 		_scene.id = "room665";
-		_scene.bg = "LIB/room.png";
+		_scene.bg = "LIB/bossfight.png";
 		_scene.collision = "col_room.png";
 		
 		_item = new ItemData();
-		_item.exit = "corridor;345;349";
-		_item.name = "exit";
-		_item.x = 218;
-		_item.y = 412;
-		_item.width = 163;
-		_item.height = 69;
-		_item.look = new BehaviorData("The door leading out of the room");
-		_item.talk = new BehaviorData("Nope.");
-		_item.pick = new BehaviorData("Nah.");
+		_item.id = "greg";
+		_item.name = "Greg";
+		_item.graph = "eye_greg.png";
+		_item.x = 420;
+		_item.y = 200;
+		_item.textColor = 0xFFFFFF;
+		_item.shadowColor = 0x0A0069;
 		_scene.items.push(_item);
 		
 		_item = new ItemData();
-		_item.id = "bed";
-		_item.name = "Bed";
-		_item.x = 540;
-		_item.y = 100;
-		_item.width = 211;
-		_item.height = 275;
-		_item.look = new BehaviorData("Looks like a bed to me.");
-		_item.use = new BehaviorData("No time to sleep. I need to prank that businessman.");
-		_item.talk = new BehaviorData("Only when I am asleep.");
-		_item.pick = new BehaviorData("Doesn't look like a portable bed.");
-		_scene.items.push(_item);
-		
-		_item = new ItemData();
-		_item.id = "window";
-		_item.name = "Window";
-		_item.x = 143;
-		_item.y = 5;
-		_item.width = 105;
-		_item.height = 160;
-		_item.look = new BehaviorData("It's quite dark outside.");
-		_item.use = new BehaviorData("Don't want to catch a cold.");
-		_item.talk = new BehaviorData("Really ?");
-		_item.pick = new BehaviorData("Nope.");
-		_scene.items.push(_item);
-		
-		_item = new ItemData();
-		_item.id = "desk";
-		_item.name = "desk";
-		_item.x = 375;
-		_item.y = 134;
-		_item.width = 163;
-		_item.height = 116;
-		_item.look = new BehaviorData("A Desk.");
-		_item.use = new BehaviorData("Locked.");
-		_item.talk = new BehaviorData("Does desk talks ?");
-		_item.pick = new BehaviorData("And what you gonna do with a desk ?");
-		_scene.items.push(_item);
-		
-		_item = new ItemData();
-		_item.id = "lamp";
-		_item.name = "Lamp";
-		_item.x = 454;
-		_item.y = 72;
-		_item.width = 66;
-		_item.height = 95;
-		_item.look = new BehaviorData("A Lamp.");
-		_item.use = new BehaviorData("That would wake him up.");
-		_item.talk = new BehaviorData("Nah.");
-		_item.pick = new BehaviorData("I rather not.");
-		_scene.items.push(_item);
-		
-		_item = new ItemData();
-		_item.id = "conduct";
-		_item.name = "Air Conduct";
-		_item.x = 685;
-		_item.y = 196;
-		_item.width = 50;
-		_item.height = 127;
-		_item.look = new BehaviorData("Looks like it leads to room 665.");
-		_item.use = new BehaviorData("Here I come !");
-		_item.use.special = "event_confrontation";
-		_item.talk = new BehaviorData("Nah.");
-		_item.pick = new BehaviorData("Nope.");
+		_item.id = "prey";
+		_item.name = "Unknown";
+		_item.x = 300;
+		_item.y = 200;
+		_item.graph = "eye_boss.png";
+		_item.textColor = 0xFA9352;
+		_item.shadowColor = 0x732101;
 		_scene.items.push(_item);
 		
 		m_scenes.push(_scene);
@@ -209,9 +152,48 @@ class SceneList
 		_item.width = 211;
 		_item.height = 275;
 		_item.look = new BehaviorData("Looks like a bed to me.");
-		_item.use = new BehaviorData("No time to sleep. I need to prank that businessman.");
+		_item.use = new BehaviorData("No time to sleep. I need to prank THAT guy.");
 		_item.talk = new BehaviorData("Only when I am asleep.");
 		_item.pick = new BehaviorData("Doesn't look like a portable bed.");
+		_scene.items.push(_item);
+		
+		_item = new ItemData();
+		_item.id = "radiator";
+		_item.name = "Radiator";
+		_item.x = 248;
+		_item.y = 145;
+		_item.width = 98;
+		_item.height = 86;
+		_item.look = new BehaviorData("Doesn't seems to be working.");
+		_item.use = new BehaviorData("Doesn't work.");
+		_item.talk = new BehaviorData("Nope.");
+		_item.pick = new BehaviorData("Doesn't look like a portable radiator.");
+		_scene.items.push(_item);
+		
+		_item = new ItemData();
+		_item.id = "mushroom";
+		_item.name = "Mushroom";
+		_item.x = 752;
+		_item.y = 239;
+		_item.width = 98;
+		_item.height = 86;
+		_item.look = new BehaviorData("Doesn't look edible.");
+		_item.use = new BehaviorData("Humm no.");
+		_item.talk = new BehaviorData("Nope.");
+		_item.pick = new BehaviorData("Might be poisonous.");
+		_scene.items.push(_item);
+		
+		_item = new ItemData();
+		_item.id = "sink";
+		_item.name = "Sink";
+		_item.x = 19;
+		_item.y = 131;
+		_item.width = 47;
+		_item.height = 95;
+		_item.look = new BehaviorData("A Sink.");
+		_item.use = new BehaviorData("Washed my hands.");
+		_item.talk = new BehaviorData("Nope.");
+		_item.pick = new BehaviorData("Nah.");
 		_scene.items.push(_item);
 		
 		_item = new ItemData();

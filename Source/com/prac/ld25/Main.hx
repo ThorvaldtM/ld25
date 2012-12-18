@@ -53,6 +53,19 @@ class Main extends Sprite {
 		
 	}
 	
+	public function resetInterface():Void {
+		Settings.GROOM = true;
+		Settings.THERMO = false;
+		Settings.STATE = InterfaceManager.MODE_WALK;
+		Settings.SCORE = 0;
+		
+		removeChild(m_interface);
+		m_interface = new InterfaceManager();
+		addChild( m_interface);
+		
+		m_game.setInterface(m_interface);
+	}
+	
 	private function trace(v : Dynamic, ?infos : PosInfos ):Void
 	{
 		

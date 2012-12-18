@@ -102,7 +102,9 @@ class Scene extends Sprite
 		m_character = new Character();
 		m_character.x = spawn_x;
 		m_character.y = spawn_y;
-		addChildAt(m_character,_child);
+		if(data.id != "room665"){
+			addChildAt(m_character, _child);
+		}
 		Settings.CHARACTER = m_character;
 		
 		for (_item in m_items) {
@@ -114,7 +116,7 @@ class Scene extends Sprite
 		this.addEventListener(MouseEvent.CLICK, moveCharacter);
 		
 		
-		if (_isEvent) {
+		if (_isEvent && data.id == "corridor") {
 			switch(_eventID) {
 				case "groom4.png":
 					m_event = new SpecialEvent([new SpecialText('I still forgiv...', 'joe_special'), new SpecialText('You bastard ! *BAM*', 'marlene_special'),  new SpecialText('*BIM* *BAM*', 'marlene_special'), new SpecialText('Someone helll...', 'joe_special'), new SpecialText('*CRUSH* *BAM* *BAM*', 'marlene_special')], [SceneList.getItem('marlene_special',false), SceneList.getItem('joe_special',false)]);
@@ -131,8 +133,11 @@ class Scene extends Sprite
 				m_event.start();
 			}
 		}
-		if (firstStart) {
-			parseDialog(';character;Sweet, I can finally exert my skill on those humans;character;I better start checking that room 665 and perform some pranks', m_character);
+		//if (firstStart) {
+			//parseDialog(';character;Sweet, I can finally exert my skill on those humans;character;I better start checking that room 665 and perform some pranks', m_character);
+		//}
+		if (data.id == "room665") {
+			parseDialog(";prey;Wtf are you doing in my room ?;greg;Oops, looks I have been found out *shrug*;prey;Get out now !;greg;That's not very nice mister;prey;I'll get you f**king thief *PAN*;greg;Missed me, ahah !;greg;Well play's time over now;greg;*MORPH*;prey;What the hell are you ?!;prey; Please spare me;greg;*demonic voice* I shall rip you heart;prey;nooooooo *feint*;greg;bah that was too easy;greg;I bet those lazy developer cut off the budget for that scene;character;go_end",m_character);
 		}
 	}
 	
@@ -278,6 +283,12 @@ class Scene extends Sprite
 				if(_dialog.text != null && _dialog.text != ''){
 					m_dialog_timer = Lib.getTimer() + 2000;
 					_dialog.target.speak(_dialog.text, _dialog.fade);
+					if (_dialog.text  == "nooooooo *feint*") {
+						_dialog.target.visible = false;
+					}
+					if (_dialog.text  == "go_end") {
+						dispatchEvent(new Event('go_final'));
+					}
 				}
 				if (_dialog.special != null) {
 					executeSpecial(_dialog.special.special, _dialog.target, _dialog.special);

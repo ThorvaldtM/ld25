@@ -114,6 +114,14 @@ class SceneObject extends Sprite
 			if(data.id == "phone"){
 				m_text.x += 60;
 			}
+			if(data.graph != null){
+				if(data.graph.indexOf('eye_boss') > -1){
+					m_text.y -= 70;
+				}
+				if(data.graph.indexOf('eye_greg') > -1){
+					m_text.y -= 30;
+				}
+			}
 		}
 		m_text.text = " ";
 		
