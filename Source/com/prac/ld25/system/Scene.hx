@@ -42,7 +42,7 @@ class Scene extends Sprite
 	private var m_event:SpecialEvent;
 	private var m_special_anim:SceneObject;
 
-	public function new(data:SceneData, spawn_x:Int, spawn_y:Int, _interface:InterfaceManager)
+	public function new(data:SceneData, spawn_x:Int, spawn_y:Int, _interface:InterfaceManager, firstStart:Bool = false)
 	{
 		super();
 		this.data = data;
@@ -131,7 +131,9 @@ class Scene extends Sprite
 				m_event.start();
 			}
 		}
-		
+		if (firstStart) {
+			parseDialog(';character;Sweet, I can finally exert my skill on those humans;character;I better start checking that room 665 and perform some pranks', m_character);
+		}
 	}
 	
 	public function destroy():Void {

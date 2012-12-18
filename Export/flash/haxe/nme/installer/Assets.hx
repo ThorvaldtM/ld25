@@ -62,6 +62,8 @@ class Assets {
 			resourceTypes.set ("assets/LIB/groom4.png", "image");
 			resourceClasses.set ("assets/LIB/heroe.png", NME_assets_lib_heroe_png);
 			resourceTypes.set ("assets/LIB/heroe.png", "image");
+			resourceClasses.set ("assets/LIB/intro.png", NME_assets_lib_intro_png);
+			resourceTypes.set ("assets/LIB/intro.png", "image");
 			resourceClasses.set ("assets/LIB/item_bottle.png", NME_assets_lib_item_bottle_png);
 			resourceTypes.set ("assets/LIB/item_bottle.png", "image");
 			resourceClasses.set ("assets/LIB/item_Justin.png", NME_assets_lib_item_justin_png);
@@ -114,6 +116,8 @@ class Assets {
 			resourceTypes.set ("assets/LIB/thermometer.png", "image");
 			resourceClasses.set ("assets/LIB/tiroir.png", NME_assets_lib_tiroir_png);
 			resourceTypes.set ("assets/LIB/tiroir.png", "image");
+			resourceClasses.set ("assets/LIB/title.png", NME_assets_lib_title_png);
+			resourceTypes.set ("assets/LIB/title.png", "image");
 			resourceClasses.set ("assets/LIB/Title_LD25.mp3", NME_assets_lib_title_ld25_mp3);
 			resourceTypes.set ("assets/LIB/Title_LD25.mp3", "music");
 			resourceClasses.set ("assets/UI/arrow_left.png", NME_assets_ui_arrow_left_png);

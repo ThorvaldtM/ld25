@@ -177,6 +177,11 @@ class ApplicationMain {
             return Assets.getBitmapData ("assets/LIB/heroe.png");
          
 		
+		if (inName=="assets/LIB/intro.png")
+			 
+            return Assets.getBitmapData ("assets/LIB/intro.png");
+         
+		
 		if (inName=="assets/LIB/item_bottle.png")
 			 
             return Assets.getBitmapData ("assets/LIB/item_bottle.png");
@@ -307,6 +312,11 @@ class ApplicationMain {
             return Assets.getBitmapData ("assets/LIB/tiroir.png");
          
 		
+		if (inName=="assets/LIB/title.png")
+			 
+            return Assets.getBitmapData ("assets/LIB/title.png");
+         
+		
 		if (inName=="assets/LIB/Title_LD25.mp3")
 			 
             return Assets.getSound ("assets/LIB/Title_LD25.mp3");
@@ -394,6 +404,7 @@ class NME_assets_lib_groom2_png extends nme.display.BitmapData { public function
 class NME_assets_lib_groom3_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_groom4_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_heroe_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
+class NME_assets_lib_intro_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_item_bottle_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_item_justin_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_item_key_blue_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
@@ -420,6 +431,7 @@ class NME_assets_lib_table_png extends nme.display.BitmapData { public function 
 class NME_assets_lib_tabouret_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_thermometer_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_tiroir_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
+class NME_assets_lib_title_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_lib_title_ld25_mp3 extends nme.media.Sound { }
 class NME_assets_ui_arrow_left_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
 class NME_assets_ui_arrow_left_hover_png extends nme.display.BitmapData { public function new () { super (0, 0); } }
